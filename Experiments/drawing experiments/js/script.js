@@ -1,39 +1,36 @@
 "use strict";
 
 /**************************************************
-Template p5 project
-Pippin Barr
+Drawing experiments
+Destiny Chescappio
 
-Here is a description of this template p5 project.
+experimenting with p5's drawing and color functions
 **************************************************/
-
-// setup()
+//setup()
 //
-// Description of setup() goes here.
+//draws a face on the canvas
 function setup() {
   createCanvas(500,500);
 
-background(84,154,158);
-noStroke();
+// set the background to mint
+background(191,255,199);
 
-ellipse(CORNER);
+//draw a flesh colored head
+fill(250,200,200);
+ellipse(250,250,200,200);
 
-fill(127,0,200,100);
-ellipse(250,250,100,100);
+//draw the eyes the color black
+fill(0);
+ellipse(200,250,30,30);
 
-fill(127,0,210,100);
-ellipse(250,250,80,80);
-
-fill(147,0,220,100);
-ellipse(250,250,60,60);
-
-fill(157,0,230,100);
-ellipse(250,250,40,40);
+//draw the mouth
+strokeweight(10);
+line(200,300,300,300);
 }
 
 // draw()
 //
-// Description of draw() goes here.
+// does nothing
 function draw() {
 
 }
