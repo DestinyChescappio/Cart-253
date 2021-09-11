@@ -10,7 +10,7 @@ experimenting with p5's drawing and color functions
 //
 //draws a face on the canvas
 function setup() {
-  createCanvas(500,500);
+createCanvas(500,500);
 
 // set the background to mint
 background(191,255,199);
@@ -20,11 +20,12 @@ fill(250,200,200);
 ellipse(250,250,200,200);
 
 //draw the eyes the color black
-fill(0);
+fill(0,0,255);
 ellipse(200,250,30,30);
+ellipse(300,250,30,30);
 
 //draw the mouth
-strokeweight(10);
+strokeWeight(10);
 line(200,300,300,300);
 }
 
