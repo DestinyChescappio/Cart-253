@@ -7,9 +7,10 @@ Destiny Chescappio
 Intro to variables: creating & changing
 **************************************************/
 let backgroundShade = 0;
-let circleX = 0;
-let circleY = -1;
-let circleSize = 200
+let circleX = 250;
+let circleY = 0;
+let circleSize = 200;
+let circleAcceleration = 0.25;
 // setup()
 //
 // Description of setup() goes here.
@@ -23,9 +24,9 @@ circleSize=200;
 // Description of draw() goes here.
 function draw() {
 background(0);
-backgroundShade = backgroundShade + 1;
-backgroundShade;
-circleSize = circleSize * 1.01;
+background(backgroundShade);
+circleX += circlespeed;
+circleSpeed += circleAcceleration;
 ellipse(circleX,circleY,circleSize);
 
 }
