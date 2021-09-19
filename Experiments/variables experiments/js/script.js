@@ -7,10 +7,14 @@ Destiny Chescappio
 Intro to variables: creating & changing
 **************************************************/
 let backgroundShade = 0;
-let circleX = 0;
-let circleY = 250;
-let circleSize = 200;
-let circleSpeed = 2;
+
+
+let circle = {
+  x; 0,
+  y; 250,
+  size; 200,
+  speed; 2
+};
 
 // setup()
 //
@@ -24,7 +28,7 @@ createCanvas(500, 500);
 // Description of draw() goes here.
 function draw() {
 background(backgroundShade);
-circleX += circleSpeed;
-ellipse(circleX, circleY, circleSize);
+circle.x += circle.x + circle.speed;
+ellipse(circle.x, circle.y, circle.size);
 
 }
