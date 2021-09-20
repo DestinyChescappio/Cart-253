@@ -10,11 +10,11 @@ let backgroundShade = 0;
 
 
 let circle = {
-  x: 250,
-  y: 0,
+  x: 0,
+  y: 250,
   size: 100,
   speed: 1,
-  fill: 0
+  fill: 255
 
 }
 
@@ -30,11 +30,12 @@ createCanvas(500, 500);
 // Description of draw() goes here.
 function draw() {
 background(backgroundShade);
+
 circle.x = circle.x + circle.speed;
-circle.speed = random(-5,5);
-circle.fill = random(0,255);
-ellipse(circle.x, circle.y, circle.size);
+
 fill(circle.fill);
+ellipse(circle.x, circle.y, circle.size);
+
 
 
 
