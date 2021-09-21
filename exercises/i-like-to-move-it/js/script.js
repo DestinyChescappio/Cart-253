@@ -1,11 +1,15 @@
 /**
-Title of Project
-Author Name
+I like to Move it!
+Destiny Chescappio
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+An interactive game. The game takes place in space over a pulsating moon with
+flying objects. The triangle represents the laser beam to hit the score;
+the moving square. The goal is to search and sort out the moving and flashing
+objects the y axis and find the square to hit the score.
+E1: I like to Move it!
+*******************************************************************************
 */
-
+//SetUp
 
 let bg = {
   r:50,
@@ -58,7 +62,7 @@ let bg = {
 
 
 /**
-Description of setup
+canvas with no stroke
 */
 function setup() {
   createCanvas(800,800);
@@ -68,7 +72,8 @@ function setup() {
 
 
 /**
-Description of draw()
+Middle circle is the moon, circleX, circleY, circleY2, square are the flying
+objects triangle is the laser beam
 */
 function draw() {
   background(bg.r,bg.g,bg.b);
@@ -76,7 +81,7 @@ function draw() {
 
 
 
-//Middle circle1
+//Draws the moon
   circle1.x = circle1.x + circle1.speed;
   circle1.x = constrain(circle1.x,400,800/2);
   circle1.size = map(mouseY,height,0,50,500);
@@ -84,7 +89,7 @@ function draw() {
   fill(circle1.fill);
   ellipse(circle1.x,circle1.y,circle1.size);
 
-//CircleX
+//draws flying object.1
 circleX.x = circleX.x + circleX.speed;
 circleX.size = circleX.size;
 
@@ -94,7 +99,7 @@ ellipse(circleX.x,circleX.y,circleX.size);
 
 
 
-//circleY
+//draws flying object.2
 circleY.x = circleY.x + circleY.speed;
 circleY.size = circleY.size;
 
@@ -102,15 +107,15 @@ circleY.fill = random(0,255);
 fill(circleY.fill);
 ellipse(circleY.x,circleY.y,circleY.size);
 
-//circleY2
+//draws flying object.3
 circleX2 = circleX2 - circleSpeed;
 ellipse(circleX2, circleY2, circleSize);
 
-//Square
+//draws flying object.4;the score
 squareX = squareX - squareSpeed;
 square(squareX, squareY, squareSize);
 
-//triangle
+//draws triangle;laser beam
 fill(255,0,0);
 triangle(mouseX, mouseY, 58, 20, 90, 75);
 
