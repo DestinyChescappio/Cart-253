@@ -19,10 +19,10 @@ let bg = {
     x: 400,
     y: 400,
     size: 100,
-    growthRate: 1.5,
-    speed: 1,
+    growthRate: 8,
+    speed: 9,
     fill: 200,
-    alpha: 220
+
 
 
     };
@@ -30,14 +30,31 @@ let bg = {
     //circle X
     let circleX = {
       x: 0,
-      y: 400,
+      y: 200,
       size: 30,
-      speed: 9,
+      speed: 6,
       fill: 0
     };
 
+    //circleY
+    let circleY = {
+      x: 0,
+      y: 600,
+      size: 30,
+      speed: 6,
+      fill: 0
+   };
+   //circleY2
+   let circleX2 = 800;
+   let circleY2 = 500;
+   let circleSize = 30;
+   let circleSpeed = 6;
 
-
+   //square
+   let squareX = 800;
+   let squareY = 300;
+   let squareSize = 20
+   let squareSpeed= 8.5;
 
 
 /**
@@ -64,7 +81,7 @@ function draw() {
   circle1.x = constrain(circle1.x,400,800/2);
   circle1.size = circle1.size + circle1.growthRate;
   circle1.size = constrain(circle1.size,0,width);
-  fill(circle1.fill,circle1.alpha);
+  fill(circle1.fill,circle1.fill);
   ellipse(circle1.x,circle1.y,circle1.size);
 
 //CircleX
@@ -74,6 +91,32 @@ circleX.size = circleX.size;
 circleX.fill = random(0,255);
 fill(circleX.fill);
 ellipse(circleX.x,circleX.y,circleX.size);
+
+
+
+//circleY
+circleY.x = circleY.x + circleY.speed;
+circleY.size = circleY.size;
+
+circleY.fill = random(0,255);
+fill(circleY.fill);
+ellipse(circleY.x,circleY.y,circleY.size);
+
+//circleY2
+circleX2 = circleX2 - circleSpeed;
+ellipse(circleX2, circleY2, circleSize);
+
+//Square
+squareX = squareX - squareSpeed;
+square(squareX, squareY, squareSize);
+
+
+
+
+
+
+
+
 
 
 
