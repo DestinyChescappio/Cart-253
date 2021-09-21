@@ -19,7 +19,6 @@ let bg = {
     x: 400,
     y: 400,
     size: 100,
-    growthRate: 8,
     speed: 9,
     fill: 200,
 
@@ -32,7 +31,7 @@ let bg = {
       x: 0,
       y: 200,
       size: 30,
-      speed: 6,
+      speed: 4,
       fill: 0
     };
 
@@ -41,20 +40,21 @@ let bg = {
       x: 0,
       y: 600,
       size: 30,
-      speed: 6,
+      speed: 4,
       fill: 0
    };
    //circleY2
    let circleX2 = 800;
    let circleY2 = 500;
    let circleSize = 30;
-   let circleSpeed = 6;
+   let circleSpeed = 4;
 
    //square
    let squareX = 800;
    let squareY = 300;
    let squareSize = 20
-   let squareSpeed= 8.5;
+   let squareSpeed= 4;
+
 
 
 /**
@@ -79,9 +79,9 @@ function draw() {
 //Middle circle1
   circle1.x = circle1.x + circle1.speed;
   circle1.x = constrain(circle1.x,400,800/2);
-  circle1.size = circle1.size + circle1.growthRate;
+  circle1.size = map(mouseY,height,0,50,500);
   circle1.size = constrain(circle1.size,0,width);
-  fill(circle1.fill,circle1.fill);
+  fill(circle1.fill);
   ellipse(circle1.x,circle1.y,circle1.size);
 
 //CircleX
@@ -109,6 +109,10 @@ ellipse(circleX2, circleY2, circleSize);
 //Square
 squareX = squareX - squareSpeed;
 square(squareX, squareY, squareSize);
+
+//triangle
+fill(255,0,0);
+triangle(mouseX, mouseY, 58, 20, 90, 75);
 
 
 
