@@ -19,16 +19,18 @@ let bg = {
     x: 400,
     y: 400,
     size: 100,
-    growthRate: 0.5,
+    growthRate: 1.5,
     speed: 1,
-    fill: 190,
+    fill: 200,
     alpha: 220
 
 
     };
-    let circleX = 100;
-    let circleY = 100;
-    let circleSize = 200;
+
+    //circle 2
+    let circleX = 0;
+    let circleY =400;
+    let circleSize = 50;
 
 
 /**
@@ -59,8 +61,9 @@ function draw() {
   ellipse(circle1.x,circle1.y,circle1.size);
 
 //Circle2
-  circleSize = 50;
-  ellipse(circleX, circleY, circleSize);
+circleX = circleX + 2;
+ellipse(circleX, circleY, circleSize);
+
 
 
 
