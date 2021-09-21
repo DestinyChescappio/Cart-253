@@ -27,10 +27,17 @@ let bg = {
 
     };
 
-    //circle 2
-    let circleX = 0;
-    let circleY =400;
-    let circleSize = 50;
+    //circle X
+    let circleX = {
+      x: 0,
+      y: 400,
+      size: 30,
+      speed: 9,
+      fill: 0
+    };
+
+
+
 
 
 /**
@@ -60,9 +67,17 @@ function draw() {
   fill(circle1.fill,circle1.alpha);
   ellipse(circle1.x,circle1.y,circle1.size);
 
-//Circle2
-circleX = circleX + 2;
-ellipse(circleX, circleY, circleSize);
+//CircleX
+circleX.x = circleX.x + circleX.speed;
+circleX.size = circleX.size;
+
+circleX.fill = random(0,255);
+fill(circleX.fill);
+ellipse(circleX.x,circleX.y,circleX.size);
+
+
+
+
 
 
 
