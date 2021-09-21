@@ -1,5 +1,5 @@
 /**
-I like to Move it!
+I-like-to-Move-it!
 Destiny Chescappio
 
 An interactive game. The game takes place in space over a pulsating moon with
