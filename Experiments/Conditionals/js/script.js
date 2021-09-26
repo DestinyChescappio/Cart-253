@@ -22,12 +22,12 @@ function draw() {
 
   fill(255,255,255);
 
-if (circle.x > width/3) {
-if (circle.x < 2 * width/3) {
+if (circle.x > width/3 && circle.x < 2 * width/3) { {
   fill(255,0,0);
 }
-
 }
+
+
 
   ellipse(circle.x,circle.y,circle.size);
 
