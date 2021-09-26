@@ -15,7 +15,10 @@ function draw() {
   noStroke();
   fill(100,200,100);
 
-  ellipse(caterpillar.x,caterpillar.y,caterpillar.segmentSize);
+let x = caterpillar.x;
+
+ellipse(x,caterpillar.y,caterpillar.segmentSize);
+x = x + 40;
 
 
 }
