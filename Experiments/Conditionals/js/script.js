@@ -1,21 +1,21 @@
-let displayCircle = false;
+let caterpillar = {
+  x: 100,
+  y: 250,
+  segmentSize: 50
+}
 
 function setup() {
   createCanvas(500,500);
 
+
 }
 
-
-
 function draw() {
-
   background(0);
-  if (mouseIsPressed) {
-    displayCircle = true;
-  }
+  noStroke();
+  fill(100,200,100);
 
-  if (displayCircle){
-    ellipse(250,250,100,100);
-  }
+  ellipse(caterpillar.x,caterpillar.y,caterpillar.segmentSize);
+
 
 }
