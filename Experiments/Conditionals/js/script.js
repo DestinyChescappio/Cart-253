@@ -15,10 +15,22 @@ function draw() {
   noStroke();
   fill(100,200,100);
 
+ //let x = caterpillar.x;
+ //let numSegments = 10;
+ //let segmentsDrawn = 0;
+
+ //while (segmentsDrawn < numSegments){
+ //  ellipse(x,caterpillar.y,caterpillar.segmentSize);
+ //x = x + 40;
+ //segmentsDrawn++;
+ //}
+
 let x = caterpillar.x;
+let numSegments = 10;
 
-ellipse(x,caterpillar.y,caterpillar.segmentSize);
-x = x + 40;
+for (let segmentsDrawn = 0; segmentsDrawn < numSegments; segmentsDrawn++){
+  ellipse(x,caterpillar.y,caterpillar.segmentSize);
+  x = x + 40;
 
-
+}
 }
