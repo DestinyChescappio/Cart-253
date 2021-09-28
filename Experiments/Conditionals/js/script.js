@@ -1,28 +1,22 @@
-let circle = {
-  x: 250,
-  y: 250,
-  size: 50,
-  fill: 0
-};
-
+let angle = 0;
+let rectScale = 0;
 function setup() {
   createCanvas(500,500);
 
   }
-
 function draw() {
 background(127);
-//draw the circle
-fill(circle.fill);
-ellipse(circle.x,circle.y,circle.size);
 
-function mousePressed(){
-//when the mouse button is pressed, move the circle to the mouse position
-circle.x = mouseX;
-circle.y = mouseY;
+push();
+fill(255,0,0);
+rectMode(CENTER);
+translate(width/2,height/2);
+rotate(angle);
+scale(rectScale);
+rect(0,0,100,100);
+pop();
 
-}
+angle = angle + 0.01;
+rectScale = rectScale + 0.01;
 
-
-ellipse(circle.x,circle.y,circle.size);
 }
