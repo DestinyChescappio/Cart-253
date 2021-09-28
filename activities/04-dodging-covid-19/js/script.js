@@ -21,18 +21,18 @@ let covid19 = {
     g: 0,
     b: 0
   }
-  };
-    let user = {
-      x: 250,
-      y: 250,
-      size: 100,
-      fill: 255
+};
+let user = {
+  x: 250,
+  y: 250,
+  size: 100,
+  fill: 255
 };
 //setting up the canvas
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
 
-  covid19.y = random(0,height);
+  covid19.y = random(0, height);
   covid19.vx = covid19.speed;
 
 }
@@ -42,11 +42,19 @@ drawing background, moving COVID-19, & drawing COVID-19
 
 function draw() {
   background(0);
+  // Display static
+  for (let i = 0; i < 1000; i++){
+    let x = random(0,width);
+    let y = random(0,height);
+    stroke(255);
+    point(x,y);
+  }
 
+//COVID-19 movement
   covid19.x = covid19.x + covid19.vx;
   covid19.y = covid19.y + covid19.vy;
 
-//resetting COVID-19 to the left
+  //movement COVID-19 to the left
   if (covid19.x > width) {
     covid19.x = 0;
     covid19.y = random(0,height);
@@ -56,15 +64,24 @@ function draw() {
   user.x = mouseX;
   user.y = mouseY;
 
-//COVID-19 fill property
-  fill(covid19.fill.r,covid19.fill.g,covid19.fill.b);
-noStroke();
+  //Check for catching COVID-19
+  let d = dist(user.x,user.y,covid19.x,covid19.y);
+  if (d < covid19.size/2 + user.size/2){
+    noloop();
+  }
 
-//display user
-fill(user.fill);
-ellipse(user.x,user.y,user.size);
+  //Display COVID-19
+  push();
+  fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
+  noStroke();
+  ellipse(covid19.x, covid19.y, covid19.size);
+  pop();
 
-ellipse(covid19.x,covid19.y,covid19.size);
+  //display user
+  push();
+  fill(user.fill);
+  ellipse(user.x, user.y, user.size);
+  pop();
 
 
 }
