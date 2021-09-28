@@ -15,7 +15,7 @@ function preload() {
 }
 //a circle object
 let circle = {
-  x: 730,
+  x: 0,
   y:350,
   size:100,
   vx: 1,
