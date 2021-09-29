@@ -32,6 +32,12 @@ let circle = {
     b: 100
     }
 }
+let tinyCircle = {
+  x: 346,
+  y:285,
+  size:10,
+  fill: 0
+}
 
 
 /**
@@ -52,6 +58,9 @@ function draw() {
   //display targetObjective
   imageMode(CENTER);
   image(targetObjective,width/2,height/2);
+
+//
+
   // Circle following mouse on both X & Y axis
   if (mouseX < circle.x) {
     circle.ax = -circle.acceleration;
@@ -84,5 +93,10 @@ circle.vy = constrain(circle.vy,-circle.maxSpeed,circle.maxSpeed);
 fill(circle.fill.r,circle.fill.g,circle.fill.b);
 noStroke();
 ellipse(circle.x,circle.y,circle.size);
+
+//display tiny Circle
+fill(tinyCircle.fill);
+noStroke();
+ellipse(tinyCircle.x,tinyCircle.y,tinyCircle.size);
 
 }
