@@ -22,14 +22,14 @@ let circle = {
   vy: 0,
   ax: 0,
   ay: 0,
-  acceleration: 1,
-  maxSpeed: 10,
+  acceleration: 0.25,
+  maxSpeed: 5,
   fill: {
-    r: 200,
+    r: 150,
     g: 0,
-    b: 200
-  }
-};
+    b: 100
+    }
+}
 
 
 /**
@@ -62,15 +62,17 @@ else {
 
 //setting velocity through acceleration & constraining velocity from reaching max speed
 circle.vx = circle.vx + circle.ax;
-circle.vx = constrain(circle.vx,-circle.maxspeed,circle.maxspeed);
+circle.vx = constrain(circle.vx,-circle.maxSpeed,circle.maxSpeed);
+
 circle.vy = circle.vy + circle.ay;
-circle.vy = constrain(circle.vy, -circle.maxspeed,circle.maxspeed);
+circle.vy = constrain(circle.vy,-circle.maxSpeed,circle.maxSpeed);
 
 
 
 //velocity used to make circle go to right side horizontally
   circle.x = circle.x + circle.vx;
   circle.y = circle.y + circle.vy;
+
 
 
 
