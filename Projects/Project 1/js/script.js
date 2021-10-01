@@ -14,6 +14,8 @@ x: 300,
 y: 300,
 w: 60,
 h: 15,
+stroke: 'rgba(100%,0%,100%,0.5)',
+strokeWeight: 3,
 fill: {
   r: 0,
   g: 255,
@@ -26,11 +28,13 @@ let ufo1window = {
   w: 20,
   h: 13,
   fill: 0
-}
+};
 
-function preload() {
 
-}
+
+//function preload() {
+
+//}
 
 
 /**
@@ -47,16 +51,17 @@ function setup() {
 Description of draw()
 */
 function draw() {
+///Displaying ufo1
+push();
 //displaying ufo1 green structure
 fill(ufo1.fill.r,ufo1.fill.g,ufo1.fill.b);
-noStroke();
+stroke('rgba(100%,0%,100%,0.5)');
+strokeWeight(3);
 ellipse(ufo1.x,ufo1.y,ufo1.w,ufo1.h);
-
 //display the ufo1 flashing window
 ufo1window.fill = random(0,255);
 fill(ufo1window.fill);
 ellipse(ufo1window.x,ufo1window.y,ufo1window.w,ufo1window.h);
-
-
+pop();
 
 }
