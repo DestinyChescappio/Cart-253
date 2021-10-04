@@ -43,7 +43,11 @@ function setupCircle() {
   circle1.x = width / 3;
   circle2.x = 2 * width / 3;
 
-
+//start moving circles in random direction
+circle1.vx = random(-circle1.speed,circle1.speed);
+circle1.vy = random(-circle1.speed,circle1.speed);
+circle2.vx = random(-circle2.speed,circle2.speed);
+circle2.vy = random(-circle2.speed,circle2.speed);
 }
 
 
