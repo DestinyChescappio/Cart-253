@@ -49,6 +49,7 @@ Description of setup
 */
 function setup() {
   createCanvas(600,600);
+
 }
 
 /**
@@ -56,6 +57,9 @@ Description of draw()
 */
 function draw() {
 background(157); //for now bg
+
+imageMode(CENTER);
+image(galaxyImage,width / 2, height /2);
 
   move();
   display(ufo1);
