@@ -15,8 +15,8 @@ function preload() {
 }
 
 let blackhole = {
-  x: 450,
-  y: 450,
+  x: 500,
+  y: 500,
   size: 100,
   fill:0
 }
