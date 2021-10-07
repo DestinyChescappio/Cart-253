@@ -78,8 +78,22 @@ display(ufo2);
 movement(ufo1);
 movement(ufo2);
 
-bounce(ufo1);
-bounce(ufo2);
+leftbounce(ufo1);
+rightbounce(ufo2);
+
+
+
+//ufo1 going back and forth (starting LEFT side)
+//if(ufo1.x > width || ufo1.x < 0) {
+  //  ufo1.vx = -ufo1.vx;
+  //}
+
+//ufo2 going back and forth (starting RIGHT side)
+//if(ufo2.x > width || ufo2.x < 0) {
+    //  ufo2.vx = -ufo2.vx;
+  //  }
+
+
 
 //displaying blackhole
 fill(blackhole.fill);
@@ -87,30 +101,32 @@ ellipse(blackhole.x,blackhole.y,blackhole.size);
 
 }
 function movement(ufo){
-//Ufo movement setup
-ufo.x = ufo.x + ufo.vx;
-ufo.y = ufo.y + ufo.vy;
+//Ufo1 movement setup
+  ufo.x = ufo.x + ufo.vx;
+  ufo.y = ufo.y + ufo.vy;
 }
 
-//ufo drawing using the green structure & ufo window
+//ufo1 drawing using the green structure & ufo window
 function display(ufo) {
-  //ufo green structure
-stroke('rgba(100%,0%,100%,0.5)');
-strokeWeight(3);
-fill(ufo.fill.r,ufo.fill.g,ufo.fill.b);
-ellipse(ufo.x,ufo.y,ufo.w,ufo.h);
-//window
-fill(random(0,255));
-ellipse(ufo.x,ufo.y - 5, 20, 13);
-}
+  //displaying ufo green structure
+  stroke('rgba(100%,0%,100%,0.5)');
+  strokeWeight(3);
+  fill(ufo.fill.r,ufo.fill.g,ufo.fill.b);
+  ellipse(ufo.x,ufo.y,ufo.w,ufo.h);
 
-function bounce(ufo) {
-//ufo starting at LEFT side going to RIGHT side
+//window
+  fill(random(0,255));
+  ellipse(ufo.x,ufo.y - 5, 20, 13);
+}
+function leftbounce(ufo) {
+//ufo1 going back and forth (starting LEFT side)
 if(ufo1.x > width || ufo1.x < 0) {
-ufo1.vx = -ufo1.vx;
+    ufo1.vx = -ufo1.vx;
   }
-//ufo starting at RIGHT side going to LEFT side
+}
+function rightbounce(ufo) {
+//ufo2 going back and forth (starting RIGHT side)
 if(ufo2.x > width || ufo2.x < 0) {
-ufo2.vx = -ufo2.vx;
+      ufo2.vx = -ufo2.vx;
     }
 }
