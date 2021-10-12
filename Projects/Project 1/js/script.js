@@ -9,7 +9,7 @@ author, and this description to match your project!
 /**
 Image display of galaxy
 */
-
+let state = `simulation`;
 
 let blackhole = {
   x: 500,
@@ -102,49 +102,60 @@ Description of draw()
 function draw() {
 background(157); //for now bg
 
-imageMode(CENTER);
-image(galaxyImage,width / 2, height /2);
+if (state ===`simulation`) {
+    simulation();
+  }
+else if (state === `ending`) {
+ending();
+}
 
-//displaying blackhole
-fill(blackhole.fill);
-ellipse(blackhole.x,blackhole.y,blackhole.size);
+}
+function simulation(){
+  imageMode(CENTER);
+  image(galaxyImage,width / 2, height /2);
 
-mouseIsInsideUfo(ufo1);
-mouseIsInsideUfo(ufo2);
-mouseIsInsideUfo(ufo3);
-mouseIsInsideUfo(ufo4);
+if(ufoIsInsideHole(ufo1)){
+  //stops moving
 
-//handledragging for dragging ufos calls
-handleDragging(ufo1);
-handleDragging(ufo2);
-handleDragging(ufo3);
-handleDragging(ufo4);
+}else{
+  //starts moving
+  movement(ufo1);
+}
 
-//function calls
-display(ufo1);
-display(ufo2);
-display(ufo3);
-display(ufo4);
+  //displaying blackhole
+  fill(blackhole.fill);
+  ellipse(blackhole.x,blackhole.y,blackhole.size);
 
+  mouseIsInsideUfo(ufo1);
+  mouseIsInsideUfo(ufo2);
+  mouseIsInsideUfo(ufo3);
+  mouseIsInsideUfo(ufo4);
 
-movement(ufo1);
-movement(ufo2);
-movement(ufo3);
-movement(ufo4);
+  //handledragging for dragging ufos calls
+  handleDragging(ufo1);
+  handleDragging(ufo2);
+  handleDragging(ufo3);
+  handleDragging(ufo4);
 
+  //function calls
+  display(ufo1);
+  display(ufo2);
+  display(ufo3);
+  display(ufo4);
 
-leftbounce(ufo1);
-leftbounce(ufo3);
-rightbounce(ufo4);
-rightbounce(ufo2);
+  leftbounce(ufo1);
+  leftbounce(ufo3);
+  rightbounce(ufo4);
+  rightbounce(ufo2);
 
-
+}
 function movement(ufo){
-//Ufo1 movement setup
+//Ufo movement setup
   ufo.x = ufo.x + ufo.vx;
   ufo.y = ufo.y + ufo.vy;
+let d = dist(ufo1.x,ufo1.y, )
   }
-}
+
 //dragging ufo
 function handleDragging(ufo){
   if (ufo.beingDragged === true){
@@ -164,6 +175,49 @@ mouseY > ufo.y - ufo.h /2 && mouseY < ufo.y + ufo.h / 2){
       return false;
     }
 }
+
+function mousePressed(){
+if (mouseIsInsideUfo(ufo1)) {
+ufo1.beingDragged = true;
+}
+if (mouseIsInsideUfo(ufo2)) {
+ufo2.beingDragged = true;
+}
+if (mouseIsInsideUfo(ufo3)) {
+ufo3.beingDragged = true;
+}
+if (mouseIsInsideUfo(ufo4)) {
+ufo4.beingDragged = true;
+}
+  }
+
+function mouseReleased(){
+if (ufo1.beingDragged){
+ufo1.beingDragged = false;
+}
+if (ufo2.beingDragged){
+ufo2.beingDragged = false;
+}
+if (ufo3.beingDragged){
+ufo3.beingDragged = false;
+}
+if (ufo4.beingDragged){
+ufo4.beingDragged = false;
+}
+}
+
+function ufoIsInsideHole(ufo){
+//check if ufo1 is inside hole
+let d = dist(ufo.x, ufo.y, blackhole.x, blackhole.y);
+//return true if distance is less than balckhole radius
+if(d < blackhole.size / 2){
+return true;
+}else{
+return false;
+}
+
+}
+
 
 //ufo drawing using the green structure & ufo window
 function display(ufo) {
