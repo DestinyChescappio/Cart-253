@@ -10,9 +10,6 @@ author, and this description to match your project!
 Image display of galaxy
 */
 
-function preload() {
-  galaxyImage = loadImage('assets/images/galaxy.jpeg');
-}
 
 let blackhole = {
   x: 500,
@@ -26,10 +23,11 @@ x: 0,
 y: 300,
 w: 60,
 h: 15,
-vx: 1,
+vx: 3,
 vy: 0,
 stroke: 'rgba(100%,0%,100%,0.5)',
 strokeWeight: 3,
+  beingDragged: false,
 fill: {
   r: 0,
   g: 255,
@@ -42,17 +40,52 @@ x: 600,
 y: 200,
 w: 60,
 h: 15,
-vx: -1,
+vx: -3,
 vy: 0,
 stroke: 'rgba(100%,0%,100%,0.5)',
 strokeWeight: 3,
+  beingDragged: false,
 fill: {
   r: 0,
   g: 255,
   b: 0
   }
 }
-
+let ufo3 = {
+  x: 0,
+  y: 425,
+  w: 60,
+  h: 15,
+  vx: 5,
+  vy: 0,
+  stroke: 'rgba(100%,0%,100%,0.5)',
+  strokeWeight: 3,
+  beingDragged: false,
+  fill: {
+    r: 0,
+    g: 255,
+    b: 0
+ }
+}
+let ufo4 = {
+  x: 600,
+  y: 100,
+  w: 60,
+  h: 15,
+  vx: -5,
+  vy: 0,
+  stroke: 'rgba(100%,0%,100%,0.5)',
+  strokeWeight: 3,
+    beingDragged: false,
+  fill: {
+    r: 0,
+    g: 255,
+    b: 0
+  }
+}
+function preload() {
+  galaxyImage = loadImage('assets/images/galaxy.jpeg');
+}
 
 
 /**
@@ -72,41 +105,67 @@ background(157); //for now bg
 imageMode(CENTER);
 image(galaxyImage,width / 2, height /2);
 
-display(ufo1);
-display(ufo2);
-
-movement(ufo1);
-movement(ufo2);
-
-leftbounce(ufo1);
-rightbounce(ufo2);
-
-
-
-//ufo1 going back and forth (starting LEFT side)
-//if(ufo1.x > width || ufo1.x < 0) {
-  //  ufo1.vx = -ufo1.vx;
-  //}
-
-//ufo2 going back and forth (starting RIGHT side)
-//if(ufo2.x > width || ufo2.x < 0) {
-    //  ufo2.vx = -ufo2.vx;
-  //  }
-
-
-
 //displaying blackhole
 fill(blackhole.fill);
 ellipse(blackhole.x,blackhole.y,blackhole.size);
 
-}
+mouseIsInsideUfo(ufo1);
+mouseIsInsideUfo(ufo2);
+mouseIsInsideUfo(ufo3);
+mouseIsInsideUfo(ufo4);
+
+//handledragging for dragging ufos calls
+handleDragging(ufo1);
+handleDragging(ufo2);
+handleDragging(ufo3);
+handleDragging(ufo4);
+
+//function calls
+display(ufo1);
+display(ufo2);
+display(ufo3);
+display(ufo4);
+
+
+movement(ufo1);
+movement(ufo2);
+movement(ufo3);
+movement(ufo4);
+
+
+leftbounce(ufo1);
+leftbounce(ufo3);
+rightbounce(ufo4);
+rightbounce(ufo2);
+
+
 function movement(ufo){
 //Ufo1 movement setup
   ufo.x = ufo.x + ufo.vx;
   ufo.y = ufo.y + ufo.vy;
+  }
+}
+//dragging ufo
+function handleDragging(ufo){
+  if (ufo.beingDragged === true){
+    ufo.x = mouseX;
+    ufo.y = mouseY;
+  }
 }
 
-//ufo1 drawing using the green structure & ufo window
+function mouseIsInsideUfo(ufo){
+if (mouseX > ufo.x - ufo.w / 2 && mouseX < ufo.x + ufo.w /2 &&
+mouseY > ufo.y - ufo.h /2 && mouseY < ufo.y + ufo.h / 2){
+
+
+      console.log("true");
+      return true;
+    } else {
+      return false;
+    }
+}
+
+//ufo drawing using the green structure & ufo window
 function display(ufo) {
   //displaying ufo green structure
   stroke('rgba(100%,0%,100%,0.5)');
@@ -118,15 +177,17 @@ function display(ufo) {
   fill(random(0,255));
   ellipse(ufo.x,ufo.y - 5, 20, 13);
 }
+
 function leftbounce(ufo) {
-//ufo1 going back and forth (starting LEFT side)
-if(ufo1.x > width || ufo1.x < 0) {
-    ufo1.vx = -ufo1.vx;
+//ufo going back and forth (starting LEFT side)
+if(ufo.x > width || ufo.x < 0) {
+    ufo.vx = -ufo.vx;
   }
 }
+
 function rightbounce(ufo) {
-//ufo2 going back and forth (starting RIGHT side)
-if(ufo2.x > width || ufo2.x < 0) {
-      ufo2.vx = -ufo2.vx;
-    }
+//ufo going back and forth (starting RIGHT side)
+if(ufo.x > width || ufo.x < 0) {
+      ufo.vx = -ufo.vx;
+  }
 }
