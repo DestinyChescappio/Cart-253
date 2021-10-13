@@ -103,6 +103,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
+background(0);
 
 //to display the simulation and an end
   if (state === `simulation`) {
