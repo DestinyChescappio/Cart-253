@@ -108,8 +108,26 @@ background(0);
 
 if (state === `title`){
   //beginning title
-  fill(255);
+  fill(0,255,0);
+  textFont(`krungthep`);
+  textStyle(BOLD);
+  textSize(60);
   text(`CATCH THE UFOS!`,width/2,height/2);
+
+  fill(255);
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textSize(17);
+  text(`you must transport the ufos to the black hole to get them home safely`,width/2,350);
+
+
+  fill(255);
+  textFont(`arial`);
+  textStyle(BOLD);
+  textSize(25);
+  text(`🕹Press any keyboard key to start🕹`,width/2,500);
+
+
 }
 //else if (state === `simulation`) {
   //simulation();
@@ -124,11 +142,21 @@ else if (state === `simulation`) {
 
 } else if (state === `ending`) {
     //ending title
-    fill(255);
-    text(`CONGRATULATIONS! YOU HAVE HELPED THE UFOS GET TO THE OTHER SIDE OF THE UNIVERSE`,width/2,height/2);
+    fill(0,255,0);
+    textFont(`krungthep`);
+    textSize(`50`);
+    text(`YOU HAVE HELPED THE UFOS
+    GET BACK HOME!👽🖖🏼`,width/2,height/2);
+
 }
 
 
+}
+//title starts when a key is pressed
+function keyPressed() {
+  if (state === `title`) {
+  state = `simulation`;
+}
 }
 
 function simulation() {
