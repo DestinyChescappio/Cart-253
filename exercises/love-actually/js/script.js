@@ -15,31 +15,20 @@ Description of preload
 function preload() {
 
 }
-let state = `title`;
-
 let circle1 = {
   x: undefined,
-  y: 250,
+  y: undefined,
   size: 100,
-  vx: 0,
-  vy: 0,
-  speed: 3
 };
 
 let circle2 = {
   x: undefined,
-  y: 250,
+  y: undefined,
   size: 100,
-  vx: 0,
-  vy: 0,
-  acceleration: 1,
-  maxSpeed: 1,
-  fill: {
-    r: 200,
-    g: 0,
-    b: 100
-  }
 };
+
+let state = `title`;//can be: title, simulation, love, sadness
+
 
 /**
 Description of setup
@@ -47,97 +36,69 @@ Description of setup
 function setup() {
   createCanvas(500,500);
 
-  setupCircles();
-
-  function setupCircles() {
-//position circle separated from one another
-  circle1.x = width / 3;
-  circle2.x = 2 * width / 3;
-//start moving circles in random direction
-circle1.vx = random(-circle1.speed,circle1.speed);
-circle1.vy = random(-circle1.speed,circle1.speed);
-
-circle2.vx = random(-circle2.acceleration,circle2.acceleration);
-circle2.vy = random(-circle2.acceleration,circle2.acceleration);
-  }
 }
 
-
-/**
-Description of draw()
-*/
 function draw() {
   background(0);
 
-if(state === `title`){
-  title();
-}
-else if (state === `simulation`){
-  simulation();
-}
-else if (state === `love`) {
-  love();
-}
-else if (state === `sadness`){
-  sadness();
-}
-}
+  if(state === `title`){
+    title();
+  }
+  else if (state === `simulation`){
+    simulation();
+  }
+  else if (state === `love`) {
+    love();
+  }
+  else if (state === `sadness`){
+    sadness();
+  }
+  }
 
 function title(){
   push();
-  textSize(80);
-  fill(200,0,100);
+  textSize(64);
+  fill(200,100,100);
   textAlign(CENTER,CENTER);
-  text(`Love Actually`, width/2,height/2);
+  text(`LOVE?`, width/2,height/2);
   pop();
 }
 
 function simulation() {
-  move();
-  checkOffscreen();
-  checkOverlap();
-  display();
+display();
 }
 
-function move() {
-  //moving circles
-  circle1.x = circle1.x + circle1.vx;
-  circle1.y = circle1.y + circle1.vy;
+function love(){
+  push();
+  textSize(64);
+  fill(255,150,150);
+  textAlign(CENTER,CENTER);
+  text(`LOVE!`, width/2,height/2);
+  pop();
 
-  circle2.x = circle2.x + circle2.vx;
-  circle2.y = circle2.y + circle2.vy;
 }
+function sadness(){
+  push();
+  textSize(64);
+  fill(150,150,255);
+  textAlign(CENTER,CENTER);
+  text(`:(`, width/2,height/2);
+  pop();
 
-function checkOffscreen(){
-  //check if circles have gone offscreen
-  if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height){
-state = `sadness`;
-  }
-}
-
-function checkOverlap(){
-  //check if circles overlaps
-  let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
-  //if circles are touching
-  if (d < circle1.size/2 + circle2.size/2){
-    state = `love`;
-  }
-}
-function
-
-
-function display(){
-//non-user circle getting chased
-ellipse(circle1.x,circle1.y,circle1.size);
-
-//user circle
-fill(circle2.fill.r,circle2.fill.g,circle2.fill.b);
-noStroke();
-ellipse(circle2.x,circle2.y,circle2.size);
 }
 
 function mousePressed(){
   if(state === `title`) {
     state = `simulation`;
   }
+}
+
+function display(){
+//circle2 following mouse
+  circle2.x = mouseX;
+  circle2.y = mouseY;
+
+  //displaying circles
+  ellipse(circle1.x,circle1.y,circle1.size);
+  ellipse(circle2.x,circle2.y,circle2.size);
 }
