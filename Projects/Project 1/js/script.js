@@ -12,11 +12,13 @@ Image display of galaxy
 
 let state = `simulation`;
 
+
 let blackhole = {
   x: 500,
   y: 500,
   size: 100,
-  fill: 0
+  fill: 0,
+  alpha: 255
 }
 
 let ufo1 = {
@@ -101,8 +103,8 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(157); //for now bg
 
+//to display the simulation and an end
   if (state === `simulation`) {
     simulation();
   } else if (state === `ending`) {
@@ -133,8 +135,9 @@ if (ufoIsInsideHole(ufo1)&& ufoIsInsideHole(ufo2)&& ufoIsInsideHole(ufo3)&& ufoI
 state = `ending`;
 }
 //displaying blackhole
-  fill(blackhole.fill);
-  ellipse(blackhole.x, blackhole.y, blackhole.size);
+fill(blackhole.fill);
+ellipse(blackhole.x, blackhole.y, blackhole.size);
+
 
 //mouse is inside the ufo calls to make sure the 'mouse pressed' is on the ufo
   mouseIsInsideUfo(ufo1);
