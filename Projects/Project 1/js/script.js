@@ -9,9 +9,7 @@ author, and this description to match your project!
 /**
 Image display of galaxy
 */
-
-let state = `simulation`;
-
+let state = `title`;
 
 let blackhole = {
   x: 500,
@@ -97,6 +95,9 @@ Description of setup
 */
 function setup() {
   createCanvas(600, 600);
+
+textSize(32);
+textAlign(CENTER,CENTER);
 }
 
 /**
@@ -105,12 +106,28 @@ Description of draw()
 function draw() {
 background(0);
 
-//to display the simulation and an end
-  if (state === `simulation`) {
+if (state === `title`){
+  //beginning title
+  fill(255);
+  text(`CATCH THE UFOS!`,width/2,height/2);
+}
+//else if (state === `simulation`) {
+  //simulation();
+//}
+//else if (state === `ending`) {
+  //ending();
+//}
+
+//to display the `simulation` and an end when ALL ufos are put inside black hole
+else if (state === `simulation`) {
     simulation();
-  } else if (state === `ending`) {
-    ending();
-  }
+
+} else if (state === `ending`) {
+    //ending title
+    fill(255);
+    text(`CONGRATULATIONS! YOU HAVE HELPED THE UFOS GET TO THE OTHER SIDE OF THE UNIVERSE`,width/2,height/2);
+}
+
 
 }
 
