@@ -74,7 +74,7 @@ function title(){
 function simulation() {
 display(circle1);
 display(circle2);
-
+unite();
 }
 
 function love(){
@@ -111,17 +111,24 @@ if (change < 0.01){
 circle1.vx = random(-circle1.speed,circle1.speed);
 circle1.vy = random(-circle1.speed,circle1.speed);
 }
-
 //circle1 display
 circle1.x = circle1.x + circle1.vx;
 circle1.y = circle1.y + circle1.vy;
-
 
 //circle2 following mouse
 circle2.x = mouseX;
 circle2.y = mouseY;
 
 //displaying circles
-  ellipse(circle1.x,circle1.y,circle1.size);
-  ellipse(circle2.x,circle2.y,circle2.size);
+ellipse(circle1.x,circle1.y,circle1.size);
+ellipse(circle2.x,circle2.y,circle2.size);
+}
+
+function unite(){
+//check if circles overlaps
+let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
+//if circles are touching
+if (d < circle1.size/2 + circle2.size/2){
+  state = `love`;
+  }
 }
