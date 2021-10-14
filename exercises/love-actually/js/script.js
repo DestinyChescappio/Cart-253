@@ -16,9 +16,13 @@ function preload() {
 
 }
 let circle1 = {
-  x: undefined,
-  y: undefined,
+  x: 250,
+  y: 250,
   size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 2
+
 };
 
 let circle2 = {
@@ -40,7 +44,7 @@ function setup() {
 
 function draw() {
   background(0);
-
+push();
   if(state === `title`){
     title();
   }
@@ -53,6 +57,9 @@ function draw() {
   else if (state === `sadness`){
     sadness();
   }
+  pop();
+
+
   }
 
 function title(){
@@ -65,7 +72,9 @@ function title(){
 }
 
 function simulation() {
-display();
+display(circle1);
+display(circle2);
+
 }
 
 function love(){
@@ -87,18 +96,32 @@ function sadness(){
 
 }
 
-function mousePressed(){
+function keyPressed (){
   if(state === `title`) {
     state = `simulation`;
   }
 }
-
 function display(){
-//circle2 following mouse
-  circle2.x = mouseX;
-  circle2.y = mouseY;
+//start changing circle1 velocity "less often" to make it more stable:
+//telling circle1 to change direction randomly only 1% of the time
+let change = random(); //generating random number between 0 and 1
 
-  //displaying circles
+if (change < 0.01){
+  //choose random velocities within the "speed limit"
+circle1.vx = random(-circle1.speed,circle1.speed);
+circle1.vy = random(-circle1.speed,circle1.speed);
+}
+
+//circle1 display
+circle1.x = circle1.x + circle1.vx;
+circle1.y = circle1.y + circle1.vy;
+
+
+//circle2 following mouse
+circle2.x = mouseX;
+circle2.y = mouseY;
+
+//displaying circles
   ellipse(circle1.x,circle1.y,circle1.size);
   ellipse(circle2.x,circle2.y,circle2.size);
 }
