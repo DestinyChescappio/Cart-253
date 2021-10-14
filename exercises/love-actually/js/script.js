@@ -65,13 +65,16 @@ function draw() {
 }
 
 function title() {
-  push();
   textSize(64);
   fill(200, 100, 100);
   textAlign(CENTER, CENTER);
   text(`The Love triangle`, width / 2, height / 2);
-  pop();
-}
+
+  textSize(30);
+  fill(200, 100, 100);
+  textAlign(CENTER);
+  text(`Press any keyboard key to start`, width / 2,350);
+  }
 
 function simulation() {
   display(circle1);
