@@ -2,8 +2,8 @@
 p1: Catch the UFOs!
 Destiny Chescappio
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+The UFOS need to get back home through the portal (the black hole) but hurry!
+the red enemy may steal your chance and consume your portal!
 */
 
 /**
@@ -104,7 +104,6 @@ function preload() {
   galaxyImage = loadImage('assets/images/galaxy.jpeg');
 }
 
-
 /**
 setting up canvas dimensions
 */
@@ -122,11 +121,10 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if(state === `gameOver`){
+  } else if (state === `gameOver`) {
     gameLost();
-  }
-  else if (state === `ending`) {
-    ending();
+  } else if (state === `winning`) {
+    winning();
   }
   if (state === `title`) {
     title();
@@ -141,13 +139,22 @@ function title() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`CATCH THE UFOS!`, width / 2, height / 2);
+
   //simulation instructions for user at title page
   fill(255);
   textFont(`arial`);
   textStyle(NORMAL);
   textSize(17);
   textAlign(CENTER, CENTER);
-  text(`you must transport the ufos to the black hole to get them home safely`, width / 2, 350);
+  text(`You must transport the ufos to the black hole to get them home safely`, width / 2, 350);
+  //continuation of instructions (line was too big)
+  fill(255);
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textSize(17);
+  textAlign(CENTER, CENTER);
+  text(`before the red enemy steals your chance!`, width / 2, 380);
+
   //what the user presses to start simulation
   fill(255);
   textFont(`arial`);
@@ -156,13 +163,15 @@ function title() {
   textAlign(CENTER, CENTER);
   text(`🕹Press any keyboard key to start🕹`, width / 2, 500);
 }
-function gameLost(){
-  fill(255,0,0);
+
+function gameLost() {
+  fill(255, 0, 0);
   textFont(`kringthep`);
   textSize(`50`);
   text(`GAME OVER! THE UFOS CANNOT GO HOME`, width / 2, height / 2);
 }
-function ending() {
+
+function winning() {
   //ending title displays when ALL ufos are inside black hole
   fill(0, 255, 0);
   textFont(`krungthep`);
@@ -171,12 +180,13 @@ function ending() {
     GET BACK HOME!👽🖖🏼`, width / 2, height / 2);
 }
 
-//title starts when a key is pressed
+//title and game music starts when a key is pressed
 function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
   gameMusicSFX.play();
+  gameMusicSFX.loop();
 }
 
 function simulation() {
@@ -203,21 +213,20 @@ function simulation() {
   display(ufo2);
   display(ufo3);
   display(ufo4);
-//enemy drawing
-drawingRedCircle(enemy);
+  //enemy drawing
+  drawingRedCircle(enemy);
 
-//enemy movement
-redCircleMovement(enemy);
+  //enemy movement
+  redCircleMovement(enemy);
 
-//enemy going on black hole; game over state
-redCircleOverlap();
+  //enemy going on black hole; game over state
+  redCircleOverlap();
 
-//leftbounce and rightbounce calls to make ufos bounce from one end to the other
+  //leftbounce and rightbounce calls to make ufos bounce from one end to the other
   leftbounce(ufo1);
   leftbounce(ufo3);
   rightbounce(ufo4);
   rightbounce(ufo2);
-
 
   //to stop movement when ALL ufos are inside black hole
   if (!ufoIsInsideHole(ufo1)) {
@@ -234,7 +243,7 @@ redCircleOverlap();
   }
   //to check if ALL ufos are in black ufo; this then stops and makes the 'ending'
   if (ufoIsInsideHole(ufo1) && ufoIsInsideHole(ufo2) && ufoIsInsideHole(ufo3) && ufoIsInsideHole(ufo4)) {
-    state = `ending`;
+    state = `winning`;
   }
 }
 
@@ -326,23 +335,23 @@ function display(ufo) {
   ellipse(ufo.x, ufo.y - 5, 20, 13);
 }
 
-function drawingRedCircle(enemy){
-fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
-ellipse(enemy.x,enemy.y, enemy.size);
+function drawingRedCircle(enemy) {
+  fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
+  ellipse(enemy.x, enemy.y, enemy.size);
 }
 
 function redCircleMovement(enemy) {
-enemy.x = enemy.x + enemy.vx;
-enemy.y = enemy.y + enemy.vy;
+  enemy.x = enemy.x + enemy.vx;
+  enemy.y = enemy.y + enemy.vy;
 }
 
-function redCircleOverlap(){
-//check if enemy overlap black hole
-let d = dist(enemy.x, enemy.y, blackhole.x, blackhole.y);
-//if enemy and blackhole touches
-if (d < enemy.size/2 + blackhole.size/2){
-  state = `gameOver`;
-}
+function redCircleOverlap() {
+  //check if enemy overlap black hole
+  let d = dist(enemy.x, enemy.y, blackhole.x, blackhole.y);
+  //if enemy and blackhole touches
+  if (d < enemy.size / 2 + blackhole.size / 2) {
+    state = `gameOver`;
+  }
 }
 
 function leftbounce(ufo) {
@@ -358,10 +367,3 @@ function rightbounce(ufo) {
     ufo.vx = -ufo.vx;
   }
 }
-
-//function tryGameMusic() {
-  //playing game music if this is the first interaction
-  //if (!gameMusicSFX.isplaying()) {
-  //  music.loop();
-//  }
-//}
