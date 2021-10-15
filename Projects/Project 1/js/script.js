@@ -99,7 +99,8 @@ let ufo4 = {
 let gameMusicSFX;
 
 function preload() {
-  gameMusicSFX = loadSound(`assets/sounds/game music.wav`)
+  gameMusicSFX = loadSound(`assets/sounds/game music.wav`);
+
   galaxyImage = loadImage('assets/images/galaxy.jpeg');
 }
 
@@ -175,6 +176,7 @@ function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
+  gameMusicSFX.play();
 }
 
 function simulation() {
@@ -215,6 +217,7 @@ redCircleOverlap();
   leftbounce(ufo3);
   rightbounce(ufo4);
   rightbounce(ufo2);
+
 
   //to stop movement when ALL ufos are inside black hole
   if (!ufoIsInsideHole(ufo1)) {
@@ -342,7 +345,6 @@ if (d < enemy.size/2 + blackhole.size/2){
 }
 }
 
-
 function leftbounce(ufo) {
   //ufo going back and forth (starting LEFT side)
   if (ufo.x > width || ufo.x < 0) {
@@ -356,3 +358,10 @@ function rightbounce(ufo) {
     ufo.vx = -ufo.vx;
   }
 }
+
+//function tryGameMusic() {
+  //playing game music if this is the first interaction
+  //if (!gameMusicSFX.isplaying()) {
+  //  music.loop();
+//  }
+//}
