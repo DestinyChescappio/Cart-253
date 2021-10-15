@@ -16,7 +16,6 @@ let blackhole = {
   y: 500,
   size: 100,
   fill: 0,
-  alpha: 255
 }
 
 let ufo1 = {
@@ -83,6 +82,14 @@ let ufo4 = {
     g: 255,
     b: 0
   }
+}
+
+let circleTime1 = {
+  x: 50,
+  y: 50,
+  size: 30,
+  fill: 255,
+  alpha: 100
 }
 /**
 Loading a galaxy image as the main background
@@ -180,6 +187,9 @@ function simulation() {
   display(ufo2);
   display(ufo3);
   display(ufo4);
+
+  //drawing "time" circles
+  drawingtheTime(circleTime1);
 
   //leftbounce and rightbounce calls to make ufos bounce from one end to the other
   leftbounce(ufo1);
@@ -292,6 +302,12 @@ function display(ufo) {
   //ufo window structure
   fill(random(0, 255));
   ellipse(ufo.x, ufo.y - 5, 20, 13);
+}
+
+function drawingtheTime(circleTime1){
+fill(circleTime1.fill);
+noStroke();
+ellipse(circleTime1.x, circleTime1.y, circleTime1.size);
 }
 
 function leftbounce(ufo) {
