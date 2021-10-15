@@ -18,6 +18,19 @@ let blackhole = {
   fill: 0,
 }
 
+let enemy = {
+  x: 30,
+  y: 0,
+  vx: 0.7,
+  vy: 0.7,
+  size: 20,
+  fill: {
+    r: 255,
+    g: 0,
+    b: 0
+  }
+}
+
 let ufo1 = {
   x: 0,
   y: 300,
@@ -83,14 +96,6 @@ let ufo4 = {
     b: 0
   }
 }
-
-let circleTime1 = {
-  x: 50,
-  y: 50,
-  size: 30,
-  fill: 255,
-  alpha: 100
-}
 /**
 Loading a galaxy image as the main background
 */
@@ -115,7 +120,10 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if (state === `ending`) {
+  } else if(state === `gameOver`){
+    gameLost();
+  }
+  else if (state === `ending`) {
     ending();
   }
   if (state === `title`) {
@@ -146,7 +154,12 @@ function title() {
   textAlign(CENTER, CENTER);
   text(`🕹Press any keyboard key to start🕹`, width / 2, 500);
 }
-
+function gameLost(){
+  fill(255,0,0);
+  textFont(`kringthep`);
+  textSize(`50`);
+  text(`GAME OVER! THE UFOS CANNOT GO HOME`, width / 2, height / 2);
+}
 function ending() {
   //ending title displays when ALL ufos are inside black hole
   fill(0, 255, 0);
@@ -187,11 +200,16 @@ function simulation() {
   display(ufo2);
   display(ufo3);
   display(ufo4);
+//enemy drawing
+drawingRedCircle(enemy);
 
-  //drawing "time" circles
-  drawingtheTime(circleTime1);
+//enemy movement
+redCircleMovement(enemy);
 
-  //leftbounce and rightbounce calls to make ufos bounce from one end to the other
+//enemy going on black hole; game over state
+redCircleOverlap();
+
+//leftbounce and rightbounce calls to make ufos bounce from one end to the other
   leftbounce(ufo1);
   leftbounce(ufo3);
   rightbounce(ufo4);
@@ -221,7 +239,7 @@ function movement(ufo) {
   ufo.x = ufo.x + ufo.vx;
   ufo.y = ufo.y + ufo.vy;
   //ufo movement 'stops' setup
-  let d = dist(ufo1.x, ufo1.y, )
+  let d = dist(ufo1.x, ufo1.y);
 }
 
 //dragging ufo
@@ -304,11 +322,25 @@ function display(ufo) {
   ellipse(ufo.x, ufo.y - 5, 20, 13);
 }
 
-function drawingtheTime(circleTime1){
-fill(circleTime1.fill);
-noStroke();
-ellipse(circleTime1.x, circleTime1.y, circleTime1.size);
+function drawingRedCircle(enemy){
+fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
+ellipse(enemy.x,enemy.y, enemy.size);
 }
+
+function redCircleMovement(enemy) {
+enemy.x = enemy.x + enemy.vx;
+enemy.y = enemy.y + enemy.vy;
+}
+
+function redCircleOverlap(){
+//check if enemy overlap black hole
+let d = dist(enemy.x, enemy.y, blackhole.x, blackhole.y);
+//if enemy and blackhole touches
+if (d < enemy.size/2 + blackhole.size/2){
+  state = `gameOver`;
+}
+}
+
 
 function leftbounce(ufo) {
   //ufo going back and forth (starting LEFT side)
