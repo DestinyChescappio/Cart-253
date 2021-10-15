@@ -96,12 +96,13 @@ let ufo4 = {
     b: 0
   }
 }
-/**
-Loading a galaxy image as the main background
-*/
+let gameMusicSFX;
+
 function preload() {
+  gameMusicSFX = loadSound(`assets/sounds/game music.wav`)
   galaxyImage = loadImage('assets/images/galaxy.jpeg');
 }
+
 
 /**
 setting up canvas dimensions
