@@ -50,9 +50,9 @@ function draw() {
   moveUser();
 
   // Check whether the user has eaten either food
-  checkFood1();
-  checkFood2();
-  checkFood3();
+  checkFood(food1);
+  checkFood(food2);
+  checkFood(food3);
 
   // Display the user and foods
   displayUser();
@@ -68,32 +68,12 @@ function moveUser() {
 }
 
 // Checks if the user overlaps the food1 object and eats it if so
-function checkFood1() {
-  // We only want to check for an overlap if food1 hasn't been eaten yet
-  if (!food1.eaten) {
-    let d = dist(user.x, user.y, food1.x, food1.y);
-    if (d < user.size / 2 + food1.size / 2) {
-      food1.eaten = true;
-    }
-  }
-}
-
-// The same as above, but for food2
-function checkFood2() {
-  if (!food2.eaten) {
-    let d = dist(user.x, user.y, food2.x, food2.y);
-    if (d < user.size / 2 + food2.size / 2) {
-      food2.eaten = true;
-    }
-  }
-}
-
-// The same as above, but for food3
-function checkFood3() {
-  if (!food3.eaten) {
-    let d = dist(user.x, user.y, food3.x, food3.y);
-    if (d < user.size / 2 + food3.size / 2) {
-      food3.eaten = true;
+function checkFood(food) {
+  // We only want to check for an overlap if food hasn't been eaten yet
+  if (!food.eaten) {
+    let d = dist(user.x, user.y, food.x, food.y);
+    if (d < user.size / 2 + food.size / 2) {
+      food.eaten = true;
     }
   }
 }
