@@ -198,10 +198,10 @@ function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
-//music only plays once when key is pressed & music plays in a loop
+  //music only plays once when key is pressed & music plays in a loop
   if (!gameMusicSFX.isPlaying()) {
-  gameMusicSFX.loop();
-}
+    gameMusicSFX.loop();
+  }
 }
 
 function simulation() {
