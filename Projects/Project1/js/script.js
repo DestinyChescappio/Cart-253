@@ -36,8 +36,8 @@ let blackhole = {
 let enemy = {
   x: 30,
   y: 0,
-  vx: 0.7,
-  vy: 0.7,
+  vx: 0.9,
+  vy: 0.9,
   size: 20,
   fill: {
     r: 255,
