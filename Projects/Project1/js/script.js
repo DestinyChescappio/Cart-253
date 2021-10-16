@@ -185,9 +185,7 @@ function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
-  gameMusicSFX.play();
-  gameMusicSFX.loop();
-}
+  }
 
 function simulation() {
   imageMode(CENTER);
