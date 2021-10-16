@@ -53,12 +53,14 @@ function draw() {
   checkFood(food1);
   checkFood(food2);
   checkFood(food3);
+  checkFood(food4);
 
   // Display the user and foods
   displayUser();
   displayFood(food1);
   displayFood(food2);
   displayFood(food3);
+  displayFood(food4);
 }
 
 // Sets the user position to the mouse position
@@ -67,7 +69,7 @@ function moveUser() {
   user.y = mouseY;
 }
 
-// Checks if the user overlaps the food1 object and eats it if so
+// Checks if the user overlaps the food object and eats it if so
 function checkFood(food) {
   // We only want to check for an overlap if food hasn't been eaten yet
   if (!food.eaten) {
