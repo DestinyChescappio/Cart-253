@@ -7,9 +7,24 @@ the red enemy may steal your chance and consume your portal!
 */
 
 /**
-Image display of galaxy
+credits
+galaxy image:
+artist credit: Graham Holtshausen Unsplash (as shown on site in url)
+url: https://www.advancedsciencenews.com/astronomers-estimate-there-are-36-communicating-civilizations-in-our-galaxy/
+
+game sound:
+artist credit: BloodPixelHero
+url: https://freesound.org/people/BloodPixelHero/sounds/580898/
+*/
+
+/**
+set up for objects, title, sound, and image.
 */
 let state = `title`;
+
+let gameMusicSFX;
+
+let galaxyImage;
 
 let blackhole = {
   x: 500,
@@ -96,8 +111,7 @@ let ufo4 = {
     b: 0
   }
 }
-let gameMusicSFX;
-
+//loading galaxy image and game sound
 function preload() {
   gameMusicSFX = loadSound(`assets/sounds/game music.wav`);
 
@@ -112,7 +126,7 @@ function setup() {
 }
 
 /**
-Drawing the title page, simulation, and the ending page
+Drawing the title page, simulation, game over, and the winning page.
 */
 function draw() {
   background(0);
@@ -155,7 +169,7 @@ function title() {
   textAlign(CENTER, CENTER);
   text(`before the red enemy steals your chance!`, width / 2, 380);
 
-  //what the user presses to start simulation
+  //instructions to user what to press to start simulation
   fill(255);
   textFont(`arial`);
   textStyle(BOLD);
@@ -163,16 +177,15 @@ function title() {
   textAlign(CENTER, CENTER);
   text(`🕹Press any keyboard key to start🕹`, width / 2, 500);
 }
-
+//game over title displays after the enemy enters the blackhole
 function gameLost() {
   fill(255, 0, 0);
   textFont(`kringthep`);
   textSize(`50`);
   text(`GAME OVER! THE UFOS CANNOT GO HOME`, width / 2, height / 2);
 }
-
+//winning title displays when ALL ufos are inside black hole
 function winning() {
-  //ending title displays when ALL ufos are inside black hole
   fill(0, 255, 0);
   textFont(`krungthep`);
   textSize(`50`);
@@ -180,12 +193,16 @@ function winning() {
     GET BACK HOME!👽🖖🏼`, width / 2, height / 2);
 }
 
-//title and game music starts when a key is pressed
+//simulation and game music starts when a key is pressed after title is displayed
 function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
-  }
+//music only plays once when key is pressed & music plays in a loop
+  if (!gameMusicSFX.isPlaying()) {
+  gameMusicSFX.loop();
+}
+}
 
 function simulation() {
   imageMode(CENTER);
@@ -203,7 +220,7 @@ function simulation() {
   handleDragging(ufo3);
   handleDragging(ufo4);
 
-  //display black hole only
+  //display black hole only call
   drawingVoid(blackhole);
 
   //display for displaying ufos calls
@@ -211,13 +228,14 @@ function simulation() {
   display(ufo2);
   display(ufo3);
   display(ufo4);
-  //enemy drawing
+
+  //enemy drawing call
   drawingRedCircle(enemy);
 
-  //enemy movement
+  //enemy movement call
   redCircleMovement(enemy);
 
-  //enemy going on black hole; game over state
+  //enemy going on black hole call; game over state occurs
   redCircleOverlap();
 
   //leftbounce and rightbounce calls to make ufos bounce from one end to the other
@@ -261,7 +279,7 @@ function handleDragging(ufo) {
   }
 }
 
-//mouse is inside ufo
+//checking if mouse is inside ufo
 function mouseIsInsideUfo(ufo) {
   if (mouseX > ufo.x - ufo.w / 2 && mouseX < ufo.x + ufo.w / 2 &&
     mouseY > ufo.y - ufo.h / 2 && mouseY < ufo.y + ufo.h / 2) {
@@ -303,7 +321,7 @@ function mouseReleased() {
     ufo4.beingDragged = false;
   }
 }
-
+//checking if ufo is inside the black hole
 function ufoIsInsideHole(ufo) {
   //check if ufo is inside black hole
   let d = dist(ufo.x, ufo.y, blackhole.x, blackhole.y);
@@ -314,9 +332,8 @@ function ufoIsInsideHole(ufo) {
     return false;
   }
 }
-
+//drawing the black hole
 function drawingVoid(blackhole) {
-  //displaying blackhole
   fill(blackhole.fill);
   ellipse(blackhole.x, blackhole.y, blackhole.size);
 }
@@ -332,17 +349,17 @@ function display(ufo) {
   fill(random(0, 255));
   ellipse(ufo.x, ufo.y - 5, 20, 13);
 }
-
+//drawing the enemy
 function drawingRedCircle(enemy) {
   fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
   ellipse(enemy.x, enemy.y, enemy.size);
 }
-
+//enemy movement
 function redCircleMovement(enemy) {
   enemy.x = enemy.x + enemy.vx;
   enemy.y = enemy.y + enemy.vy;
 }
-
+//state 'game over' occurs if enemy overlaps black hole; a.k.a enemy consuming black hole
 function redCircleOverlap() {
   //check if enemy overlap black hole
   let d = dist(enemy.x, enemy.y, blackhole.x, blackhole.y);
