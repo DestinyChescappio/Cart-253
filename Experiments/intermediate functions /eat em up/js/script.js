@@ -63,6 +63,16 @@ function draw() {
   displayFood(food4);
 }
 
+function createFood(x,y); {
+  let food = {
+    x: x,
+    y: y,
+    size: 50,
+    eaten: false
+  };
+  return food; //give the food back (so when we call food, it goes away and returns!)
+}
+
 // Sets the user position to the mouse position
 function moveUser() {
   user.x = mouseX;
