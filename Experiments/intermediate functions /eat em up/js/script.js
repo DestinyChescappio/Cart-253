@@ -56,9 +56,9 @@ function draw() {
 
   // Display the user and foods
   displayUser();
-  displayFood1();
-  displayFood2();
-  displayFood3();
+  displayFood(food1);
+  displayFood(food2);
+  displayFood(food3);
 }
 
 // Sets the user position to the mouse position
