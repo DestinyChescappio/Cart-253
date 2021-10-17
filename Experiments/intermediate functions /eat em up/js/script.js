@@ -19,15 +19,16 @@ let user = {
 let food1;
 let food2;
 let food3;
+let food4;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   food1 = createFood(250,windowHeight/2);
-  food2 = createFood(250,windowHeight/2);
-  food3 = createFood(250,windowHeight/2);
-  food4 = createFood(250,windowHeight/2);
+  food2 = createFood(350,windowHeight/2);
+  food3 = createFood(450,windowHeight/2);
+  food4 = createFood(550,windowHeight/2);
 }
 
 function draw() {
@@ -50,7 +51,7 @@ function draw() {
   displayFood(food4);
 }
 
-function createFood(x,y); {
+function createFood(x,y) {
   let food = {
     x: x,
     y: y,
