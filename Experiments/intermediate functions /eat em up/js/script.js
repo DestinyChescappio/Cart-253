@@ -16,28 +16,14 @@ let user = {
 };
 
 // First food object
-let food1 = {
-  x: 250,
-  y: 300,
-  size: 50,
-  eaten: false // We want to track whether the user has eaten the food
-};
+let food1;
 
 // Second food object
-let food2 = {
-  x: 350,
-  y: 300,
-  size: 50,
-  eaten: false
-};
+let food2;
 
 // third food object
-let food3 = {
-  x: 450,
-  y: 300,
-  size: 50,
-  eaten: false
-};
+let food3;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
