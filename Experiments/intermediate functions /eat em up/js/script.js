@@ -15,18 +15,19 @@ let user = {
   size: 100
 };
 
-// First food object
+// foods
 let food1;
-
-// Second food object
 let food2;
-
-// third food object
 let food3;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  food1 = createFood(250,windowHeight/2);
+  food2 = createFood(250,windowHeight/2);
+  food3 = createFood(250,windowHeight/2);
+  food4 = createFood(250,windowHeight/2);
 }
 
 function draw() {
