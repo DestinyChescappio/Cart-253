@@ -1,5 +1,5 @@
 /**
-debug conditionals exercise
+Debug conditionals exercise
 Author Name
 
 This is a template. You must fill in the title,
