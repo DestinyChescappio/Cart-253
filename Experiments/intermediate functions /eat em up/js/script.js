@@ -61,7 +61,7 @@ function createFood(x,y) {
   return food; //give the food back (so when we call food, it goes away and returns!)
 }
 
-// Sets the user position to the mouse position
+// Sets the user position t o the mouse position
 function moveUser() {
   user.x = mouseX;
   user.y = mouseY;
