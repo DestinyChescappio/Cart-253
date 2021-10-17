@@ -7,16 +7,20 @@ author, and this description to match your project!
 */
 
 "use strict";
-//arrays of fortunes
-let fortunes = [
-  `it's not looking so good.`,
-  `you will trip over Bradd Pitt today.`,
-  `you are going to enjoy gum.`,
-  `happiness is yours for the taking.`,
-  `you will meet David Lynch.`
+//arrays of soliloquy --> the order of speech
+let soliloquy = [
+`to be or not to be`,
+`that is the question`,
+`whether 'tis nobler in the mind`,
+`to suffer the slings and arrows`,
+`of outrageous fortune`,
+`or to take arms`,
+`against a sea of sorrows`,
+`and by opposing end them`
 ];
+//keeping track of which we want to do something with--> what we wanna display first (starting at 0)
+let currentIndex = 0;
 
-let chosenFortune = `click to see your future!`;
 /**
 Description of setup
 */
@@ -33,10 +37,14 @@ Description of draw()
 */
 function draw() {
   background(0);
-  text(chosenFortune,width/2,height/2);
+  text(soliloquy[currentIndex],width/2,height/2);
 }
 
 function mousePressed(){
-  chosenFortune = random(fortunes); //<-- going to choose a random fortune from the arrays
+currentIndex = currentIndex + 1;
 
+//when to know we reach the end
+if (currentIndex === soliloquy.length){
+  currentIndex = soliloquy.length - 1;
+}
 }
