@@ -8,8 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 
-let fliesGang = [];
-let fliesGangSize = 20;
+let flyGang = [];
+let flyGangSize = 20;
 
 //the user displayed as a fly swatter
 //let squisher = {
@@ -23,19 +23,6 @@ let fliesGangSize = 20;
 //  }
 //}
 
-//function createFlies(x, y) {
-  //let flies = {
-//  x: 300,
-//  y: 300,
-//  h: 30,
-//  w: 15,
-//  vx: 0,
-//  vy: 0,
-//  speed: 2,
-//  fill: 0
-//}
-//return flies;
-//}
 /**
 Description of preload
 */
@@ -88,6 +75,12 @@ function checkFlies(flies) {
 }
 
 function moveFlies(flies) {
+//choose for flies to change directions
+let change = random(0, 1);
+if (change < 0.1) {
+  flies.vx = random(-flies.speed, flies.speed);
+  flies.vy = random(-flies.speed, flies.speed);
+}
 //moving the flies
   flies.x = flies.x + flies.vx;
   flies.y = flies.y + flies.vy;
@@ -105,12 +98,6 @@ function createFlies(x, y) {
  vx: 0,
  vy: 0,
  speed: 2
-//left wing
-fill(255);
-ellipse(flies.x-10,flies.y-5,10,5);
-//right wing
-fill(255);
-ellipse(flies.x+10,flies.y-5,10,5);
 }
 return flies;
 }
