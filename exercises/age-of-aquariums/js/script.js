@@ -11,6 +11,21 @@ author, and this description to match your project!
 let flyGang = [];
 let flyGangSize = 10;
 
+//setup of the swatter
+let = swatter {
+  x: 0,
+  y: 0,
+  h: 80,
+  w: 40,
+  size: 100,
+  fill: {
+    r: 0,
+    g: 255,
+    b: 0
+  }
+
+}
+
 function setup() {
   createCanvas(600, 600);
 //creating flies withflyGang arrays
@@ -32,8 +47,8 @@ function createFlies(x, y) {
     vx: 0,
     vy: 0,
     speed: 2
-  let wings
-  };
+};
+return flies;
 }
 
 function draw() {
@@ -56,11 +71,11 @@ flies.vx = random(-flies.speed, flies.speed);
   flies.vy = random(-flies.speed, flies.speed);
   }
 
-  // Move the fish
+// Move the flies
 flies.x = flies.x + flies.vx;
 flies.y = flies.y + flies.vy;
 
-  // Constrain the fish to the canvas
+  // Constrain the flies to the canvas
 flies.x = constrain(flies.x, 0, width);
 flies.y = constrain(flies.y, 0, height);
 }
@@ -76,6 +91,6 @@ function displayFlies(flies) {
 
 //now we have arrays, we can add fish by using an action like mouse pressed
 function mousePressed(){
-  let fish = createFish(mouseX,mouseY);
-  flyGang.push(fish);
+  let fish = createFlies(mouseX,mouseY);
+  flyGang.push(flies);
 }
