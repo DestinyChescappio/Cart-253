@@ -89,6 +89,12 @@ function displayFlies(flies) {
   pop();
 }
 
+function displaySwatter() {
+  fill(swatter.fill.r,swatter.fill.g,swatter.fill.b);
+  noStroke();
+  rect(swatter.x,swatter.y,swatter.h,swatter.w,swatter.size);
+}
+
 //now we have arrays, we can add fish by using an action like mouse pressed
 function mousePressed(){
   let fish = createFlies(mouseX,mouseY);
