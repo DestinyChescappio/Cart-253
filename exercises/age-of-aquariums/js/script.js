@@ -12,18 +12,15 @@ let flyGang = [];
 let flyGangSize = 10;
 
 //setup of the swatter
-let = swatter {
-  x: 0,
-  y: 0,
-  h: 80,
-  w: 40,
-  size: 100,
+let squasher = {
+  x: undefined,
+  y: undefined,
+  size: 50,
   fill: {
-    r: 0,
-    g: 255,
+    r: 255,
+    g: 0,
     b: 0
   }
-
 }
 
 function setup() {
@@ -34,6 +31,8 @@ let fish = createFlies(random(0,width), random(0,height));
 flyGang.push(fish);
 }
 }
+
+
 
 // Creates a new JavaScript Object describing a fly and returns it
 function createFlies(x, y) {
@@ -59,6 +58,13 @@ for (let i = 0; i < flyGang.length; i++){
   //making fish display & move
   displayFlies(flyGang[i]);
 }
+//drawing and creating movement for squasher
+fill(squasher.fill.r,squasher.fill.g,squasher.fill.b);
+noStroke();
+ellipse(squasher.x,squasher.y,squasher.size);
+//swatter movement using mouse position
+squasher.x = mouseX;
+squasher.y = mouseY;
 }
 
 // moveFish(fish)
@@ -87,16 +93,4 @@ function displayFlies(flies) {
   noStroke();
   ellipse(flies.x, flies.y, flies.h, flies.w, flies.size);
   pop();
-}
-
-function displaySwatter() {
-  fill(swatter.fill.r,swatter.fill.g,swatter.fill.b);
-  noStroke();
-  rect(swatter.x,swatter.y,swatter.h,swatter.w,swatter.size);
-}
-
-//now we have arrays, we can add fish by using an action like mouse pressed
-function mousePressed(){
-  let fish = createFlies(mouseX,mouseY);
-  flyGang.push(flies);
 }
