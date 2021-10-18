@@ -94,3 +94,12 @@ function displayFlies(flies) {
   ellipse(flies.x, flies.y, flies.h, flies.w, flies.size);
   pop();
 }
+
+function checkFlies() {
+  //want to check if squasher overlaps flies
+  if (!flies.squshed) {
+    push();
+    fill(flies.x,flies.y,flies.size);
+    pop();
+  }
+}
