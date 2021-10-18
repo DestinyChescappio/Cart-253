@@ -36,8 +36,8 @@ let blackhole = {
 let enemy = {
   x: 30,
   y: 0,
-  vx: 0.9,
-  vy: 0.9,
+  vx: 0.6,
+  vy: 0.6,
   size: 20,
   fill: {
     r: 255,
@@ -160,14 +160,14 @@ function title() {
   textStyle(NORMAL);
   textSize(17);
   textAlign(CENTER, CENTER);
-  text(`You must transport the ufos to the black hole to get them home safely`, width / 2, 350);
+  text(`You must drag and drop the ufos to the black hole to get them home safely.`, width / 2, 350);
   //continuation of instructions (line was too big)
   fill(255);
   textFont(`arial`);
   textStyle(NORMAL);
   textSize(17);
   textAlign(CENTER, CENTER);
-  text(`before the red enemy steals your chance!`, width / 2, 380);
+  text(`before the red enemy eats your portal!`, width / 2, 380);
 
   //instructions to user what to press to start simulation
   fill(255);
@@ -214,6 +214,12 @@ function simulation() {
   mouseIsInsideUfo(ufo3);
   mouseIsInsideUfo(ufo4);
 
+  //calling to stop movement for each ufo when inside black hole
+  stopMovement();
+
+  //to check if ALL ufos is inside black hole; to make them stop movement
+  checkUfoInsideHole();
+
   //handledragging for dragging ufos calls
   handleDragging(ufo1);
   handleDragging(ufo2);
@@ -243,25 +249,30 @@ function simulation() {
   leftbounce(ufo3);
   rightbounce(ufo4);
   rightbounce(ufo2);
-
-  //to stop movement when ALL ufos are inside black hole
-  if (!ufoIsInsideHole(ufo1)) {
-    movement(ufo1);
-  }
-  if (!ufoIsInsideHole(ufo2)) {
-    movement(ufo2);
-  }
-  if (!ufoIsInsideHole(ufo3)) {
-    movement(ufo3);
-  }
-  if (!ufoIsInsideHole(ufo4)) {
-    movement(ufo4);
-  }
-  //to check if ALL ufos are in black ufo; this then stops and makes the 'ending'
-  if (ufoIsInsideHole(ufo1) && ufoIsInsideHole(ufo2) && ufoIsInsideHole(ufo3) && ufoIsInsideHole(ufo4)) {
-    state = `winning`;
-  }
 }
+
+function stopMovement(){
+//to stop movement when ALL ufos are inside black hole
+if (!ufoIsInsideHole(ufo1)) {
+  movement(ufo1);
+}
+if (!ufoIsInsideHole(ufo2)) {
+  movement(ufo2);
+}
+if (!ufoIsInsideHole(ufo3)) {
+  movement(ufo3);
+}
+if (!ufoIsInsideHole(ufo4)) {
+  movement(ufo4);
+}
+};
+
+function checkUfoInsideHole(){
+//to check if ALL ufos are in black ufo; this then stops and makes the 'ending'
+if (ufoIsInsideHole(ufo1) && ufoIsInsideHole(ufo2) && ufoIsInsideHole(ufo3) && ufoIsInsideHole(ufo4)) {
+  state = `winning`;
+}
+};
 
 function movement(ufo) {
   //Ufo movement setup
@@ -269,7 +280,7 @@ function movement(ufo) {
   ufo.y = ufo.y + ufo.vy;
   //ufo movement 'stops' setup
   let d = dist(ufo1.x, ufo1.y);
-}
+};
 
 //dragging ufo
 function handleDragging(ufo) {
@@ -277,7 +288,7 @@ function handleDragging(ufo) {
     ufo.x = mouseX;
     ufo.y = mouseY;
   }
-}
+};
 
 //checking if mouse is inside ufo
 function mouseIsInsideUfo(ufo) {
@@ -289,7 +300,7 @@ function mouseIsInsideUfo(ufo) {
   } else {
     return false;
   }
-}
+};
 
 //dragging each ufo when mouse button is pressed
 function mousePressed() {
@@ -305,7 +316,7 @@ function mousePressed() {
   if (mouseIsInsideUfo(ufo4)) {
     ufo4.beingDragged = true;
   }
-}
+};
 //mouse button is released after dragging
 function mouseReleased() {
   if (ufo1.beingDragged) {
@@ -320,7 +331,7 @@ function mouseReleased() {
   if (ufo4.beingDragged) {
     ufo4.beingDragged = false;
   }
-}
+};
 //checking if ufo is inside the black hole
 function ufoIsInsideHole(ufo) {
   //check if ufo is inside black hole
@@ -331,12 +342,12 @@ function ufoIsInsideHole(ufo) {
   } else {
     return false;
   }
-}
+};
 //drawing the black hole
 function drawingVoid(blackhole) {
   fill(blackhole.fill);
   ellipse(blackhole.x, blackhole.y, blackhole.size);
-}
+};
 
 //ufo drawing using the green structure & ufo window
 function display(ufo) {
@@ -348,17 +359,17 @@ function display(ufo) {
   //ufo window structure
   fill(random(0, 255));
   ellipse(ufo.x, ufo.y - 5, 20, 13);
-}
+};
 //drawing the enemy
 function drawingRedCircle(enemy) {
   fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
   ellipse(enemy.x, enemy.y, enemy.size);
-}
+};
 //enemy movement
 function redCircleMovement(enemy) {
   enemy.x = enemy.x + enemy.vx;
   enemy.y = enemy.y + enemy.vy;
-}
+};
 //state 'game over' occurs if enemy overlaps black hole; a.k.a enemy consuming black hole
 function redCircleOverlap() {
   //check if enemy overlap black hole
@@ -367,18 +378,18 @@ function redCircleOverlap() {
   if (d < enemy.size / 2 + blackhole.size / 2) {
     state = `gameOver`;
   }
-}
+};
 
 function leftbounce(ufo) {
   //ufo going back and forth (starting LEFT side)
   if (ufo.x > width || ufo.x < 0) {
     ufo.vx = -ufo.vx;
   }
-}
+};
 
 function rightbounce(ufo) {
   //ufo going back and forth (starting RIGHT side)
   if (ufo.x > width || ufo.x < 0) {
     ufo.vx = -ufo.vx;
   }
-}
+};
