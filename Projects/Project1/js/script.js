@@ -360,16 +360,19 @@ function display(ufo) {
   fill(random(0, 255));
   ellipse(ufo.x, ufo.y - 5, 20, 13);
 };
+
 //drawing the enemy
 function drawingRedCircle(enemy) {
   fill(enemy.fill.r, enemy.fill.g, enemy.fill.b);
   ellipse(enemy.x, enemy.y, enemy.size);
 };
+
 //enemy movement
 function redCircleMovement(enemy) {
   enemy.x = enemy.x + enemy.vx;
   enemy.y = enemy.y + enemy.vy;
 };
+
 //state 'game over' occurs if enemy overlaps black hole; a.k.a enemy consuming black hole
 function redCircleOverlap() {
   //check if enemy overlap black hole
