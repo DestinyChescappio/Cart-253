@@ -9,106 +9,73 @@ author, and this description to match your project!
 "use strict";
 
 let flyGang = [];
-let flyGangSize = 20;
+let flyGangSize = 10;
 
-//the user displayed as a fly swatter
-//let squisher = {
-//  x: 0,
-//  y: 0,
-//  size: 50,
-//  fill: {
-//    r: 0,
-//    g: 255,
-//    b: 0
-//  }
-//}
-
-/**
-Description of preload
-*/
-function preload() {
-
-}
-
-
-/**
-Description of setup
-*/
 function setup() {
-createCanvas(600,600);
-
-for (let i = 0; i < flyGang; i++) {
-  let flies = createFlies(random(0,width), random(0,height));
+  createCanvas(600, 600);
+//creating flies withflyGang arrays
+for (let i = 0; i < flyGangSize; i++) {
+let fish = createFlies(random(0,width), random(0,height));
+flyGang.push(fish);
 }
 }
 
-function draw(){
-  background(150);
-
-//drawing flies' bodies and wings
-  createFlies();
-
-//drawing book to squash flies
- createSquisher();
-
-//using the book as the user position
-moveSquisher();
-
-//check whether the user (squisher) has squished the fly
-checkFlies();
-}
-
-//sets the user position to the book position
-function moveSquisher() {
-squisher.x = mouseX;
-squisher.y = mouseY;
-}
-
-function checkFlies(flies) {
-  //check for an overlap if flies hasn't been squished by squisher
-  if (!flies.squished) {
-    let d = dist(squisher.x,squisher.y,flies.x,flies.y);
-    if (d < squisher.size / 2 + flies.size / 2) {
-      flies.squished = true;
-    }
-  }
-}
-
-function moveFlies(flies) {
-//choose for flies to change directions
-let change = random(0, 1);
-if (change < 0.1) {
-  flies.vx = random(-flies.speed, flies.speed);
-  flies.vy = random(-flies.speed, flies.speed);
-}
-//moving the flies
-  flies.x = flies.x + flies.vx;
-  flies.y = flies.y + flies.vy;
-}
-
-//drawing 3 ellipses to create the flies
+// Creates a new JavaScript Object describing a fly and returns it
 function createFlies(x, y) {
   let flies = {
-  //flies body
- x: 300,
- y: 300,
- fill: 0,
- h: 30,
- w: 15,
- vx: 0,
- vy: 0,
- speed: 2
-}
-return flies;
+    x: x,
+    y: y,
+    h: 50,
+    w: 25,
+    size: 50,
+    fill: 0,
+    vx: 0,
+    vy: 0,
+    speed: 2
+  let wings
+  };
 }
 
-function draw(){
+function draw() {
   background(150);
+//using arrays to move and display flies
+for (let i = 0; i < flyGang.length; i++){
+  moveFlies(flyGang[i]);
+  //making fish display & move
+  displayFlies(flyGang[i]);
+}
 }
 
-function createSquisher(){
-//drawing book to squash flies
-fill(squisher.fill.r,squisher.fill.g,squisher.fill.b);
-noStroke();
-ellipse(squisher.x,squisher.y,squisher.size);
+// moveFish(fish)
+// Chooses whether the provided fish changes direction and moves it
+function moveFlies(flies) {
+  // Choose whether to change direction
+  let change = random(0, 1);
+  if (change < 0.05) {
+flies.vx = random(-flies.speed, flies.speed);
+  flies.vy = random(-flies.speed, flies.speed);
+  }
+
+  // Move the fish
+flies.x = flies.x + flies.vx;
+flies.y = flies.y + flies.vy;
+
+  // Constrain the fish to the canvas
+flies.x = constrain(flies.x, 0, width);
+flies.y = constrain(flies.y, 0, height);
+}
+
+// Displays flies on the canvas
+function displayFlies(flies) {
+  push();
+  fill(flies.fill);
+  noStroke();
+  ellipse(flies.x, flies.y, flies.h, flies.w, flies.size);
+  pop();
+}
+
+//now we have arrays, we can add fish by using an action like mouse pressed
+function mousePressed(){
+  let fish = createFish(mouseX,mouseY);
+  flyGang.push(fish);
 }
