@@ -49,6 +49,7 @@ ellipse(mouse.x-20,mouse.y-10,mouse.h-10,mouse.w-30);
 fill(150);
 ellipse(mouse.x+20, mouse.y-10,mouse.h-10,mouse.w-30);
 //tail
-stroke(255);
-line(mouse.x,mouse.y,mouse.h+20,400,400); //needs to be in the middle vertically
+stroke('#fae');
+strokeWeight(3);
+line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20); //needs to be in the middle vertically
 }
