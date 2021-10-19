@@ -8,6 +8,7 @@ author, and this description to match your project!
 
 "use strict";
 
+
 let flyGang = [];
 let flyGangSize = 10;
 
@@ -43,7 +44,7 @@ function createFlies(x, y) {
     w: 25,
     size: 50,
     fill: 0,
-    vx: 0,
+    vx: 2,
     vy: 0,
     speed: 2
 };
@@ -70,11 +71,12 @@ squasher.y = mouseY;
 // moveFish(fish)
 // Chooses whether the provided fish changes direction and moves it
 function moveFlies(flies) {
-  // Choose whether to change direction
-  let change = random(0, 1);
-  if (change < 0.05) {
-flies.vx = random(-flies.speed, flies.speed);
-  flies.vy = random(-flies.speed, flies.speed);
+
+   //Choose whether to change direction
+  //let change = random(0, 1);
+  //if (change < 0.05) {
+//flies.vx = random(-flies.speed, flies.speed);
+  //flies.vy = random(-flies.speed, flies.speed);
   }
 
 // Move the flies
@@ -86,20 +88,27 @@ flies.x = constrain(flies.x, 0, width);
 flies.y = constrain(flies.y, 0, height);
 }
 
+function checkFlies() {
+  //check if 'user' squasher overlaps flies
+  if (!flies.squshed) {
+  let d = dist(squasher.x,squasher.y,flies.x,flies.y);
+  if (d < flies.size / 2 + flies.size / 2) {
+    flies.squashed = true;
+}
+}
+}
+
 // Displays flies on the canvas
 function displayFlies(flies) {
-  push();
+//flies are NOT displayed when squasher overlaps
+if (!flies.squashed) {
+  fill(flies.fill);
+  noStroke();
+  ellipse(flies.x, flies.y , flies.h, flies.w, flies.size);
+}
+else {
   fill(flies.fill);
   noStroke();
   ellipse(flies.x, flies.y, flies.h, flies.w, flies.size);
-  pop();
-}
-
-function checkFlies() {
-  //want to check if squasher overlaps flies
-  if (!flies.squshed) {
-    push();
-    fill(flies.x,flies.y,flies.size);
-    pop();
   }
 }
