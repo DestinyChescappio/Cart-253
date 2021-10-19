@@ -13,18 +13,19 @@ x:300,
 y:300,
 h:30,
 w:50,
-size:100,
 vx:0,
 vy:0,
 fill:150
 }
 
 
+
+
 /**
 Description of setup
 */
 function setup() {
-createCanvas(600,600);
+createCanvas(windowWidth,windowHeight);
 }
 
 
@@ -41,7 +42,7 @@ displayMouse();
 function displayMouse() {
 fill(150);
 noStroke();
-ellipse(mouse.x,mouse.y,mouse.h,mouse.w,mouse.size);
+ellipse(mouse.x,mouse.y,mouse.h,mouse.w);
 //left ear
 fill(150);
 ellipse(mouse.x-20,mouse.y-17,mouse.h-10,mouse.w-30);
