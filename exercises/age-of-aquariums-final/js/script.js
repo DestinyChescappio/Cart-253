@@ -44,10 +44,10 @@ noStroke();
 ellipse(mouse.x,mouse.y,mouse.h,mouse.w,mouse.size);
 //left ear
 fill(150);
-ellipse(mouse.x-20,mouse.y-10,mouse.h-10,mouse.w-30);
+ellipse(mouse.x-20,mouse.y-17,mouse.h-10,mouse.w-30);
 //right ear
 fill(150);
-ellipse(mouse.x+20, mouse.y-10,mouse.h-10,mouse.w-30);
+ellipse(mouse.x+20, mouse.y-17,mouse.h-10,mouse.w-30);
 //tail
 stroke('#fae');
 strokeWeight(3);
