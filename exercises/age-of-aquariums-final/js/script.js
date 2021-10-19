@@ -10,18 +10,10 @@ author, and this description to match your project!
 
 
 /**
-Description of preload
-*/
-function preload() {
-
-}
-
-
-/**
 Description of setup
 */
 function setup() {
-
+createCanvas(600,600);
 }
 
 
@@ -30,4 +22,13 @@ Description of draw()
 */
 function draw() {
 
+}
+
+function createMice();
+let mice = {
+x:
+y:
+h:
+w:
+fill:  
 }
