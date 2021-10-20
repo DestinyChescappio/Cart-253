@@ -33,8 +33,8 @@ for (let i = 0; i < numMice; i++) {
 
 function createMouse() {
   let newMouse = {
-    x:400,
-    y:400,
+    x:random(0,width),
+    y:random(0,height),
     h:30,
     w:50,
     vx:0,
