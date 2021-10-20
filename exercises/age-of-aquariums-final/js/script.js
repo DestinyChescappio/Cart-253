@@ -24,7 +24,10 @@ Description of setup
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
-mice = createMouse();
+
+for (let i = 0; i < numMice; i++) {
+  mice = createMouse();
+}
 }
 
 function createMouse() {
