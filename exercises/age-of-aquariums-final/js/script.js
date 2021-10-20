@@ -7,8 +7,14 @@ author, and this description to match your project!
 */
 
 "use strict";
-let mouse = undefined;
 
+let cheese = {
+x:undefined,
+y:undefined,
+size:65
+}
+
+let mouse = undefined;
 
 
 /**
@@ -45,10 +51,11 @@ createMouse();
 userCheese();
 //checking if mouse eats cheese
 munch(cheese,mouse);
-//mice display
-displayMouse(mouse);
+
 //cheese display
 displayCheese();
+//mice display
+displayMouse(mouse);
 //mouse movement
 moveMouse();
 }
@@ -66,23 +73,6 @@ function munch(cheese,mouse) {
   cheese.munched = true;
   }
  }
-}
-function displayMouse(mouse) {
-push();
-fill(150);
-noStroke();
-ellipse(mouse.x,mouse.y,mouse.h,mouse.w);
-//left ear
-fill(150);
-ellipse(mouse.x-20,mouse.y-17,mouse.h-10,mouse.w-30);
-//right ear
-fill(150);
-ellipse(mouse.x+20, mouse.y-17,mouse.h-10,mouse.w-30);
-//tail
-stroke('#fae');
-strokeWeight(3);
-line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
-pop(); //needs to be in the middle vertically
 }
 
 function displayCheese() {
@@ -103,6 +93,25 @@ function displayCheese() {
   fill(255,160,0);
   ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
   }
+
+function displayMouse(mouse) {
+push();
+fill(150);
+noStroke();
+ellipse(mouse.x,mouse.y,mouse.h,mouse.w);
+//left ear
+fill(150);
+ellipse(mouse.x-20,mouse.y-17,mouse.h-10,mouse.w-30);
+//right ear
+fill(150);
+ellipse(mouse.x+20, mouse.y-17,mouse.h-10,mouse.w-30);
+//tail
+stroke('#fae');
+strokeWeight(3);
+line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
+pop(); //needs to be in the middle vertically
+}
+
 
 function moveMouse(){
 //mouse move set up
