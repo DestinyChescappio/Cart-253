@@ -35,7 +35,8 @@ function createMouse() {
     vx:0,
     vy:0,
     fill:150,
-    speed:2
+    speed:2,
+    munched: false,
   };
     return newMouse;
 }
@@ -95,6 +96,8 @@ function displayCheese() {
   }
 
 function displayMouse(mouse) {
+  //mouse only displays if it not 'munched'
+  if (!mouse.munched) {
 push();
 fill(150);
 noStroke();
@@ -110,6 +113,7 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop(); //needs to be in the middle vertically
+ }
 }
 
 
