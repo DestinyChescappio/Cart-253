@@ -16,7 +16,7 @@ munched: false;
 }
 
 let mice = [];
-
+let numMice = 15;
 
 /**
 Description of setup
@@ -24,7 +24,7 @@ Description of setup
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
-mouse = createMouse();
+mice = createMouse();
 }
 
 function createMouse() {
