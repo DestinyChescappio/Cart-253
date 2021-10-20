@@ -7,22 +7,7 @@ author, and this description to match your project!
 */
 
 "use strict";
-
-let mouse = {
-x:300,
-y:300,
-h:30,
-w:50,
-vx:0,
-vy:0,
-fill:150
-}
-let cheese = {
-x:undefined,
-y:undefined,
-size:65,
-
-}
+let mouse = undefined;
 
 
 
@@ -31,8 +16,23 @@ Description of setup
 */
 function setup() {
 createCanvas(windowWidth,windowHeight);
+noCursor();
+mouse = createMouse();
 }
 
+function createMouse() {
+  let newMouse = {
+    x:400,
+    y:400,
+    h:30,
+    w:50,
+    vx:0,
+    vy:0,
+    fill:150,
+    speed:2
+    }
+    return newMouse;
+}
 
 /**
 Description of draw()
@@ -43,6 +43,8 @@ background(0);
 displayMouse();
 //cheese display
 displayCheese();
+//mouse movement
+moveMouse();
 //user cheese movement
 userCheese();
 
@@ -88,4 +90,10 @@ function displayCheese() {
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
+}
+
+function moveMouse(){
+//mouse move set up
+mouse.x = mouse.x + mouse.vx;
+mouse.y = mouse.y + mouse.vy;//this needs to be fixed
 }
