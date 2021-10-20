@@ -11,10 +11,11 @@ author, and this description to match your project!
 let cheese = {
 x:undefined,
 y:undefined,
-size:65
+size:65,
+munched: false;
 }
 
-let mouse = undefined;
+let mice = [];
 
 
 /**
@@ -35,8 +36,7 @@ function createMouse() {
     vx:0,
     vy:0,
     fill:150,
-    speed:2,
-    munched: false,
+    speed:2
   };
     return newMouse;
 }
@@ -48,15 +48,19 @@ function draw() {
 background(0);
 //creating and setting up the mouse
 createMouse();
+
 //user cheese movement
 userCheese();
+
 //checking if mouse eats cheese
 munch(cheese,mouse);
 
 //cheese display
 displayCheese();
+
 //mice display
 displayMouse(mouse);
+
 //mouse movement
 moveMouse();
 }
@@ -68,8 +72,8 @@ function userCheese() {
 
 function munch(cheese,mouse) {
   if (!cheese.munched) {
-  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
-  if (d < cheese.size/2 + mouse.size/2) {
+  let d = dist(mouse.x,mouse.y,cheese.x,cheese.y);
+  if (d < mouse.size/2 + cheese.size/2) {
     //that means cheese and mouse overlaps
   cheese.munched = true;
   }
@@ -96,8 +100,6 @@ function displayCheese() {
   }
 
 function displayMouse(mouse) {
-  //mouse only displays if it not 'munched'
-  if (!mouse.munched) {
 push();
 fill(150);
 noStroke();
@@ -113,7 +115,6 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop(); //needs to be in the middle vertically
- }
 }
 
 
