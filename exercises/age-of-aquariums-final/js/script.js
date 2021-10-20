@@ -26,7 +26,8 @@ createCanvas(windowWidth,windowHeight);
 noCursor();
 
 for (let i = 0; i < numMice; i++) {
-  mice = createMouse();
+  newMice = createMouse();
+  mice.push(newMice);
 }
 }
 
