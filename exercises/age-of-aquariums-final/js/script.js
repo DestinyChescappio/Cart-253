@@ -30,7 +30,7 @@ function createMouse() {
     vy:0,
     fill:150,
     speed:2
-    }
+  };
     return newMouse;
 }
 
@@ -39,18 +39,35 @@ Description of draw()
 */
 function draw() {
 background(0);
+//creating and setting up the mouse
+createMouse();
+//user cheese movement
+userCheese();
+//checking if mouse eats cheese
+munch(cheese,mouse);
 //mice display
-displayMouse();
+displayMouse(mouse);
 //cheese display
 displayCheese();
 //mouse movement
 moveMouse();
-//user cheese movement
-userCheese();
-
 }
 
-function displayMouse() {
+function userCheese() {
+  cheese.x = mouseX;
+  cheese.y = mouseY;
+}
+
+function munch(cheese,mouse) {
+  if (!cheese.munched) {
+  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
+  if (d < cheese.size/2 + mouse.size/2) {
+    //that means cheese and mouse overlaps
+  cheese.munched = true;
+  }
+ }
+}
+function displayMouse(mouse) {
 push();
 fill(150);
 noStroke();
@@ -86,11 +103,6 @@ function displayCheese() {
   fill(255,160,0);
   ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
   }
-
-function userCheese() {
-  cheese.x = mouseX;
-  cheese.y = mouseY;
-}
 
 function moveMouse(){
 //mouse move set up
