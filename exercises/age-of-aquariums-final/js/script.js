@@ -30,23 +30,6 @@ let mouse = createMouse();
 }
 
 
-
-
-function createMouse() {
-  let createdMouse = {
-    x:random(0,width),
-    y:random(0,height),
-    h:30,
-    w:50,
-    vx:0,
-    vy:0,
-    fill:150,
-    speed:2,
-    attached: false,
-};
-    return createdMouse;
-}
-
 /**
 Description of draw()
 */
@@ -63,6 +46,8 @@ for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
 attach(cheese, mouse[i]);
 }
+
+
 //cheese display
 displayCheese(cheese);
 
@@ -73,9 +58,27 @@ displayMouse(mouse[i]);
   }
 }
 
+
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
+}
+
+function createMouse() {
+  let createdMouse = {
+    x:random(0,width),
+    y:random(0,height),
+    size: {
+    h:30,
+    w:50
+  },
+    vx:0,
+    vy:0,
+    fill:150,
+    speed:2,
+    attached: false,
+};
+    return createdMouse;
 }
 
 function attach(cheese, mouse) {
@@ -87,6 +90,7 @@ function attach(cheese, mouse) {
     }
   }
 }
+
 
 function displayCheese() {
   let c = color(255,204,0);
@@ -108,6 +112,7 @@ function displayCheese() {
   }
 
 function displayMouse(mouse) {
+  if (!mouse.attached) {
 push();
 fill(150);
 noStroke();
@@ -123,4 +128,5 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop();
+}
 }
