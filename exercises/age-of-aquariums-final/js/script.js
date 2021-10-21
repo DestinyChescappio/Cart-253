@@ -14,17 +14,22 @@ y:undefined,
 size:65,
 }
 
-let mice = undefined;
-
-
+let mice = [];
+let numMice = 15;
 /**
 Description of setup
 */
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
-mouse = createMouse();
+mice = []; //starting with empty array
+for (let i = 0; i < numMice; i++){
+let mouse = createMouse();
+  mice.push(mouse);
 }
+}
+
+
 
 
 function createMouse() {
@@ -37,7 +42,7 @@ function createMouse() {
     vy:0,
     fill:150,
     speed:2,
-    attached: false
+    attached: false,
 };
     return createdMouse;
 }
@@ -47,11 +52,11 @@ Description of draw()
 */
 function draw() {
 background(0);
-//creating and setting up the mouse
-createMouse();
-
 //user cheese movement
 userCheese();
+
+//creating and setting up the mouse
+createMouse();
 
 //to check if the mouse is attached
 for (let i = 0; i < mice.length; i++) {
@@ -118,5 +123,4 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop();
-}
 }
