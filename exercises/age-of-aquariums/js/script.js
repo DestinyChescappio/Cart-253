@@ -8,107 +8,115 @@ author, and this description to match your project!
 
 "use strict";
 
-
-let flyGang = [];
-let flyGangSize = 10;
-
-//setup of the swatter
-let squasher = {
-  x: undefined,
-  y: undefined,
-  size: 50,
-  fill: {
-    r: 255,
-    g: 0,
-    b: 0
-  }
+let cheese = {
+x:undefined,
+y:undefined,
+size:65,
 }
 
+let mice = undefined;
+
+
+/**
+Description of setup
+*/
 function setup() {
-  createCanvas(600, 600);
-//creating flies withflyGang arrays
-for (let i = 0; i < flyGangSize; i++) {
-let fish = createFlies(random(0,width), random(0,height));
-flyGang.push(fish);
-}
+createCanvas(windowWidth,windowHeight);
+noCursor();
+mouse = createMouse();
 }
 
 
-
-// Creates a new JavaScript Object describing a fly and returns it
-function createFlies(x, y) {
-  let flies = {
-    x: x,
-    y: y,
-    h: 50,
-    w: 25,
-    size: 50,
-    fill: 0,
-    vx: 2,
-    vy: 0,
-    speed: 2
+function createMouse() {
+  let createdMouse = {
+    x:random(0,width),
+    y:random(0,height),
+    h:30,
+    w:50,
+    vx:0,
+    vy:0,
+    fill:150,
+    speed:2,
+    attached: false
 };
-return flies;
+    return createdMouse;
 }
 
+/**
+Description of draw()
+*/
 function draw() {
-  background(150);
-//using arrays to move and display flies
-for (let i = 0; i < flyGang.length; i++){
-  moveFlies(flyGang[i]);
-  //making fish display & move
-  displayFlies(flyGang[i]);
+background(0);
+//creating and setting up the mouse
+createMouse();
+
+//user cheese movement
+userCheese();
+
+//to check if the mouse is attached
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+attach(cheese, mouse[i]);
 }
-//drawing and creating movement for squasher
-fill(squasher.fill.r,squasher.fill.g,squasher.fill.b);
+//cheese display
+displayCheese(cheese);
+
+//mice display
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+displayMouse(mouse[i]);
+  }
+}
+
+function userCheese() {
+  cheese.x = mouseX;
+  cheese.y = mouseY;
+}
+
+function attach(cheese, mouse) {
+  if (!mouse.attached) {
+  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
+  if (d < cheese.size/2 + mouse.size/2) {
+    //the mouse and cheese overlap
+    mouse.attached = true;
+    }
+  }
+}
+
+function displayCheese() {
+  let c = color(255,204,0);
+  fill(c);
+  noStroke();
+  ellipse(cheese.x,cheese.y,cheese.size);
+  //cheese hole1
+  fill(255,160,0);
+  ellipse(cheese.x-15,cheese.y-10,cheese.size-50);
+  //cheese hole2
+  fill(255,160,0);
+  ellipse(cheese.x-5,cheese.y+18,cheese.size-40);
+  //cheese hole3
+  fill(255,160,0);
+  ellipse(cheese.x+10,cheese.y-14,cheese.size-45);
+  //cheese hole4
+  fill(255,160,0);
+  ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
+  }
+
+function displayMouse(mouse) {
+push();
+fill(150);
 noStroke();
-ellipse(squasher.x,squasher.y,squasher.size);
-//swatter movement using mouse position
-squasher.x = mouseX;
-squasher.y = mouseY;
+ellipse(mouse.x,mouse.y,mouse.h,mouse.w);
+//left ear
+fill(150);
+ellipse(mouse.x-20,mouse.y-17,mouse.h-10,mouse.w-30);
+//right ear
+fill(150);
+ellipse(mouse.x+20, mouse.y-17,mouse.h-10,mouse.w-30);
+//tail
+stroke('#fae');
+strokeWeight(3);
+line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
+pop();
 }
-
-// moveFish(fish)
-// Chooses whether the provided fish changes direction and moves it
-function moveFlies(flies) {
-
-   //Choose whether to change direction
-  //let change = random(0, 1);
-  //if (change < 0.05) {
-//flies.vx = random(-flies.speed, flies.speed);
-  //flies.vy = random(-flies.speed, flies.speed);
-  }
-
-// Move the flies
-flies.x = flies.x + flies.vx;
-flies.y = flies.y + flies.vy;
-
-  // Constrain the flies to the canvas
-flies.x = constrain(flies.x, 0, width);
-flies.y = constrain(flies.y, 0, height);
-}
-
-function checkFlies() {
-  //check if 'user' squasher overlaps flies
-  if (!flies.squshed) {
-  let d = dist(squasher.x,squasher.y,flies.x,flies.y);
-  if (d < flies.size / 2 + flies.size / 2) {
-    flies.squashed = true;
-}
-}
-}
-
-// Displays flies on the canvas
-function displayFlies(flies) {
-//flies are NOT displayed when squasher overlaps
-if (!flies.squashed) {
-  fill(flies.fill);
-  noStroke();
-  ellipse(flies.x, flies.y , flies.h, flies.w, flies.size);
-}
-else {
-  fill(flies.fill);
-  noStroke();
-  ellipse(flies.x, flies.y, flies.h, flies.w, flies.size);
-  }
 }

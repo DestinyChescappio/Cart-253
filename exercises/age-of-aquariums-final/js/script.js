@@ -12,11 +12,10 @@ let cheese = {
 x:undefined,
 y:undefined,
 size:65,
-munched: false;
 }
 
-let mice = [];
-let numMice = 15;
+let mice = undefined;
+
 
 /**
 Description of setup
@@ -24,15 +23,12 @@ Description of setup
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
+mouse = createMouse();
+}
 
-for (let i = 0; i < numMice; i++) {
-  newMice = createMouse();
-  mice.push(newMice);
-}
-}
 
 function createMouse() {
-  let newMouse = {
+  let createdMouse = {
     x:random(0,width),
     y:random(0,height),
     h:30,
@@ -40,9 +36,10 @@ function createMouse() {
     vx:0,
     vy:0,
     fill:150,
-    speed:2
-  };
-    return newMouse;
+    speed:2,
+    attached: false
+};
+    return createdMouse;
 }
 
 /**
@@ -56,17 +53,19 @@ createMouse();
 //user cheese movement
 userCheese();
 
-//checking if mouse eats cheese
-munch(cheese,mouse);
-
+//to check if the mouse is attached
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+attach(cheese, mouse[i]);
+}
 //cheese display
-displayCheese();
+displayCheese(cheese);
 
 //mice display
-displayMouse(mouse);
-
-//mouse movement
-moveMouse();
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+displayMouse(mouse[i]);
+  }
 }
 
 function userCheese() {
@@ -74,14 +73,14 @@ function userCheese() {
   cheese.y = mouseY;
 }
 
-function munch(cheese,mouse) {
-  if (!cheese.munched) {
-  let d = dist(mouse.x,mouse.y,cheese.x,cheese.y);
-  if (d < mouse.size/2 + cheese.size/2) {
-    //that means cheese and mouse overlaps
-  cheese.munched = true;
+function attach(cheese, mouse) {
+  if (!mouse.attached) {
+  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
+  if (d < cheese.size/2 + mouse.size/2) {
+    //the mouse and cheese overlap
+    mouse.attached = true;
+    }
   }
- }
 }
 
 function displayCheese() {
@@ -118,12 +117,6 @@ ellipse(mouse.x+20, mouse.y-17,mouse.h-10,mouse.w-30);
 stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
-pop(); //needs to be in the middle vertically
+pop();
 }
-
-
-function moveMouse(){
-//mouse move set up
-mouse.x = mouse.x + mouse.vx;
-mouse.y = mouse.y + mouse.vy;//this needs to be fixed
 }
