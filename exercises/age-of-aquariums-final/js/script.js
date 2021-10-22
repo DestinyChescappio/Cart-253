@@ -22,11 +22,28 @@ Description of setup
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
-mice = []; //starting with empty array
+  //set up mice array with correct number of mice
 for (let i = 0; i < numMice; i++){
-let mouse = createMouse();
-  mice.push(mouse);
+//create a new mouse
+  let newMouse = createMouse();
+  //storing new mice inside the array
+  mice.push(newMouse);
+  }
 }
+
+function createMouse() {
+  let mouse = {
+    x:random(0,width),
+    y:random(0,height),
+    h:30,
+    w:50,
+    vx:0,
+    vy:0,
+    fill:150,
+    speed:2,
+    attached: false,
+};
+    return mouse;
 }
 
 
@@ -42,57 +59,45 @@ userCheese();
 createMouse();
 
 //to check if the mouse is attached
-for (let i = 0; i < mice.length; i++) {
-let mouse = mice[i];
-attach(cheese, mouse[i]);
-}
+//attach(cheese, mouse);
 
 
 //cheese display
-displayCheese(cheese);
+displayCheese();
+
+for (let i = 0; i < mice.length; i++) {
+//fetch specific mouse at specific position
+let mouse = mice[i];
+
+//movement mouse
 
 //mice display
-for (let i = 0; i < mice.length; i++) {
-let mouse = mice[i];
-displayMouse(mouse[i]);
-  }
+displayMouse(mouse);
 }
+}
+//random movement
+function moveMouse(mouse) {
 
+}
 
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
 }
 
-function createMouse() {
-  let createdMouse = {
-    x:random(0,width),
-    y:random(0,height),
-    size: {
-    h:30,
-    w:50
-  },
-    vx:0,
-    vy:0,
-    fill:150,
-    speed:2,
-    attached: false,
-};
-    return createdMouse;
-}
-
-function attach(cheese, mouse) {
-  if (!mouse.attached) {
-  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
-  if (d < cheese.size/2 + mouse.size/2) {
+//function attach(cheese, mouse) {
+  //if (!mouse.attached) {
+  //let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
+  //if (d < cheese.size/2 + mouse.size/2) {
     //the mouse and cheese overlap
-    mouse.attached = true;
-    }
-  }
-}
+    //mouse.attached = true;
+    //}
+  //}
+//}
 
 
 function displayCheese() {
+  push();
   let c = color(255,204,0);
   fill(c);
   noStroke();
@@ -109,10 +114,10 @@ function displayCheese() {
   //cheese hole4
   fill(255,160,0);
   ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
+  pop();
   }
 
 function displayMouse(mouse) {
-  if (!mouse.attached) {
 push();
 fill(150);
 noStroke();
@@ -128,5 +133,4 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop();
-}
 }
