@@ -55,6 +55,9 @@ background(0);
 //user cheese movement
 userCheese();
 
+//attaching mouse to cheese
+attach(cheese, mouse);
+
 //creating and setting up the mouse
 createMouse();
 
@@ -85,15 +88,15 @@ function userCheese() {
   cheese.y = mouseY;
 }
 
-//function attach(cheese, mouse) {
-  //if (!mouse.attached) {
-  //let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
-  //if (d < cheese.size/2 + mouse.size/2) {
+function attach(cheese, mouse) {
+  if (!mouse.attached) {
+  let d = dist(cheese.x,cheese.y,mouse.x,mouse.y);
+  if (d < cheese.size/2 + mouse.size/2) {
     //the mouse and cheese overlap
-    //mouse.attached = true;
-    //}
-  //}
-//}
+    mouse.attached = true;
+    }
+  }
+}
 
 
 function displayCheese() {
@@ -118,6 +121,7 @@ function displayCheese() {
   }
 
 function displayMouse(mouse) {
+  if (!mouse.attached)
 push();
 fill(150);
 noStroke();
