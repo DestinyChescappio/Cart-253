@@ -16,7 +16,7 @@ size:65,
 
 
 let mice = [];
-let numMice = 15;
+let numMice = 10;
 /**
 Description of setup
 */
@@ -56,62 +56,30 @@ background(0);
 
 //user cheese movement
 userCheese();
+
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+attach(cheese, mouse);
+}
+
 //cheese display
 displayCheese();
-
 
 //the loop tat deals with the coins
 for (let i = 0; i < mice.length; i++) {
 //fetch specific mouse at specific position
 let mouse = mice[i];
-
 //mice display
 displayMouse(mouse);
-
-//moving the mice at random
-moveMouse();
-
-//attach cheese and mouse
-attach(cheese, mouse);
 }
 }
 
-
-//random movement
-//function moveMouse(mouse) {
-
-//}
 
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
 }
 
-
-function displayCheese() {
-  push();
-  let c = color(255,204,0);
-  fill(c);
-  noStroke();
-  ellipse(cheese.x,cheese.y,cheese.size);
-  //cheese hole1
-  fill(255,160,0);
-  ellipse(cheese.x-15,cheese.y-10,cheese.size-50);
-  //cheese hole2
-  fill(255,160,0);
-  ellipse(cheese.x-5,cheese.y+18,cheese.size-40);
-  //cheese hole3
-  fill(255,160,0);
-  ellipse(cheese.x+10,cheese.y-14,cheese.size-45);
-  //cheese hole4
-  fill(255,160,0);
-  ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
-  pop();
-  }
-
-  function moveMouse(mouse) {
-    
-  }
 
   function attach(cheese, mouse) {
     if (!mouse.attached) {
@@ -122,6 +90,27 @@ function displayCheese() {
   }
   }
   }
+
+  function displayCheese() {
+    push();
+    let c = color(255,204,0);
+    fill(c);
+    noStroke();
+    ellipse(cheese.x,cheese.y,cheese.size);
+    //cheese hole1
+    fill(255,160,0);
+    ellipse(cheese.x-15,cheese.y-10,cheese.size-50);
+    //cheese hole2
+    fill(255,160,0);
+    ellipse(cheese.x-5,cheese.y+18,cheese.size-40);
+    //cheese hole3
+    fill(255,160,0);
+    ellipse(cheese.x+10,cheese.y-14,cheese.size-45);
+    //cheese hole4
+    fill(255,160,0);
+    ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
+    pop();
+    }
 
 function displayMouse(mouse) {
   //if (!mouse.attached){
@@ -140,5 +129,5 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop();
-}
 //}
+}
