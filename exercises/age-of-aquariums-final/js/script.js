@@ -75,6 +75,11 @@ let mouse = mice[i];
 //moving the mouse/mice
 moveMouse(mouse);
 
+//to check if mice are inside safety zone
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+checkMouseInsideSafety()
+}
 
 for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
@@ -125,7 +130,6 @@ else if (mouse.y > cheese.y) {
   mouse.vy = -1;
 }
 
-
 //setting up the mouse to move
 mouse.x += mouse.vx;
 mouse.y += mouse.vy;
@@ -135,6 +139,14 @@ mouse.x = constrain(mouse.x, 0, width);
 mouse.y = constrain(mouse.y, 0, height);
 }
 
+function checkMouseInsideSafety(mouse) {
+  let d = dist(mouse.x, mouse.y, safety.x, safety.y);
+  if (d < safety.size/2) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
   function attach(cheese, mouse) {
     if (!mouse.attached) {
