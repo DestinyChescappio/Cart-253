@@ -20,14 +20,14 @@ fill: {
 }
 
 let cheese = {
-x:undefined,
-y:undefined,
+x:100,
+y:100,
 size:65,
 }
 
 
 let mice = [];
-let numMice = 10;
+let numMice = 50;
 /**
 Description of setup
 */
@@ -99,23 +99,36 @@ fill(safety.fill.r,safety.fill.g,safety.fill.b);
 ellipse(safety.x,safety.y,safety.size);
 }
 
+function drawingDanger() {
+  fill(danger.fill.r,danger.fill.g,danger.fill.b);
+  ellipse(danger.x,danger.y,danger.size);
+}
 
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
 }
 
+
 function moveMouse(mouse) {
-  //choose whether to change direction the mouse are headed
-  let change = random(0,1);
-  if (change < 0.05) {
-    mouse.vx = random(-mouse.speed, mouse.speed);
-    mouse.vy = random(-mouse.speed, mouse.speed);
-  }
+  //mice following cheese
+if (mouse.x < cheese.x) {
+mouse.vx = 1;
+}
+else if (mouse.x > cheese.x) {
+  mouse.vx = -1;
+}
+if (mouse.y < cheese.y) {
+mouse.vy = 1;
+}
+else if (mouse.y > cheese.y) {
+  mouse.vy = -1;
+}
+
 
 //setting up the mouse to move
-mouse.x = mouse.x + mouse.vx;
-mouse.y = mouse.y + mouse.vy;
+mouse.x += mouse.vx;
+mouse.y += mouse.vy;
 
 //constrain mouse from going outside of canvas
 mouse.x = constrain(mouse.x, 0, width);
@@ -155,7 +168,6 @@ mouse.y = constrain(mouse.y, 0, height);
     }
 
 function displayMouse(mouse) {
-  //if (!mouse.attached){
 push();
 fill(150);
 noStroke();
@@ -171,5 +183,4 @@ stroke('#fae');
 strokeWeight(3);
 line(mouse.x,mouse.y+25,mouse.x,mouse.y+mouse.h+20);
 pop();
-//}
 }
