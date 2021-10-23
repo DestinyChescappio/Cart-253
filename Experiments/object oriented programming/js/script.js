@@ -32,45 +32,17 @@ createCanvas(600,600);
 
 // Create our flowers by counting up to the number of the flowers
   for (let i = 0; i < garden.numFlowers; i++) {
+
     // Create a new flower
-    let flower = createFlower();
+    let flower = new Flower(); //now that the createFlower was deleted after making the class in the flower js.,
+//after the class was created, replace the "createFlower" with "new" (space) "Flower"
+//the new "Flower" calls the constructor from the other script (Flower.js)
+//whenever the constructor is used/called in this js, write: new (space) "name-of-the-class"
+//same goes for the displayFlower function bellow......
     // Add the flower to the array of flowers
     garden.flowers.push(flower);
   }
 }
-
-// createFlower()
-// Creates a new JavaScript Object describing a flower and returns it
-function createFlower() {
-  // Create our object
-  let flower = {
-    // Position and size information
-    x: random(0, width),
-    y: random(0, height),
-    size: 50,
-    stemLength: 75,
-    stemThickness: 10,
-    petalThickness: 10,
-    // Color information
-    stemColor: {
-      r: 50,
-      g: 150,
-      b: 50
-    },
-    petalColor: {
-      r: 200,
-      g: 50,
-      b: 50
-    },
-    centreColor: {
-      r: 50,
-      g: 0,
-      b: 0
-    }
-  };
-  return flower;
-}
-
 
 /**
 Description of draw()
@@ -84,21 +56,17 @@ function draw() {
   // Loop through all the flowers in the array and display them
   for (let i = 0; i < garden.flowers.length; i++) {
     let flower = garden.flowers[i];
-    displayFlower(flower);
+    flower.display(); //this flower has a method of displaying itself so...
+    //since the function was deleted, same as the "createFlower" function,
+    //we replace "displayFlower" called function and type out the "(the variable that has the flower in it).(methods)" so: flower.display();
+    //this tells the method (display) from the other js, (Flower.js) to do whatever it's doing here in this js file  
   }
 }
 
 
-function displayFlower(flower) {
-  push();
-  //draw a line for the stem
-  strokeWeight(flower.stemThickness);
-  stroke(flower.stemColor.r,flower.stemColor.b,flower.stemColor.b);
-  line(flower.x,flower.y,flower.x,flower.y + flower.stemLength);
-  //Draw a circle with a heavu putline for the flower
-  strokeWeight(flower.petalThickness);
-  fill(flower.centreColor.r,flower.centreColor.g,flower.centreColor.b);
-  stroke(flower.petalColor.r,flower.petalColor.g,flower.petalColor.b);
-  ellipse(flower.x,flower.y,flower.size);
-  pop();
-}
+
+
+//we can start to write: Classes.
+//A class is a code that describes how some kind of object behaves (what are the properties & functions of that obejct)
+//A class is just the template that describes how an object works
+//for good practice, we put the classes in a separate file (right click on js folder;select a new file)
