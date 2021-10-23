@@ -167,7 +167,9 @@ function cheeseInsideSafety(cheese) {
 }
 
 function checkIfMouseInsideSafety(mouse) {
-  if (mouseInsideSafety(mouse) && cheeseInsideSafety(cheese)) //left off
+  if (mouseInsideSafety(mouse) && cheeseInsideSafety(cheese)) {
+    state = 'safe'; //create a state 
+  }
 }
 
   function attach(cheese, mouse) {
