@@ -71,8 +71,6 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if (state === `time lost`) {
-    timeLost();
   } else if (state === `safety`) {
     safe();
   }
@@ -83,6 +81,11 @@ function simulation() {
   //safety; where to bring the mice to before time runs out
   drawingSafety();
 
+  for (let i = 0; i < mice.length; i++) {
+    let mouse = mice[i];
+  //cheese and mouse inside safety
+  cheeseMouseInsideSafety(mouse,cheese);
+}
   //to check if cheese is inside safety
   cheeseInsideSafety();
   //cheese display
@@ -104,7 +107,7 @@ function simulation() {
 function title() {
 fill(`#fae`)
 textFont(`ariel`);
-textSize(`60`);
+textSize(20);
 textStyle(BOLD);
 textAlign(CENTER,CENTER);
 text(`Feed the mice! Make the mice follow the cheese to safety before time runs out`,width/2,height/2);
@@ -113,7 +116,7 @@ text(`Feed the mice! Make the mice follow the cheese to safety before time runs 
 function safe() {
   fill(0,255,0);
   textFont(`ariel`);
-  textSize(`50`);
+  textSize(20);
   textStyle(BOLD);
   textAlign(CENTER,CENTER);
   text(`the mice won't starve😁`, width/2, height/2);
@@ -129,6 +132,12 @@ function drawingSafety() {
   ellipse(safety.x, safety.y, safety.size);
 }
 
+function cheeseMouseInsideSafety(mouse,cheese) {
+  if (mouseInsideSafety(mouse) && cheeseInsideSafety()) {
+    state = `safety`;
+  }
+}
+
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
@@ -138,14 +147,14 @@ function userCheese() {
 function moveMouse(mouse) {
   //mice following cheese
   if (mouse.x < cheese.x) {
-    mouse.vx = 1;
+    mouse.vx = 0.5;
   } else if (mouse.x > cheese.x) {
-    mouse.vx = -1;
+    mouse.vx = -0.5;
   }
   if (mouse.y < cheese.y) {
-    mouse.vy = 1;
+    mouse.vy = 0.5;
   } else if (mouse.y > cheese.y) {
-    mouse.vy = -1;
+    mouse.vy = -0.5;
   }
 
   //setting up the mouse to move
