@@ -11,7 +11,7 @@ author, and this description to match your project!
 let state = `title`;
 
 let safety = {
-  x: 1500,
+  x: 1450,
   y: 700,
   size: 400,
   fill: {
@@ -20,6 +20,17 @@ let safety = {
     b: 0
   }
 }
+
+let mistake = {
+  x: 0,
+  y: 700,
+  size: 400,
+  fill: {
+    r: 0,
+    g: 255,
+    b: 0
+  }
+  }
 
 let cheese = {
   x: 100,
@@ -78,8 +89,12 @@ function draw() {
 }
 
 function simulation() {
-  //safety; where to bring the mice to before time runs out
+  //the good stuff to hear
   drawingSafety();
+
+//the worst things to happen
+  drawingMistake();
+
 
   for (let i = 0; i < mice.length; i++) {
     let mouse = mice[i];
@@ -125,6 +140,11 @@ function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
+}
+
+function drawingMistake() {
+  fill(mistake.fill.r,mistake.fill.g,mistake.fill.b);
+  ellipse(mistake.x, mistake.y, mistake.size);
 }
 
 function drawingSafety() {
