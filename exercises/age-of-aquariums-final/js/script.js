@@ -122,7 +122,9 @@ cheese.buffet.push(mouse);
     }
 
 function displayCheeseBuffet() {
-  for (let )
+  for (let i = 0; i < cheese.buffet.length; i++){
+    
+  }
 }
 
 function displayMouse(mouse) {
