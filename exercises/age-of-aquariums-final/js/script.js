@@ -8,12 +8,22 @@ author, and this description to match your project!
 
 "use strict";
 
+let safety = {
+x: 1500,
+y: 700,
+size: 400,
+fill: {
+  r: 255,
+  g: 204,
+  b: 0
+}
+}
+
 let cheese = {
 x:undefined,
 y:undefined,
 size:65,
-buffet: []
-};
+}
 
 
 let mice = [];
@@ -54,9 +64,17 @@ Description of draw()
 */
 function draw() {
 background(0);
+//safety; where to bring the mice to before time runs out
+drawingSafety();
 
 //user cheese movement
 userCheese();
+
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+//moving the mouse/mice
+moveMouse(mouse);
+
 
 for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
@@ -65,8 +83,6 @@ attach(cheese, mouse);
 
 //cheese display
 displayCheese();
-//displaying the cheese (buffet's) mice
-displayCheeseBuffet();
 
 //the loop tat deals with the coins
 for (let i = 0; i < mice.length; i++) {
@@ -74,13 +90,36 @@ for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
 //mice display
 displayMouse(mouse);
- }
+}
+}
+}
+
+function drawingSafety() {
+fill(safety.fill.r,safety.fill.g,safety.fill.b);
+ellipse(safety.x,safety.y,safety.size);
 }
 
 
 function userCheese() {
   cheese.x = mouseX;
   cheese.y = mouseY;
+}
+
+function moveMouse(mouse) {
+  //choose whether to change direction the mouse are headed
+  let change = random(0,1);
+  if (change < 0.05) {
+    mouse.vx = random(-mouse.speed, mouse.speed);
+    mouse.vy = random(-mouse.speed, mouse.speed);
+  }
+
+//setting up the mouse to move
+mouse.x = mouse.x + mouse.vx;
+mouse.y = mouse.y + mouse.vy;
+
+//constrain mouse from going outside of canvas
+mouse.x = constrain(mouse.x, 0, width);
+mouse.y = constrain(mouse.y, 0, height);
 }
 
 
@@ -90,12 +129,6 @@ function userCheese() {
   if (d <  cheese.size/2 + mouse.h/2,mouse.w/2) {
   //cheese and mouse overlaps
   mouse.attached = true;
-  //put the mouse in the mouse buffet
-  mouse.x = cheese.x - mouse.x;
-  mouse.y = cheese.y - mouse.x;
-//adding the mouse in the cheese buffet
-cheese.buffet.push(mouse);
-
   }
   }
   }
@@ -120,12 +153,6 @@ cheese.buffet.push(mouse);
     ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
     pop();
     }
-
-function displayCheeseBuffet() {
-  for (let i = 0; i < cheese.buffet.length; i++){
-    
-  }
-}
 
 function displayMouse(mouse) {
   //if (!mouse.attached){
