@@ -78,7 +78,16 @@ moveMouse(mouse);
 //to check if mice are inside safety zone
 for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
-checkMouseInsideSafety()
+mouseInsideSafety()
+}
+//to check if cheese is inside safety zone
+cheeseInsideSafety(cheese);
+
+
+//if all mice are inside safety, user wins
+for (let i = 0; i < mice.length; i++) {
+let mouse = mice[i];
+checkIfMouseInsideSafety();
 }
 
 for (let i = 0; i < mice.length; i++) {
@@ -139,13 +148,26 @@ mouse.x = constrain(mouse.x, 0, width);
 mouse.y = constrain(mouse.y, 0, height);
 }
 
-function checkMouseInsideSafety(mouse) {
+function mouseInsideSafety(mouse) {
   let d = dist(mouse.x, mouse.y, safety.x, safety.y);
   if (d < safety.size/2) {
     return true;
   } else {
     return false;
   }
+}
+
+function cheeseInsideSafety(cheese) {
+  let d = dist(cheese.x,cheese.y,safety.x,safety.y);
+  if (d < safety.size/2) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function checkIfMouseInsideSafety(mouse) {
+  if (mouseInsideSafety(mouse) && cheeseInsideSafety(cheese)) //left off
 }
 
   function attach(cheese, mouse) {
