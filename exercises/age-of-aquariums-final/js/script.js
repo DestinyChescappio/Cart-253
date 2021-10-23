@@ -12,7 +12,8 @@ let cheese = {
 x:undefined,
 y:undefined,
 size:65,
-}
+buffet: []
+};
 
 
 let mice = [];
@@ -87,6 +88,7 @@ function userCheese() {
   if (d <  cheese.size/2 + mouse.h/2,mouse.w/2) {
   //cheese and mouse overlaps
   mouse.attached = true;
+  //put the mouse in the mouse buffet
   }
   }
   }
