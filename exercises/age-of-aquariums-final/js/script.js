@@ -32,7 +32,7 @@ let evilCheese = {
     g: 255,
     b: 0
   }
-  }
+}
 //user control
 let cheese = {
   x: 100,
@@ -73,7 +73,6 @@ function createMouse() {
   return createdMice;
 }
 
-
 /**
 drawing the states
 */
@@ -95,21 +94,21 @@ function simulation() {
   //the good stuff to hear
   drawingSafety();
 
-//the worst things to happen
+  //the worst things to happen
   drawingEvilCheese();
 
-//evil cheese overlapping safety
-evilCheeseOverlap();
+  //evil cheese overlapping safety
+  evilCheeseOverlap();
 
-//moving evil cheese towards safety zone
-movingEvilCheese();
+  //moving evil cheese towards safety zone
+  movingEvilCheese();
 
 
   for (let i = 0; i < mice.length; i++) {
     let mouse = mice[i];
-  //cheese and mouse inside safety or mistakes
-  cheeseMouseInsideSafety(mouse,cheese);
-}
+    //cheese and mouse inside safety or mistakes
+    cheeseMouseInsideSafety(mouse, cheese);
+  }
   //to check if cheese is inside safety
   cheeseInsideSafety();
 
@@ -125,43 +124,44 @@ movingEvilCheese();
     moveMouse(mouse);
     //to check if mouse is inside safety
     mouseInsideSafety(mouse);
-//mice display
+    //mice display
     displayMouse(mouse);
-//cheese and mouse inside safety means it displays the 'safe' state////////
-}
+    //cheese and mouse inside safety means it displays the 'safe' state////////
+  }
 }
 
 function title() {
-fill(`#fae`);
-textFont(`ariel`);
-textSize(20);
-textStyle(BOLD);
-textAlign(CENTER,CENTER);
-text(`Feed the mice! Make the mice follow the cheese to safety before the evil cheese does`,width/2,height/2);
-//continuation of text on title state- instrictions
-fill(255);
-textFont(`ariel`);
-textSize(15);
-textStyle(NORMAL);
-textAlign(CENTER,CENTER);
-text(`Press any key to start`,width/2,height/2+300)
-}
-function safe() {
-  fill(0,255,0);
+  fill(`#fae`);
   textFont(`ariel`);
   textSize(20);
   textStyle(BOLD);
-  textAlign(CENTER,CENTER);
-  text(`The mice won't starve😁`, width/2, height/2);//
+  textAlign(CENTER, CENTER);
+  text(`Feed the mice! Make the mice follow the cheese to safety before the evil cheese does`, width / 2, height / 2);
+  //continuation of text on title state- instrictions
+  fill(255);
+  textFont(`ariel`);
+  textSize(15);
+  textStyle(NORMAL);
+  textAlign(CENTER, CENTER);
+  text(`Press any key to start`, width / 2, height / 2 + 300)
 }
 
-function fail(){
-  fill(255,0,0);
+function safe() {
+  fill(0, 255, 0);
   textFont(`ariel`);
   textSize(20);
   textStyle(BOLD);
-  textAlign(CENTER,CENTER);
-  text(`You killed the mice. I'm calling PETA😕`,width/2,height/2);//
+  textAlign(CENTER, CENTER);
+  text(`The mice won't starve😁`, width / 2, height / 2); //
+}
+
+function fail() {
+  fill(255, 0, 0);
+  textFont(`ariel`);
+  textSize(20);
+  textStyle(BOLD);
+  textAlign(CENTER, CENTER);
+  text(`You killed the mice. I'm calling PETA😕`, width / 2, height / 2); //
 }
 
 //simulation starts when a key is pressed
@@ -179,7 +179,7 @@ function drawingSafety() {
 
 //drawing the evil cheese
 function drawingEvilCheese() {
-  fill(evilCheese.fill.r,evilCheese.fill.g,evilCheese.fill.b);
+  fill(evilCheese.fill.r, evilCheese.fill.g, evilCheese.fill.b);
   ellipse(evilCheese.x, evilCheese.y, evilCheese.size);
 }
 
@@ -187,7 +187,7 @@ function drawingEvilCheese() {
 function evilCheeseOverlap() {
   let d = dist(evilCheese.x, evilCheese.y, safety.x, safety.y);
   //if the evil cheese touches safety, mistake state triggers
-  if (d < evilCheese.size/2 + safety.size/2) {
+  if (d < evilCheese.size / 2 + safety.size / 2) {
     state = `mistake`
   }
 }
@@ -197,10 +197,10 @@ function movingEvilCheese() {
   //movement setup
   evilCheese.x = evilCheese.x + evilCheese.vx;
   evilCheese.y = evilCheese.y + evilCheese.vy;
-  }
+}
 
 //if both cheese and mice are inside safety, safety state starts
-function cheeseMouseInsideSafety(mouse,cheese) {
+function cheeseMouseInsideSafety(mouse, cheese) {
   if (mouseInsideSafety(mouse) && cheeseInsideSafety()) {
     state = `safety`;
   }
@@ -257,10 +257,10 @@ function moveMouse(mouse) {
   } else if (mouse.y > cheese.y) {
     mouse.vy = -0.5;
   }
-//setting up the mouse to move
+  //setting up the mouse to move
   mouse.x += mouse.vx;
   mouse.y += mouse.vy;
-//constrain mouse from going outside of canvas
+  //constrain mouse from going outside of canvas
   mouse.x = constrain(mouse.x, 0, width);
   mouse.y = constrain(mouse.y, 0, height);
 }
