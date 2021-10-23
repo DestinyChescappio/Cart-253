@@ -65,6 +65,8 @@ attach(cheese, mouse);
 
 //cheese display
 displayCheese();
+//displaying the cheese (buffet's) mice
+displayCheeseBuffet();
 
 //the loop tat deals with the coins
 for (let i = 0; i < mice.length; i++) {
@@ -89,6 +91,11 @@ function userCheese() {
   //cheese and mouse overlaps
   mouse.attached = true;
   //put the mouse in the mouse buffet
+  mouse.x = cheese.x - mouse.x;
+  mouse.y = cheese.y - mouse.x;
+//adding the mouse in the cheese buffet
+cheese.buffet.push(mouse);
+
   }
   }
   }
@@ -113,6 +120,10 @@ function userCheese() {
     ellipse(cheese.x+17,cheese.y+12,cheese.size-55);
     pop();
     }
+
+function displayCheeseBuffet() {
+  for (let )
+}
 
 function displayMouse(mouse) {
   //if (!mouse.attached){
