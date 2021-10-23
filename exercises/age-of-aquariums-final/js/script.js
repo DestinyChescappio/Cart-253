@@ -21,10 +21,12 @@ let safety = {
   }
 }
 
-let mistake = {
+let evilCheese = {
   x: 0,
   y: 700,
-  size: 400,
+  size: 65,
+  vx: 1,
+  vy: 0,
   fill: {
     r: 0,
     g: 255,
@@ -84,7 +86,10 @@ function draw() {
     simulation();
   } else if (state === `safety`) {
     safe();
+  } else if (state === `mistake`) {
+    fail();
   }
+
 
 }
 
@@ -93,16 +98,22 @@ function simulation() {
   drawingSafety();
 
 //the worst things to happen
-  drawingMistake();
+  drawingEvilCheese();
 
+//evil cheese overlapping safety
+evilCheeseOverlap();
+
+//moving evil cheese towards safety zone
+movingEvilCheese();
 
   for (let i = 0; i < mice.length; i++) {
     let mouse = mice[i];
-  //cheese and mouse inside safety
+  //cheese and mouse inside safety or mistakes
   cheeseMouseInsideSafety(mouse,cheese);
 }
   //to check if cheese is inside safety
   cheeseInsideSafety();
+
   //cheese display
   displayCheese();
   //user cheese movement
@@ -114,7 +125,7 @@ function simulation() {
     moveMouse(mouse);
     //to check if mouse is inside safety
     mouseInsideSafety(mouse);
-    //mice display
+//mice display
     displayMouse(mouse);
 //cheese and mouse inside safety means it displays the 'safe' state////////
 }
@@ -134,29 +145,55 @@ function safe() {
   textSize(20);
   textStyle(BOLD);
   textAlign(CENTER,CENTER);
-  text(`the mice won't starve😁`, width/2, height/2);
+  text(`the mice won't starve😁`, width/2, height/2);//
+}
+
+function fail(){
+  fill(255,0,0);
+  textFont(`ariel`);
+  textSize(20);
+  textStyle(BOLD);
+  textAlign(CENTER,CENTER);
+  text(`you killed the mice. I'm calling PETA😕`,width/2,height/2);//
 }
 function keyPressed() {
   if (state === `title`) {
     state = `simulation`;
   }
 }
-
-function drawingMistake() {
-  fill(mistake.fill.r,mistake.fill.g,mistake.fill.b);
-  ellipse(mistake.x, mistake.y, mistake.size);
+//drawing the evil cheese
+function drawingEvilCheese() {
+  fill(evilCheese.fill.r,evilCheese.fill.g,evilCheese.fill.b);
+  ellipse(evilCheese.x, evilCheese.y, evilCheese.size);
 }
 
+function movingEvilCheese() {
+  //movement setup
+  evilCheese.x = evilCheese.x + evilCheese.vx;
+  evilCheese.y = evilCheese.y + evilCheese.vy;
+  }
+
+function evilCheeseOverlap() {
+  let d = dist(evilCheese.x, evilCheese.y, safety.x, safety.y);
+  //if the evil cheese touches safety, mistake state triggers
+  if (d < evilCheese.size/2 + safety.size/2) {
+    state = `mistake`
+  }
+}
+
+//drawing the safety of the mice 'red circle'
 function drawingSafety() {
   fill(safety.fill.r, safety.fill.g, safety.fill.b);
   ellipse(safety.x, safety.y, safety.size);
 }
-
+//if both cheese and mice are inside safety, safety state starts
 function cheeseMouseInsideSafety(mouse,cheese) {
   if (mouseInsideSafety(mouse) && cheeseInsideSafety()) {
     state = `safety`;
   }
 }
+
+
 
 function userCheese() {
   cheese.x = mouseX;
