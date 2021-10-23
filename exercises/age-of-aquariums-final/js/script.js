@@ -71,7 +71,7 @@ for (let i = 0; i < mice.length; i++) {
 let mouse = mice[i];
 //mice display
 displayMouse(mouse);
-}
+ }
 }
 
 
