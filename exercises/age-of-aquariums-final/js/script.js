@@ -103,8 +103,7 @@ function simulation() {
   //moving evil cheese towards safety zone
   movingEvilCheese();
 
-
-  for (let i = 0; i < mice.length; i++) {
+for (let i = 0; i < mice.length; i++) {
     let mouse = mice[i];
     //cheese and mouse inside safety or mistakes
     cheeseMouseInsideSafety(mouse, cheese);
@@ -117,8 +116,7 @@ function simulation() {
   //user cheese movement
   userCheese();
 
-
-  for (let i = 0; i < mice.length; i++) {
+for (let i = 0; i < mice.length; i++) {
     let mouse = mice[i];
     //moving the mouse/mice
     moveMouse(mouse);
