@@ -16,9 +16,11 @@ constructor(x, y, size, stemLength, petalColor) { //when we are talking about fu
   this.x = x;
   this.y = y; //if we want the x and y to set our properties, we need to use them here
   this.size = size; //the same with other parameters (stemLength and petalColor below)...
+  this.maxSize = size;
   this.stemLength = stemLength;
   this.stemThickness = 10;
   this.petalThickness = 10;
+  this.maxPetalThickness = 10;
   // Color information
   this.stemColor = {
     r: 50,
@@ -50,6 +52,17 @@ this.alive = true;
   if (this.size <= 0 || this.petalThickness <= 0) {
   this.alive = false; //then it's dead
 } // to make the flowers shrink and eventually die visually, we put it in function draw in the other script (script.js)
+  }
+
+  pollinate() {
+    //flower grows at a random rate
+    let growth = random(0,0.5);
+    //add that growth amounth to the size
+    this.size = this.size + growth;
+    this.petalThickness = this.petalThickness + growth/10; //divided by 10 because we don't want the petal to get too big too fast
+//constrain the flower from getting too big
+this.size = constrain(this.size,0,this.maxSize);
+this.petalThickness = constrain(this.petalThickness,0,this.maxPetalThickness);
   }
 
 //write out the method name

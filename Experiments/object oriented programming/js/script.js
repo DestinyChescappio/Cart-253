@@ -14,7 +14,11 @@ let garden = {
   // An array to store the individual flowers
   flowers: [],
   // How many flowers in the garden
-  numFlowers: 50,
+  numFlowers: 20,
+  //an array of bees
+  bees: [],
+  //how many bees in the garden
+  numBees: 15,
   // The color of the grass (background)
   grassColor: {
     r: 120,
@@ -52,6 +56,11 @@ let petalColor = {
     // Add the flower to the array of flowers
     garden.flowers.push(flower);
   }
+//create the bees
+for (let i = 0; i < garden.numBees; i++) {
+  let bee = new Bee(random(0,width),random(0,height));
+  garden.bees.push(bee);
+}
 }
 
 /**
@@ -63,7 +72,7 @@ function draw() {
   // Display the grass
   background(garden.grassColor.r, garden.grassColor.g, garden.grassColor.b);
 
-  // Loop through all the flowers in the array and display them
+  // Loop through all the flowers in the array and display them; all of them
   for (let i = 0; i < garden.flowers.length; i++) {
     let flower = garden.flowers[i];
     //rather than directly always displaying and shrinking the flower, we first check if the flower is alive
@@ -76,6 +85,26 @@ function draw() {
     //since the function was deleted, same as the "createFlower" function,
     //we replace "displayFlower" called function and type out the "(the variable that has the flower in it).(methods)" so: flower.display();
     //this tells the method (display) from the other js, (Flower.js) to do whatever it's doing here in this js file
+    }
+  }
+  //loop through all the bees in the array and display them; all of them
+  for (let i = 0; i < garden.bees.length; i++) {
+    let bee = garden.bees[i];
+    if (bee.alive) {
+      bee.shrink();
+      bee.move();
+      bee.display();
+
+      //we need each bee to check if it's going to pollinate any of the flowers in the garden
+      //we need this bee to interact with each flower so that way it will pollinate any flower
+      //to do that, we need to check EVERY flower--> we must use another for-loop (A for-loop inside a for-loop)
+      //a for-loop inside a for-loop is called: a nested for-loop
+  for (let j = 0; j < garden.flowers.length; j++){
+    let flower = garden.flowers[j];
+    if (flower.alive){
+    bee.tryToPollinate(flower);
+        }
+      }
     }
   }
 }
