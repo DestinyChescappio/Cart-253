@@ -13,6 +13,12 @@ constructor(x,y) {
   this.active = true;
   }
 }
+
+//making the chainsaw move
+move() {
+  this.vx = this.vx + this.ax;
+  this.vy = this.vy + this.ay;
+}
 //drawing the chainsaw
 display() {
   push();
@@ -23,5 +29,5 @@ display() {
   fill(150);
   rect(this.x+41,this.y+6,this.h,this.w);
   pop();
-}  
+}
 }
