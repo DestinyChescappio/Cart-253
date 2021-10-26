@@ -13,3 +13,15 @@ constructor(x,y) {
   this.active = true;
   }
 }
+//drawing the chainsaw
+display() {
+  push();
+  fill(255,0,0);
+  stroke(0);
+  rect(this.x,this.y,this.size);
+//chainsaw teeth
+  fill(150);
+  rect(this.x+41,this.y+6,this.h,this.w);
+  pop();
+}  
+}
