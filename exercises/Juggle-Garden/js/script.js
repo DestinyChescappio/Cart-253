@@ -42,4 +42,17 @@ background(0);
 paddle.move();
 paddle.display();
 
+//forloop counting up to length of array
+for (let i = 0; i < chainsaws.length; i++) {
+  let chainsaw = chainsaws[i];
+  if (chainsaw.active) {
+    chainsaw.gravity(gravityForce);
+    chainsaw.move();
+    chainsaw.bounce(paddle);
+    chainsaw.display();
+    }
+  }
+}
+
+
 }

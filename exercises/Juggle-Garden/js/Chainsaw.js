@@ -32,7 +32,7 @@ this.y = this.y + this.vy;
 
 }
 
-bounce(chainsaw) {
+bounce(paddle) {
   //checking if the chainsaw bounces on the left edge of the Paddle
   if (this.x > paddle.x - paddle.width/2 &&
       this.x < paddle.x + paddle.width/2 &&
