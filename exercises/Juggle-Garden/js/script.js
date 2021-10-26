@@ -7,6 +7,7 @@ author, and this description to match your project!
 */
 
 "use strict";
+let state =  `title`;
 
 let gravityForce = 0.0025;
 
@@ -24,6 +25,8 @@ Description of setup
 function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
+
+title = new TitlePage();
 
 paddle = new Paddle(300,20);
 
@@ -43,6 +46,8 @@ Description of draw()
 function draw() {
 background(0);
 
+title.DrawTitleText();
+
 paddle.move();
 paddle.display();
 
@@ -58,7 +63,8 @@ for (let i = 0; i < chainsaws.length; i++) {
     }
     chainsaw.display();
     }
-
+    if (numBounces < 10)
+    state = `murdered`
   }
 
   console.log(numBounces);
