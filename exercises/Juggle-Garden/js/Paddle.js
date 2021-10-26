@@ -6,7 +6,7 @@ class Paddle {
     this.y = height - this.height/2;
 }
 move() {
-
+this.x = mouseX;
 }
 
 display() {
