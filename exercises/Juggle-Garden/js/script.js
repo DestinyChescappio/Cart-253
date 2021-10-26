@@ -10,12 +10,8 @@ author, and this description to match your project!
 
 let paddle;
 
-/**
-Description of preload
-*/
-function preload() {
-
-}
+let chainsaws = [];
+let numChainsaw = 10;
 
 
 /**
@@ -26,6 +22,14 @@ createCanvas(windowWidth,windowHeight);
 noCursor();
 
 paddle = new Paddle(300,20);
+
+//making a forloop that counts the numChainsaw
+for (let i = 0; i < numChainsaw; i++) {
+  let x = random(0,width);
+  let y = random(-400,-100);
+  let chainsaw = new Chainsaw(x,y);
+  chainsaws.push(chainsaw);
+}
 }
 
 
