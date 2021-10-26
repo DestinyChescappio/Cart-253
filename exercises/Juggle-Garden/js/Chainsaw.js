@@ -12,6 +12,10 @@ constructor(x,y) {
   this.size = 40;
   this.active = true;
   }
+//making the chainsaw drop by gravity
+gravity(force) {
+  this.ay = this.ay + force;
+}
 }
 
 //making the chainsaw move
