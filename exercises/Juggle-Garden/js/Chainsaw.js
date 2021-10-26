@@ -31,6 +31,22 @@ this.x = this.x + this.vx;
 this.y = this.y + this.vy;
 
 }
+
+bounce(chainsaw) {
+  //checking if the chainsaw bounces on the left edge of the Paddle
+  if (this.x > paddle.x - paddle.width/2 &&
+      this.x < paddle.x + paddle.width/2 &&
+    //chainsaw is within the width of the paddle vertaically and horizontally
+  //AND overlapping as well with the paddle (pass half the top of the paddle)
+      this.y + this.size/2 > paddle.y - paddle.height/2 &&
+      this.y = this.size/2 < paddle.y + paddle.height/2) {
+
+  this.vy = -this.vy;
+  this.ay = 0;      
+  }
+}
+
+
 //drawing the chainsaw
 display() {
   push();
