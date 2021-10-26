@@ -37,5 +37,9 @@ for (let i = 0; i < numChainsaw; i++) {
 Description of draw()
 */
 function draw() {
+background(0);
+
+paddle.move();
+paddle.display();
 
 }
