@@ -15,6 +15,8 @@ let paddle;
 let chainsaws = [];
 let numChainsaw = 10;
 
+let numBounces = 0;
+
 
 /**
 Description of setup
@@ -50,8 +52,14 @@ for (let i = 0; i < chainsaws.length; i++) {
   if (chainsaw.active) { //chainsaw is active, if dropped,they are not 'active'
     chainsaw.gravity(gravityForce);
     chainsaw.move();
-    chainsaw.bounce(paddle);
+    let bounced = chainsaw.bounce(paddle);
+    if (bounced) {
+      numBounces++;
+    }
     chainsaw.display();
     }
+
   }
+
+  console.log(numBounces);
 }
