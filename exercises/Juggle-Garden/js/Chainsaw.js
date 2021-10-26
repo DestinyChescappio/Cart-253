@@ -24,7 +24,7 @@ move() {
 
 //constraining the velocity base on the maxSpeed property
   this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
-  this.vy = constrain(this.vy, -this.maxSpeed, this,maxSpeed);
+  this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
 //adding the velocity to the position
 this.x = this.x + this.vx;
@@ -39,7 +39,7 @@ bounce(paddle) {
     //chainsaw is within the width of the paddle vertaically and horizontally
   //AND overlapping as well with the paddle (pass half the top of the paddle)
       this.y + this.size/2 > paddle.y - paddle.height/2 &&
-      this.y = this.size/2 < paddle.y + paddle.height/2) {
+      this.y - this.size/2 < paddle.y + paddle.height/2) {
 
 //bouncing to the left
 let dx = this.x - paddle.x;

@@ -8,6 +8,8 @@ author, and this description to match your project!
 
 "use strict";
 
+let gravityForce = 0.0025;
+
 let paddle;
 
 let chainsaws = [];
@@ -45,14 +47,11 @@ paddle.display();
 //forloop counting up to length of array
 for (let i = 0; i < chainsaws.length; i++) {
   let chainsaw = chainsaws[i];
-  if (chainsaw.active) {
+  if (chainsaw.active) { //chainsaw is active, if dropped,they are not 'active'
     chainsaw.gravity(gravityForce);
     chainsaw.move();
     chainsaw.bounce(paddle);
     chainsaw.display();
     }
   }
-}
-
-
 }
