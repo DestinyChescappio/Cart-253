@@ -16,12 +16,20 @@ constructor(x,y) {
 gravity(force) {
   this.ay = this.ay + force;
 }
-}
 
 //making the chainsaw move
 move() {
   this.vx = this.vx + this.ax;
   this.vy = this.vy + this.ay;
+
+//constraining the velocity base on the maxSpeed property
+  this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
+  this.vy = constrain(this.vy, -this.maxSpeed, this,maxSpeed);
+
+//adding the velocity to the position
+this.x = this.x + this.vx;
+this.y = this.y + this.vy;
+
 }
 //drawing the chainsaw
 display() {
