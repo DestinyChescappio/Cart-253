@@ -14,7 +14,7 @@ let gravityForce = 0.0025;
 let paddle;
 
 let chainsaws = [];
-let numChainsaw = 10;
+let numChainsaw = 5;
 
 let numBounces = 0;
 
@@ -26,7 +26,7 @@ function setup() {
 createCanvas(windowWidth,windowHeight);
 noCursor();
 
-title = new TitlePage();
+//title = new TitlePage();
 
 paddle = new Paddle(300,20);
 
@@ -46,7 +46,7 @@ Description of draw()
 function draw() {
 background(0);
 
-title.DrawTitleText();
+//title.DrawTitleText();
 
 paddle.move();
 paddle.display();
@@ -62,10 +62,19 @@ for (let i = 0; i < chainsaws.length; i++) {
       numBounces++;
     }
     chainsaw.display();
+    chainsaw.checkOffScreen();
     }
-    if (numBounces < 10)
-    state = `murdered`
   }
-
-  console.log(numBounces);
+  //console.log(numBounces);
+  //forloop foe ending
+  for (let i = 0; i < chainsaws.length; i++) {
+    let chainsaw = chainsaws[i];
+    //if chainsaw is active, loop will stop (breaks)
+    if (chainsaw.active) {
+      console.log(`break`);
+      break;
+    }
+    //state = `ending`;
+    console.log(`endingstate`);
+  }
 }

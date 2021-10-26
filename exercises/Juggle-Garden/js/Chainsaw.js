@@ -53,6 +53,12 @@ this.vx = this.vx + map(dx,-paddle.width/2,paddle.width/2,-2,-2);
 else {return false}
 }
 
+checkOffScreen() {
+  if (this.y > height) {
+  this.active = false;
+}
+}
+
 
 //drawing the chainsaw
 display() {
