@@ -128,6 +128,6 @@ function simulation() {
 function winner() {
   fill(0, 255, 0);
   textFont(`krungthep`);
-  textSize(80);
+  textSize(40);
   text(`You didn't saw your fingers off! Great job😁`, width / 2, height / 2);
 }
