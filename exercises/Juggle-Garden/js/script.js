@@ -46,8 +46,6 @@ Description of draw()
 function draw() {
 background(0);
 
-//title.DrawTitleText();
-
 paddle.move();
 paddle.display();
 
