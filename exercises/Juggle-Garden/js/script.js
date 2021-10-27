@@ -24,7 +24,6 @@ Description of setup
 */
 function setup() {
 createCanvas(windowWidth,windowHeight);
-noCursor();
 
 //calling the class Paddle
 paddle = new Paddle(300,20);
@@ -57,13 +56,14 @@ if (state === `title`) {
   if (state === `title`) {
     title();
   }
+
 }
 //setup of title page
 function title() {
   fill(255,0,0);
   textFont(`krungthep`);
   textStyle(BOLD);
-  textSize(100);
+  textSize(80);
   textAlign(CENTER,CENTER);
   text(`Juggle the chainsaws!`, width/2,height/2);
 
@@ -71,7 +71,7 @@ function title() {
   fill(255);
   textFont(`arial`);
   textStyle(NORMAL);
-  textSize(50);
+  textSize(20);
   textAlign(CENTER,CENTER);
   text(`You must bounce five chainsaw with your paddle, any less, you're finished`,width/2,height/2+100);
 
@@ -79,9 +79,15 @@ function title() {
   fill(255);
   textFont(`arial`);
   textStyle(NORMAL);
-  textSize(50);
+  textSize(20);
   textAlign(CENTER,CENTER);
-  text(`Use LEFT & RIGHT ARROW KEYS to move your paddle`,width/2,height/2+200);
+  text(`Use LEFT & RIGHT ARROW KEYS to move your paddle. Click anywhere to start`,width/2,height/2+200);
+}
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+}
 }
 
 //what happens in the simulation
@@ -101,27 +107,28 @@ function simulation() {
       if (bounced) {
         numBounces++;
       }
+
   //displaying chainsaw. Checking if chainsaw is off the screen;
       chainsaw.display();
       chainsaw.checkOffScreen();
       }
     }
-    //console.log(numBounces);
-    //forloop foe ending
+
+    //forloop for ending
     for (let i = 0; i < chainsaws.length; i++) {
       let chainsaw = chainsaws[i];
     //if chainsaw is active, loop will stop (breaks)
       if (chainsaw.active) {
         break;
+      }
     }
   }
-}
 
 
 function lost() {
   fill(255,0,0);
   textFont(`krungthep`);
-  textSize(100);
+  textSize(80);
   text(`Ouch! That's gotta hurt😣`)
 }
 
@@ -129,6 +136,6 @@ function lost() {
 function winning() {
   fill(0,255,0);
   textFont(`krungthep`);
-  textSize(100);
+  textSize(80);
   text(`You didn't saw your fingers off! Great job😁`,width/2,height/2);
 }

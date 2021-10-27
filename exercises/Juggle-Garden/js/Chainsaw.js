@@ -12,6 +12,7 @@ constructor(x,y) {
   this.size = 40;
   this.active = true;
   }
+
 //making the chainsaw drop by gravity
 gravity(force) {
   this.ay = this.ay + force;
@@ -41,6 +42,8 @@ bounce(paddle) {
       this.y + this.size/2 > paddle.y - paddle.height/2 &&
       this.y - this.size/2 < paddle.y + paddle.height/2) {
 
+//if all chainsaws 'bounce' on paddle 
+state = `winner`;
 
 //bouncing to the left
 let dx = this.x - paddle.x;
@@ -50,13 +53,17 @@ this.vx = this.vx + map(dx,-paddle.width/2,paddle.width/2,-2,-2);
   this.ay = 0;
   return true;
 }
-else {return false}
+else {
+return false;
+}
 }
 
+//if the chainsaw is off screen, it is not active
 checkOffScreen() {
   if (this.y > height) {
   this.active = false;
 }
+
 }
 
 
