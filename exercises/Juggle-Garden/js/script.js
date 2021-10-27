@@ -18,6 +18,7 @@ let numChainsaw = 3;
 
 let numBounces = 0;
 
+
 /**
 creating the canvas, calling the paddle class, making a forloop for the number of chainsaws displayed
 */
@@ -36,6 +37,7 @@ function setup() {
   }
 }
 
+
 /**
 drawing what happens from the title page, simulation, and winner page
 */
@@ -47,7 +49,7 @@ function draw() {
   } else if (state === `simulation`) {
     simulation();
   } else if (state === `survive`) {
-    survived();
+    winner();
   }
   if (state === `title`) {
     title();
@@ -123,7 +125,7 @@ function simulation() {
 }
 
 //setup for winning page
-function surived() {
+function winner() {
   fill(0, 255, 0);
   textFont(`krungthep`);
   textSize(80);
