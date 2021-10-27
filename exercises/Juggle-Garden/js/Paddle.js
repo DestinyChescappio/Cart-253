@@ -6,7 +6,7 @@ class Paddle {
     this.y = height - this.height/2;
     this.vx = 0,
     this.vy = 0,
-    this.speed = 8
+    this.speed = 10
 }
 move() {
 //set to left arrow pressed at horizontal movement
