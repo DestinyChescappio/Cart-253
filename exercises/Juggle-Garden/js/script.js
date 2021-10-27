@@ -44,7 +44,19 @@ Description of draw()
 */
 function draw() {
 background(0);
-
+//displaying what happens from the title, to simulation,losing and winning page
+if (state === `title`) {
+    title();
+  } else if (state === `simulation`) {
+    simulation();
+  } else if (state === `losing`) {
+    lost();
+  } else if (state === `winner`) {
+    winning();
+  }
+  if (state === `title`) {
+    title();
+  }
 }
 //setup of title page
 function title() {
@@ -104,17 +116,19 @@ function simulation() {
     }
   }
 }
-//setup for winning page
-function winning() {
-  fill(0,255,0);
-  textFont(`krungthep`);
-  textSize(100);
-  text(`You didn't saw your fingers off! Great job😁`,width/2,height/2);
-}
+
 
 function lost() {
   fill(255,0,0);
   textFont(`krungthep`);
   textSize(100);
   text(`Ouch! That's gotta hurt😣`)
+}
+
+//setup for winning page
+function winning() {
+  fill(0,255,0);
+  textFont(`krungthep`);
+  textSize(100);
+  text(`You didn't saw your fingers off! Great job😁`,width/2,height/2);
 }
