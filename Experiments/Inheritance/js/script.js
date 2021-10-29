@@ -1,5 +1,5 @@
 /**
-Inheritance: Car
+Inheritance,overriding,polymorphism,chains of inheritance 
 Author Name
 
 This is a template. You must fill in the title,
@@ -7,13 +7,10 @@ author, and this description to match your project!
 */
 "use strict";
 //cars setup
-let cars = [];
+let vehicles = []; //for polymorphism: let's replace it with a vehicle array
 let numCars = 10;
-
-//motorcycle setup
-let motorcycles = [];
-let numMotorcycles = 10;
-
+let numMotorcycles = 10; //we will also have a numMotorcycles array
+let numSportsCars = 3;
 /**
 Description of setup
 */
@@ -24,15 +21,23 @@ function setup() {
     let x = random (0,width);
     let y = random (0,height);
     let car = new Car (x, y);
-    cars.push(car);
+    vehicles.push(car); //polymorphism: add the car to the vehicles array because the car is a type of vehicle
   }
 //making a forloop of motorcycles
 for (let i = 0; i < numMotorcycles; i++) {
   let x = random (0,width);
   let y = random (0,height);
   let motorcycle = new Motorcycle (x, y);
-  motorcycles.push(motorcycle);
-}
+    vehicles.push(motorcycle); //polymorphism: we also add the motorcycles to vehicles array as well
+  }
+
+//making a forloop for the sportscars
+for (let i = 0; i < numSportsCars; i++) {
+  let x = random (0,width);
+  let y = random (0,height);
+  let sportscar = new SportsCar (x, y);
+  vehicles.push(sportscar); //polymorphism: add the sportscar to the vehicles array because the car is a type of vehicle
+}//we can leave draw alone for sportscar,cars,motorcycles, because they are all vehicles
 }
 
 /**
@@ -40,21 +45,12 @@ Description of draw()
 */
 function draw() {
   background(0);
-//drawing the forloop for the cars; give me the current car and I'll store it in this variable
-for (let i = 0; i < cars.length; i++) {
-  let car = cars[i];
-//calling the methods
-car.move();
-car.wrap();
-car.display();
+//now we have one array which is the vehicles (polymorphism)
+//we draw the array of vehicles
+for (let i = 0; i < vehicles.length; i++) {
+  let vehicle = vehicles[i];
+  vehicle.move();
+  vehicle.wrap();
+  vehicle.display();
   }
-
-//drawing the forloop for the motorcycles; give me the current motorcycle and I'll store it in the variable
-for (let i = 0; i < motorcycles.length; i++) {
-  let motorcycle = motorcycles[i];
-//calling the methods
-motorcycle.move();
-motorcycle.wrap();
-motorcycle.display();
-}
 }
