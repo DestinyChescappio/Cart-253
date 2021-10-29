@@ -30,3 +30,8 @@ class Motorcycle extends Vehicle {
 
 //The Vehicle, the thing that car and motorcycle are versions of, is called a SUPER-CLASS/PARENT-CLASS
 //The motorcycle and car that inherate from the vehicle are called SUB-CLASSES/CHILD-CLASSES
+
+//NOTES ON OVERRIDING METHODS:
+//we want some vehicles to looks they are driven randomly (like a drunk driver)
+//However, editing the move method would have all cars to move the same
+//

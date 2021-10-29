@@ -8,7 +8,6 @@ class Vehicle { //we will only use what a car and a motorcycle are by extension
       this.vx = 0; //velocity will be 0 because it knows about velocity but it doesn't have one
       this.vy = 0;
     }
-}
 
 //moving the car
 move() {
@@ -28,5 +27,5 @@ wrap() {
 display() {
 //defined this in the subclasses
 
-}
+  }
 }
