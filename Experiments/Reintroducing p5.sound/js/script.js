@@ -30,5 +30,9 @@ createCanvas(600,600);
 Description of draw()
 */
 function draw() {
+background(0);
+}
 
+function mousePressed() {
+  barkSFX.play();
 }
