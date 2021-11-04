@@ -1,33 +1,69 @@
 /**
-Inheritance Activity
-Author Name
+Pedestrian Palaver: Inheritance Activity
+Destiny Chescappio
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+A traffic simulation where the user is a highly endangered pedestrian trying to cross the road.
 */
 
 "use strict";
+//states
+let state = `simulation`;
 
+let pedestrian;
 
-/**
-Description of preload
-*/
-function preload() {
-
-}
-
-
-/**
-Description of setup
-*/
 function setup() {
+createCanvas(windowWidth,windowHeight);
 
+let x = width/2;
+let y = height;
+pedestrian = new Pedestrian(x,y);
 }
 
 
-/**
-Description of draw()
-*/
+
 function draw() {
+background(0);
+//drawing the states
+if (state === `title`) {
+  title();
+}
+if (state === `simulation`) {
+  simulation();
+}
+if (state === `dead`) {
+  dead();
+  }
+}
+
+//making the states' functions (title, simulation, dead)
+function title() {
+displayText(`PEDESTRIAN PALAYER!`)
+}
+
+function simulation() {
+pedestrian.handleInput();
+pedestrian.move();
+pedestrian.display();
+}
+
+function success() {
+  displayText(`YOU MADE IT!`);
+}
+
+function dead() {
+displayText(`YOU DIED! SO SAD`)
+}
+
+function displayText(string) {
+  push();
+  textAlign(CENTER,CENTER);
+  textSize(32);
+  fill(255);
+  text(string,width/2,height/2);
+  pop();
+}
+
+function keyPressed() {
+  if (state === `title`);
 
 }
