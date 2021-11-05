@@ -1,18 +1,24 @@
-class Traffic {
+class Car {
 //properties of the many cars (that makes traffic)
   constructor(x,y){
   this.x = x;
   this.y = y;
-  this.width = undefined;
-  this.height = undefined;
+  this.width = 50;
+  this.height = 20;
   this.vx = 0;
-  this.vy = 0;
+  this.vy = 5;
   }
 
 //moving the traffic
 move(){
   this.x += this.vx;
   this.y += this.vy;
+}
+
+wrap(){
+  if (this.x > width){
+    this.x -= width;
+  }
 }
 
 display() {
