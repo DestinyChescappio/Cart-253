@@ -19,5 +19,5 @@ createCanvas(800,600);
 Description of draw()
 */
 function draw() {
-background(0);
+background(155);
 }
