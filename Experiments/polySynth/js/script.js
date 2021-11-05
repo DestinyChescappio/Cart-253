@@ -16,7 +16,6 @@ Description of setup
 */
 function setup() {
   createCanvas(600,600);
-  userStartAudio();
 
   synth = new p5.PolySynth();
 
@@ -37,5 +36,5 @@ let randomNote = random(notes);
 
 //playing note(c4),how hard the key is hit (at full velocity)(1),
 //no delay(0),how long it's played(1)
-  synth.play(randomNote,1,0,0,25);
+  synth.play(randomNote,1,0,0.25);
 }
