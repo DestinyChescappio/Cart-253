@@ -18,7 +18,7 @@ let ghost = {
 };
 
 function preload() {
-  ghost.image = loadimage(`assets/images/clown.png`);
+  ghost.image = loadImage(`assets/images/clown.png`);
 }
 /**
 Description of setup
@@ -39,8 +39,24 @@ Description of draw()
 function draw() {
   background(0);
 
+  //making it tremble/shake
+  ghost.x = ghost.x + random(-1,-1);
+  ghost.y = ghost.y + random(-1,-1);
+
+  //get volume into microphone
   let level = mic.getLevel();
 
+  //to check if the ghost is scared
+  if (level > 0.6) {
+  //ghost moves off the screen to the right
+  ghost.vx = 20;
+  }
+
+  //move the ghost
+  ghost.x = ghost.x + ghost.vx;
+  ghost.y = ghost.y + ghost.vy;
+
+  //display ghost
   push();
   imageMode(CENTER);
   tint(255,50);
