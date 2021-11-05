@@ -7,18 +7,18 @@ author, and this description to match your project!
 */
 
 "use strict";
-let cars = [];
-let numCars = 10;
+let snowBalls = [];
+let numSnowBall = 5;
 
 //
 function setup() {
 createCanvas(800,600);
 //making forloop of cars
-for (let i = 0; i < numCars; i++){
+for (let i = 0; i < numSnowBall; i++){
   let x = random(0,width);
   let y = random(0,height);
-  let car = new Car (x,y);
-  cars.push(car);
+  let snowBall = new SnowBall (x,y);
+  snowBalls.push(snowBall);
 }
 }
 
@@ -29,10 +29,10 @@ Description of draw()
 function draw() {
 background(155);
 //drawing the array of cars
-for (let i = 0; i < cars.length; i++){
-  let car = cars[i];
-  car.move();
-  car.wrap();
-  car.display();
+for (let i = 0; i < snowBalls.length; i++){
+  let snowBall = snowBalls[i];
+  snowBall.move();
+  snowBall.wrap();
+  snowBall.display();
 }
 }

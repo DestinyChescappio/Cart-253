@@ -1,10 +1,10 @@
-class Car {
+class SnowBall {
 //properties of the many cars (that makes traffic)
   constructor(x,y){
   this.x = x;
   this.y = y;
-  this.width = 50;
-  this.height = 20;
+  this.width = 30;
+  this.height = 30;
   this.vx = 0;
   this.vy = 5;
   }
@@ -16,17 +16,16 @@ move(){
 }
 
 wrap(){
-  if (this.x > width){
-    this.x -= width;
+  if (this.y > height){
+    this.y -= height;
   }
 }
 
 display() {
 push();
-rectMode(CENTER);
 noStroke();
-fill(255,0,0);
-rect(this.x,this.y,this.width,this.height);
+fill(255);
+ellipse(this.x,this.y,this.width,this.height);
 pop();
 }
 }
