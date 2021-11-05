@@ -40,8 +40,8 @@ function draw() {
   background(0);
 
   //making it tremble/shake
-  ghost.x = ghost.x + random(-1,-1);
-  ghost.y = ghost.y + random(-1,-1);
+  ghost.x = ghost.x + random(-1,1);
+  ghost.y = ghost.y + random(-1,1);
 
   //get volume into microphone
   let level = mic.getLevel();
