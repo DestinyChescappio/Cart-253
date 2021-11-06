@@ -39,15 +39,15 @@ snowMan = new Snowman();
 }
 
 //check if the snowman overlaps the snowball object
-function checkSnowball(snowBalls){
+//function checkSnowball(snowBalls){
 //check to overlapp if snowball hasn't been collected yet
-if (!snowBalls.collected) {
-  let d = dist(snowMan.x,snowMan.y,snowBalls.x,snowBalls.y);
-  if (d < snowMan.size/2 + snowBalls.size/2){
-    snowBalls.collected = true;
-  }
- }
-}
+//if (!snowBalls.collected) {
+  //let d = dist(snowMan.x,snowMan.y,snowBalls.x,snowBalls.y);
+  //if (d < snowMan.size/2 + snowBalls.size/2){
+    //snowBalls.collected = true;
+  //}
+ //}
+//}
 
 /**
 Description of draw()
