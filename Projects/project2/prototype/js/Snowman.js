@@ -1,14 +1,12 @@
 class Snowman {
 //properties of snowman
-constructor(w, h){
-  this.width = w;
-  this.height = h;
+constructor(x,y){
   this.x = 0;
-  this.y = height - this.height/2;
-  this.size = 100;
+  this.y = 765;
+  this.size = 50;
   this.vx = 0;
   this.vy = 0;
-  this.speed = 5
+  this.speed = 8
 }
 move(){
   //set to left arrow pressed at horizontal movement
@@ -25,6 +23,7 @@ else if (keyIsDown(RIGHT_ARROW)) {
 else {
   this.vx = 0;
 }
+
 //movement set up
 this.x = this.x + this.vx;
 this.y = this.y + this.vy;
@@ -38,7 +37,8 @@ display(){
   pop();
   //snowman head
   push();
-  ellipse(this.x,this.y+15,this.size-30);
+  noStroke();
+  ellipse(this.x,this.y-40,this.size-15);
   pop();
 }
 }

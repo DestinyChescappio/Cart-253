@@ -13,11 +13,11 @@ let numFireBall = 5;
 let snowBalls = [];
 let numSnowBall = 5;
 
-let snowman;
+let snowMan;
 
 //
 function setup() {
-createCanvas(800,600);
+createCanvas(windowWidth,windowHeight);
 //making forloop of cars
 for (let i = 0; i < numSnowBall; i++){
   let x = random(0,width);
@@ -35,7 +35,18 @@ for (let i = 0; i < numFireBall; i++){
 }
 
 //calling the snowman
-snowman = new Snowman();
+snowMan = new Snowman();
+}
+
+//check if the snowman overlaps the snowball object
+function checkSnowball(snowBall){
+//check to overlapp if snowball hasn't been collected yet
+if (!snowBall.collected) {
+  let d = dist(snowMan.x,snowMan.y,snowBall.x,snowBall.y);
+  if (d < snowMan.size/2 + snowBall.size/2){
+    snowBall.collected = true;
+  }
+ }
 }
 
 /**
@@ -43,6 +54,10 @@ Description of draw()
 */
 function draw() {
 background(155);
+//drawing the Snowman
+snowMan.move();
+snowMan.display();
+
 //drawing the array of cars
 for (let i = 0; i < snowBalls.length; i++){
   let snowBall = snowBalls[i];
@@ -57,10 +72,5 @@ for (let i = 0; i < fireBalls.length; i++){
   fireBall.wrap();
   fireBall.display();
 
-//drawing the Snowman
-snowman.move();
-snowman.display();
 }
-
-
 }
