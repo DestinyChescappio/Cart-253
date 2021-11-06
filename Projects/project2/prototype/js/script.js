@@ -7,11 +7,11 @@ author, and this description to match your project!
 */
 
 "use strict";
+let fireBalls = [];
+let numFireBall = 5;
+
 let snowBalls = [];
 let numSnowBall = 5;
-
-let fireBalls = [];
-let numFireBall= 5;
 
 //
 function setup() {
@@ -52,4 +52,6 @@ for (let i = 0; i < fireBalls.length; i++){
   fireBall.wrap();
   fireBall.display();
 }
+
+
 }
