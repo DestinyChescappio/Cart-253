@@ -3,14 +3,12 @@ class FireBall {
 constructor(x,y){
   this.x = x;
   this.y = y;
-  this.image = undefined;
+  this.width = 25;
+  this.height = 35;
   this.vx = 0;
   this.vy = 5;
 }
 
-preload(){
-  this.image = loadImage(`assets/images/fire.png`);
-}
 
 move(){
   this.x += this.vx;
@@ -25,8 +23,9 @@ wrap(){
 
 display(){
   push();
-  imageMode();
-  image(this.image,this.x,this.y);
+  noStroke();
+  fill(255,100,0);
+  ellipse(this.x,this.y,this.width,this.height);
   pop();
 }
 }

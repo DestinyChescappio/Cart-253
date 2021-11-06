@@ -7,7 +7,7 @@ class SnowBall {
   this.height = 30;
   this.vx = 0;
   this.vy = 5;
-  }
+}
 
 //moving the traffic
 move(){

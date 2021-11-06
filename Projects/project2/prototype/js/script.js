@@ -33,7 +33,6 @@ for (let i = 0; i < numFireBall; i++){
 }
 }
 
-
 /**
 Description of draw()
 */
@@ -45,5 +44,12 @@ for (let i = 0; i < snowBalls.length; i++){
   snowBall.move();
   snowBall.wrap();
   snowBall.display();
+}
+//drawing the array of fire balls
+for (let i = 0; i < fireBalls.length; i++){
+  let fireBall = fireBalls[i];
+  fireBall.move();
+  fireBall.wrap();
+  fireBall.display();
 }
 }
