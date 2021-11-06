@@ -13,6 +13,8 @@ let numFireBall = 5;
 let snowBalls = [];
 let numSnowBall = 5;
 
+let snowman;
+
 //
 function setup() {
 createCanvas(800,600);
@@ -31,6 +33,9 @@ for (let i = 0; i < numFireBall; i++){
   let fireBall = new FireBall(x,y);
   fireBalls.push(fireBall);
 }
+
+//calling the snowman
+snowman = new Snowman();
 }
 
 /**
@@ -51,6 +56,10 @@ for (let i = 0; i < fireBalls.length; i++){
   fireBall.move();
   fireBall.wrap();
   fireBall.display();
+
+//drawing the Snowman
+snowman.move();
+snowman.display();
 }
 
 
