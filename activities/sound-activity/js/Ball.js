@@ -21,5 +21,9 @@ bounce(){
 }
 
 display(){
-
+push();
+noStroke();
+fill(this.fill);
+ellipse(this.x,this.y,this.size);
+pop();
 }
