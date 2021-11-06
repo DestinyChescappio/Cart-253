@@ -10,6 +10,7 @@ class SnowBall {
   this.collected = false
 }
 
+
 //moving the traffic
 move(){
   this.x += this.vx;
@@ -23,10 +24,12 @@ wrap(){
 }
 
 display() {
+  if (!this.collected){
 push();
 noStroke();
 fill(255);
 ellipse(this.x,this.y,this.width,this.height);
 pop();
+}
 }
 }
