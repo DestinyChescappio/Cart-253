@@ -4,7 +4,7 @@ constructor(x,y){
   this.x = x;
   this.y = y;
   this.width = 25;
-  this.height = 35;
+  this.height = 40;
   this.vx = 0;
   this.vy = 5;
 }
@@ -24,7 +24,7 @@ wrap(){
 display(){
   push();
   noStroke();
-  fill(255,100,0);
+  fill(255,80,0);
   ellipse(this.x,this.y,this.width,this.height);
   pop();
 }
