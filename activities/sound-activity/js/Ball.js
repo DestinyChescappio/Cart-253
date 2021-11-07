@@ -18,7 +18,7 @@ class Ball {
 this.oscillator = new p5.Oscillator();
 this.nearFreq = 220;
 this.farFreq = 440;
-this.oscillator.amp(0.1);
+this.oscillator.amp(0.025);
 this.oscillator.start();
 
 //synth; which note to play
@@ -40,6 +40,7 @@ this.oscillator.freq(newFreq);
 bounce(){
 if (this.x - this.size/2 < 0 || this.x + this.size/2 > width){
   this.vx = -this.vx;
+  this.playNote();
 }
 if (this.y - this.size/2 < 0 || this.y + this.size/2 > height){
   this.vy = -this.vy;
@@ -49,7 +50,7 @@ if (this.y - this.size/2 < 0 || this.y + this.size/2 > height){
 
 //playing the note inside the note property; which note to play
 playNote() {
-  this.synth.play(this.note,0.2,0,0.1);
+  this.synth.play(this.note,0.4,0,0.1);
 }
 
 display(){

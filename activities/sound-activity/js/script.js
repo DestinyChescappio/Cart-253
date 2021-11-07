@@ -1,6 +1,6 @@
 /**
-Title of Project
-Author Name
+Musical Toy
+Destiny Chescappio
 
 This is a template. You must fill in the title,
 author, and this description to match your project!
@@ -42,6 +42,8 @@ function mousePressed(){
 
 //everytime the new ball is called, the ball is put in the array
 function createBall(x,y){
-  let ball = new Ball(x,y);
+//ea. time a ball is created at a random x & y, it plays a note from the array
+  let note = random(notes);
+  let ball = new Ball(x,y,note);
   balls.push(ball);
 }
