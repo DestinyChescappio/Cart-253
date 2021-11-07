@@ -10,6 +10,8 @@ author, and this description to match your project!
 //the balls
 let balls = [];
 
+//F-minor;array of notes
+let notes = [`F3`,`G3`,`Ab4`,`Bb4`,`C4`,`Db4`,`Eb4`,`F4`];
 
 /**
 creates canvas & calls the user audio
