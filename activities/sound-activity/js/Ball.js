@@ -14,7 +14,7 @@ class Ball {
   this.vy = random(-this.speed,this.speed);
 
 //oscillator
-//gets louder each time the balls are added at a 440 hertz tone 
+//gets louder each time the balls are added at a 440 hertz tone
 this.oscillator = new p5.Oscillator();
 this.nearFreq = 220;
 this.farFreq = 440;
@@ -25,6 +25,12 @@ this.oscillator.start();
 move(){
   this.x += this.vx;
   this.y += this.vy;
+
+//update frequency
+let d = dist(this.x,this.y,width/2,height/2);
+let maxDist = dist(0,0,width/2,height/2);
+let newFreq = map(d,0,maxDist,this.nearFreq,this.farFreq);
+this.oscillator.freq(newFreq);
 }
 
 bounce(){

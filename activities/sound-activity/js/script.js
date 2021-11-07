@@ -12,12 +12,13 @@ let balls = [];
 
 
 /**
-creates canvas
+creates canvas & calls the user audio
 */
 function setup() {
  createCanvas(600,600);
-}
 
+ userStartAudio();
+}
 
 /**
 Description of draw()
