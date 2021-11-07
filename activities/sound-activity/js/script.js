@@ -26,10 +26,19 @@ function draw() {
 background(0);
 
 for (let i = 0; i < balls.length; i++){
-  let ball = ball[];
+  let ball = balls[i];
   ball.move();
   ball.bounce();
   ball.display();
 }
+}
+//ball is created when mouse is pressed
+function mousePressed(){
+  createBall(mouseX,mouseY);
+}
 
+//everytime the new ball is called, the ball is put in the array
+function createBall(x,y){
+  let ball = new Ball(x,y);
+  balls.push(ball);
 }

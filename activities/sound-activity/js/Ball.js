@@ -8,12 +8,19 @@ class Ball {
     r: random(200,255),
     g: random(200,255),
     b: random(200,255)
-  }
+  };
   this.speed = 5;
   this.vx = random(-this.speed,this.speed);
   this.vy = random(-this.speed,this.speed);
+
+//oscillator
+//gets louder each time the balls are added at a 440 hertz tone 
+this.oscillator = new p5.Oscillator();
+this.nearFreq = 220;
+this.farFreq = 440;
+this.oscillator.amp(0.1);
+this.oscillator.start();
   }
-}
 
 move(){
   this.x += this.vx;
@@ -21,10 +28,10 @@ move(){
 }
 
 bounce(){
-if (this.x < 0 || this.x > this.size/2 > width) {
+if (this.x - this.size/2 < 0 || this.x + this.size/2 > width){
   this.vx = -this.vx;
 }
-if (this.y < 0 || this.y > this.size/2 < height) {
+if (this.y - this.size/2 < 0 || this.y + this.size/2 > height){
   this.vy = -this.vy;
 }
 }
@@ -35,4 +42,5 @@ noStroke();
 fill(this.fill.r,this.fill.g,this.fill.b);
 ellipse(this.x,this.y,this.size);
 pop();
+}
 }
