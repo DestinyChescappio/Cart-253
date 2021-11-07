@@ -1,6 +1,6 @@
 class Ball {
 //setting the constructor's properties
-  constructor(x,y){
+  constructor(x,y,note){
   this.x = x;
   this.y = y;
   this.size = 50;
@@ -20,6 +20,10 @@ this.nearFreq = 220;
 this.farFreq = 440;
 this.oscillator.amp(0.1);
 this.oscillator.start();
+
+//synth; which note to play
+this.note = note;
+this.synth = new p5.PolySynth();
   }
 
 move(){
@@ -39,7 +43,13 @@ if (this.x - this.size/2 < 0 || this.x + this.size/2 > width){
 }
 if (this.y - this.size/2 < 0 || this.y + this.size/2 > height){
   this.vy = -this.vy;
+  this.playNote();
 }
+}
+
+//playing the note inside the note property; which note to play
+playNote() {
+  this.synth.play(this.note,0.2,0,0.1);
 }
 
 display(){
