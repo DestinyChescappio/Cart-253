@@ -7,21 +7,15 @@ author, and this description to match your project!
 */
 
 "use strict";
+//the balls
+let balls = [];
 
 
 /**
-Description of preload
-*/
-function preload() {
-
-}
-
-
-/**
-Description of setup
+creates canvas
 */
 function setup() {
-
+ createCanvas(600,600);
 }
 
 
@@ -29,5 +23,13 @@ function setup() {
 Description of draw()
 */
 function draw() {
+background(0);
+
+for (let i = 0; i < balls.length; i++){
+  let ball = ball[];
+  ball.move();
+  ball.bounce();
+  ball.display();
+}
 
 }
