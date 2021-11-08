@@ -39,15 +39,15 @@ snowMan = new Snowman();
 }
 
 //check if the snowman overlaps the snowball object
-//function checkSnowball(snowBalls){
+function checkSnowball(snowBalls){
 //check to overlapp if snowball hasn't been collected yet
-//if (!snowBalls.collected) {
-  //let d = dist(snowMan.x,snowMan.y,snowBalls.x,snowBalls.y);
-  //if (d < snowMan.size/2 + snowBalls.size/2){
-    //snowBalls.collected = true;
-  //}
- //}
-//}
+if (!snowBalls.collected) {
+  let d = dist(snowMan.x,snowMan.y,snowBalls.x,snowBalls.y);
+  if (d < snowMan.size/2 + snowBalls.size/2){
+    snowBalls.collected = true;
+  }
+ }
+}
 
 /**
 Description of draw()
@@ -56,10 +56,6 @@ function draw() {
 background(155);
 //collecting the snowballs
 checkSnowball(snowBalls);
-
-//drawing the Snowman
-snowMan.move();
-snowMan.display();
 
 //drawing the array of cars
 for (let i = 0; i < snowBalls.length; i++){
@@ -76,4 +72,8 @@ for (let i = 0; i < fireBalls.length; i++){
   fireBall.display();
 
 }
+//drawing the Snowman
+snowMan.move();
+snowMan.display();
+
 }

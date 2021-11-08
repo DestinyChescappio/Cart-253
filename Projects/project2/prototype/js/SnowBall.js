@@ -7,7 +7,7 @@ class SnowBall {
   this.height = 30;
   this.vx = 0;
   this.vy = 5;
-  //this.collected = false
+  this.collected = false
 }
 
 
@@ -24,10 +24,10 @@ wrap(){
 }
 
 display() {
-  //if (!this.collected){
+  if (!this.collected){
 push();
 noStroke();
-fill(255);
+fill(0);
 ellipse(this.x,this.y,this.width,this.height);
 pop();
 }
