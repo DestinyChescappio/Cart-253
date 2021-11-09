@@ -6,16 +6,17 @@ constructor(x,y){
   this.size = 50;
   this.vx = 0;
   this.vy = 0;
-  this.speed = 8
+  this.speed = 8;
+  this.loudLimit = 0.5;
 }
-move(){
+move(level){
   //set to left arrow pressed at horizontal movement
-if (keyIsDown(LEFT_ARROW)) {
+if (level < this.loudLimit) {
   //if it's set, the velocity is negative
   this.vx = -this.speed;
 }
 //otherwise it's set to the right arrow pressed
-else if (keyIsDown(RIGHT_ARROW)) {
+else if (level > this.loudLimit) {
   //if it's set, the velocity is positive
   this.vx = this.speed;
 }

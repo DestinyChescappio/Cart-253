@@ -7,6 +7,8 @@ author, and this description to match your project!
 */
 
 "use strict";
+let level;
+
 let mic;
 
 let tingSFX = undefined;
@@ -25,6 +27,12 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  // Create our AudioIn object
+   mic = new p5.AudioIn();
+   // Try to connect to the user's microphone
+   mic.start();
+
   //making forloop of cars
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
@@ -51,14 +59,14 @@ Description of draw()
 function draw() {
   background(155);
 
-  let level = mic.getLevel();
+  level = mic.getLevel();
 
   //let currentRate = map(mouseY, 0.1, height, 2, 0);
   //currentRate = constrain(currentRate, 0.01, 4);
   //tingSFX.rate(currentRate);
 
   //drawing the Snowman
-  snowMan.move();
+  snowMan.move(level);
   snowMan.display();
 
   //drawing the array of cars
