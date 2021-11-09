@@ -15,6 +15,7 @@ let numSnowBall = 5;
 
 let snowMan;
 
+
 //
 function setup() {
 createCanvas(windowWidth,windowHeight);
