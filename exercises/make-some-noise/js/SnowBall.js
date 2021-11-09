@@ -3,8 +3,7 @@ class SnowBall {
   constructor(x,y){
   this.x = x;
   this.y = y;
-  this.width = 30;
-  this.height = 30;
+  this.size = 30;
   this.vx = 0;
   this.vy = 5;
   this.collected = false
@@ -28,7 +27,7 @@ display() {
 push();
 noStroke();
 fill(0);
-ellipse(this.x,this.y,this.width,this.height);
+ellipse(this.x,this.y,this.size);
 pop();
 }
 }

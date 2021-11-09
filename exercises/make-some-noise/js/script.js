@@ -82,7 +82,7 @@ function checkSnowball(snowBall,snowMan) {
   //check to overlapp if snowball hasn't been collected yet
   if (!snowBall.collected) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-
+  //if the snowballs overlap snowman it is collected
   if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
 //once it's collected
