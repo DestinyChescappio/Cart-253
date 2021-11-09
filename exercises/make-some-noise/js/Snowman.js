@@ -1,7 +1,7 @@
 class Snowman {
 //properties of snowman
 constructor(x,y){
-  this.x =0;
+  this.x = 0;
   this.y = 765;
   this.size = 50;
   this.vx = 0;
