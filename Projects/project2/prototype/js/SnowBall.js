@@ -26,7 +26,7 @@ class SnowBall {
     if (!this.collected) {
       push();
       noStroke();
-      fill(0);
+      fill(255);
       ellipse(this.x, this.y, this.size);
       pop();
     }
