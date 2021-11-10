@@ -7,9 +7,11 @@ constructor(x,y){
   this.vx = 0;
   this.vy = 0;
   this.speed = 8;
-  this.loudLimit = 0.5;
+  this.loudLimit = 0.1;
 }
 move(level){
+this.x = constrain(this.x,0,width);
+
   //set to left arrow pressed at horizontal movement
 if (level < this.loudLimit) {
   //if it's set, the velocity is negative

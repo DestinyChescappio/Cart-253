@@ -26,6 +26,7 @@ function preload() {
 }
 
 function setup() {
+  userStartAudio();
   createCanvas(windowWidth, windowHeight);
 
   // Create our AudioIn object
