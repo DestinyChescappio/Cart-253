@@ -1,9 +1,9 @@
 /**
-Title of Project
-Author Name
+Keep Mr. Snowman Alive!
+Destiny Chescappio
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+PROTOTYPE VERSION ONLY (more will come afterwards)
+Move the snowman with keys and collect snowballs!
 */
 
 "use strict";
@@ -15,8 +15,7 @@ let numSnowBall = 5;
 
 let snowMan;
 
-
-//
+//canvas & loops/calling the user object, the snowman
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //making forloop of cars
@@ -39,8 +38,6 @@ function setup() {
   snowMan = new Snowman();
 }
 
-
-
 /**
 Description of draw()
 */
@@ -59,7 +56,7 @@ function draw() {
     snowBall.display();
 
     //collecting the snowballs
-    checkSnowball(snowBall,snowMan);
+    checkSnowball(snowBall, snowMan);
   }
   //drawing the array of fire balls
   for (let i = 0; i < fireBalls.length; i++) {
@@ -67,19 +64,16 @@ function draw() {
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
-
   }
-
-
 }
 
 //check if the snowman overlaps the snowball object
-function checkSnowball(snowBall,snowMan) {
+function checkSnowball(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
   if (!snowBall.collected) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
 
-  if (d < snowMan.size / 2 + snowBall.size / 2) {
+    if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
     }
   }
