@@ -23,6 +23,10 @@ class Snowman {
     else {
       this.vx = 0;
     }
+    //if it's moving, the size reduces at 0.1
+    if (this.vx > 0 || this.vx < 0) {
+      this.size -= 0.1;
+    }
 
     //movement set up
     this.x = this.x + this.vx;
