@@ -47,6 +47,7 @@ function draw() {
   //drawing the Snowman
   snowMan.move();
   snowMan.display();
+  snowMan.shrinkMovement();
 //  snowMan.shrinkMovement();
 
   //drawing the array of cars
