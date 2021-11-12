@@ -3,7 +3,7 @@ class FireBall {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 25;
+    this.width = 40;
     this.height = 40;
     this.vx = 0
     this.vy = 5;
@@ -28,7 +28,9 @@ class FireBall {
     push();
     noStroke();
     fill(255, 80, 0);
-    ellipse(this.x, this.y, this.width, this.height);
+    rectMode(CENTER);
+    rect(this.x,this.y,this.width,this.height);
+
     pop();
   }
  }
