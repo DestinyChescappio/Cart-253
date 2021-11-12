@@ -15,10 +15,10 @@ let numSnowBall = 5;
 
 let snowMan;
 
-//canvas & loops/calling the user object, the snowman
+//canvas & loops/calling fireballs & snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  //making forloop of cars
+  //making forloop of snowballs
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
     let y = random(0, height);
@@ -47,6 +47,7 @@ function draw() {
   //drawing the Snowman
   snowMan.move();
   snowMan.display();
+  snowMan.shrinkMovement();
 
   //drawing the array of cars
   for (let i = 0; i < snowBalls.length; i++) {
