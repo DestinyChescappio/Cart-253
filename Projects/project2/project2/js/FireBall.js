@@ -5,8 +5,10 @@ class FireBall {
     this.y = y;
     this.width = 25;
     this.height = 40;
-    this.vx = 0;
+    this.vx = 0
     this.vy = 5;
+    this.kill = false;
+
   }
 
   //moving the fireballs
