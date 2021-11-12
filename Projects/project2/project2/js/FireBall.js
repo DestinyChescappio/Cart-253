@@ -24,10 +24,12 @@ class FireBall {
   }
   //displaying the fireball
   display() {
+    if (!this.kill){
     push();
     noStroke();
     fill(255, 80, 0);
     ellipse(this.x, this.y, this.width, this.height);
     pop();
   }
+ }
 }

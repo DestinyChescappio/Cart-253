@@ -46,5 +46,19 @@ class Snowman {
     noStroke();
     ellipse(this.x, this.y - 40, this.size - 15);
     pop();
-  }
+
+    //carrot nose
+    push();
+    noStroke();
+    fill(`#FF6F00`);
+    ellipse(this.x+8,this.y-40,20,8);
+    //hat-rect part
+    fill(0);
+    rectMode(CENTER);
+    rect(this.x, this.y - 70,15,25);
+    //hat-ellipse part
+    fill(0);
+    ellipse(this.x, this.y - 55,35,8);
+    pop();
+}
 }

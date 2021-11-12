@@ -59,6 +59,7 @@ function draw() {
 
     //collecting the snowballs
     checkSnowball(snowBall, snowMan);
+
   }
   //drawing the array of fire balls
   for (let i = 0; i < fireBalls.length; i++) {
@@ -66,6 +67,20 @@ function draw() {
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
+
+    //killing snowman
+    checkFireball(fireBall, snowMan);
+  }
+}
+
+function checkFireball(fireBall, snowMan) {
+  //check to overlap if fireball hasn't been touched yet
+  if (!fireBall.kill) {
+    let d = dist(snowMan.x,snowMan.y,fireBall.x,fireBall.y);
+
+    if (d < snowMan.size / 2 + fireBall.size /2){
+      fireBall.kill = true;
+    }
   }
 }
 
