@@ -7,6 +7,7 @@ class Snowman {
     this.vx = 0;
     this.vy = 0;
     this.speed = 8;
+    this.shrinking = true;
   }
   move() {
     //set to left arrow pressed at horizontal movement
@@ -23,6 +24,10 @@ class Snowman {
     else {
       this.vx = 0;
     }
+    //if it's moving, the size reduces at 0.1
+    if (this.vx > 0 || this.vx < 0) {
+      this.size -= 0.1;
+    }
 
     //movement set up
     this.x = this.x + this.vx;
@@ -30,13 +35,14 @@ class Snowman {
   }
 
 //shrink snowman every 5 pixels if left or right arrow is pressed
-  shrinkMovement(){
-if (keyIsDown(LEFT_ARROW) && keyIsDown(RIGHT_ARROW)) {
-  this.size = -5;
-} else if (!keyIsDown(LEFT_ARROW) && keyIsDown(RIGHT_ARROW)){
-  this.size = 50;
-}
-  }
+  //shrinkMovement(){
+//if (keyIsDown(LEFT_ARROW) && keyIsDown(RIGHT_ARROW)) {
+  //this.size = -5;
+//} else if (!keyIsDown(LEFT_ARROW) && keyIsDown(RIGHT_ARROW)){
+  //this.size = 50;
+//}
+
+  //}
 
   //displaying the snowman
   display() {
