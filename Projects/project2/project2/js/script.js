@@ -26,9 +26,14 @@ let fireBalls = [];
 let numFireBall = 10;
 
 
-//loading the fire.png image to use for the fireballs
+//Loading:
+//the fire.png image to use for the fireballs
+//the sound used when a snowball is collected
 function preload() {
+//fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
+//ting! sound when snowman touches snowball
+  tingSFX = loadSound(`assets/sounds/ting.wav`);
 };
 
 //canvas & loops/calling snowman & fireballs,snowballs
