@@ -1,5 +1,5 @@
 class SnowBall {
-//properties of the many cars (that makes traffic)
+//properties the snowball 
   constructor(x,y){
   this.x = x;
   this.y = y;
@@ -10,19 +10,22 @@ class SnowBall {
 }
 
 
-//moving the traffic
+//moving the snowball
 move(){
   this.x += this.vx;
   this.y += this.vy;
 }
 
+//wrapping the snowball object
 wrap(){
   if (this.y > height){
     this.y -= height;
   }
 }
 
+//displaying snowball
 display() {
+//if it's not collected, it's displayed
   if (!this.collected){
 push();
 noStroke();
