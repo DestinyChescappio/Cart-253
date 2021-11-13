@@ -10,6 +10,9 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 //fire image (used for the fireballs)
 let fireBallImage= undefined;
 
+//sound is used when the snowball and snowman touches
+let tingSFX = undefined;
+
 //the user's object
 let snowMan;
 
