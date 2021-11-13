@@ -29,7 +29,7 @@ let numFireBall = 10;
 //loading the fire.png image to use for the fireballs
 function preload() {
   fireBallImage = loadImage(`assets/images/fire.png`);
-}
+};
 
 //canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
@@ -53,7 +53,7 @@ function setup() {
     let fireBall = new FireBall(x, y, fireBallImage);
     fireBalls.push(fireBall);
   }
-}
+};
 
 /**
 Drawing:
@@ -86,7 +86,7 @@ function draw() {
 
   //calling the function 'snowballCollection'- collecting the snowballs
   snowballCollection(snowBall, snowMan);
-  }
+}
 
   //drawing the array of fire balls using a forloop
   for (let i = 0; i < fireBalls.length; i++) {
@@ -96,7 +96,7 @@ function draw() {
     fireBall.wrap();
     fireBall.display();
   }
-}
+};
 
 
 //drawing a text that notifies the user how many snowballs are collected
@@ -108,7 +108,7 @@ function numberOfSnowballCollected() {
   text(`Snowballs collected: ${numSnowballCollected}`,
   1250,60);
   pop();
-}
+};
 
 //snowman grows when he touches snowball
 function growSnowman (snowBall, snowMan) {
@@ -118,7 +118,7 @@ function growSnowman (snowBall, snowMan) {
   if (d < snowMan.size / 2 + snowBall.size / 2) {
      snowMan.size += 1;
 }
-}
+};
 
 //snowball gets collected by snowman
 function snowballCollection(snowBall, snowMan) {
@@ -132,4 +132,13 @@ function snowballCollection(snowBall, snowMan) {
       numSnowballCollected += 1;
     }
   }
-}
+};
+
+function fireballMelt(fireBall, snowMan) {
+  //check to overlap if fireball hasn't killed the snowman yet
+    let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
+    //if fireball touches snowman, the snowman dies and the 'losing' state triggers
+    if (d < snowMan.size / 2 + fireBall.size / 2) {
+      state = `losing`;
+  }
+};
