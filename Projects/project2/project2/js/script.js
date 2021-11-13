@@ -7,19 +7,24 @@ are not collected. Snowman dies and melts away if it touches a fireball
 */
 
 "use strict";
+//the array of fireballs falling
 let fireBalls = [];
+//how many fireballs
 let numFireBall = 10;
-
-let snowBalls = [];
-let numSnowBall = 10;
-
-let snowMan;
-
+//fire image (used for the fireballs)
 let fireBallImage= undefined;
 
+//the array of snowballs are collected
+let snowBalls = [];
+//how many snowballs
+let numSnowBall = 10;
+//how many snowballs are collected
 let numSnowballCollected = 0;
 
+//the user's object
+let snowMan;
 
+//loading the fire.png image to use for the fireballs 
 function preload() {
   fireBallImage = loadImage(`assets/images/fire.png`);
 }
@@ -48,7 +53,11 @@ function setup() {
 }
 
 /**
-Description of draw()
+Drawing:
+- the functions of the text "number of snowballs collected"
+- snowman inheritance object
+- forloop and array of snowballs & fireballs
+- the functions of growing the snowMan and collecting the snowballs
 */
 function draw() {
   background(155);
@@ -61,27 +70,32 @@ function draw() {
   snowMan.display();
   snowMan.sizingMovement();
 
-  //drawing the array of snowballs; calling methods- move,wrap,display
+  //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
+  //calling methods- move,wrap,display
     snowBall.move();
     snowBall.wrap();
     snowBall.display();
 
-  //snowman grows when snowball touches him
+  //calling the function 'growSnowman' - snowman grows when snowball touches him
   growSnowman(snowBall, snowMan);
-  //collecting the snowballs
+
+  //calling the function 'snowballCollection'- collecting the snowballs
   snowballCollection(snowBall, snowMan);
   }
-  //drawing the array of fire balls; calling methods- move, wrap, display
+
+  //drawing the array of fire balls using a forloop
   for (let i = 0; i < fireBalls.length; i++) {
     let fireBall = fireBalls[i];
+  // calling methods- move, wrap, display
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
   }
 }
 
+//drawing a text that notifies the user how many snowballs are collected
 function numberOfSnowballCollected(){
   push();
   fill(0);
