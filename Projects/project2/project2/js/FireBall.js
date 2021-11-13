@@ -3,12 +3,10 @@ class FireBall {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 40;
+    this.width = 25;
     this.height = 40;
-    this.vx = 0
+    this.vx = 0;
     this.vy = 5;
-    this.kill = false;
-
   }
 
   //moving the fireballs
@@ -24,14 +22,10 @@ class FireBall {
   }
   //displaying the fireball
   display() {
-    if (!this.kill){
     push();
     noStroke();
     fill(255, 80, 0);
-    rectMode(CENTER);
-    rect(this.x,this.y,this.width,this.height);
-
+    ellipse(this.x, this.y, this.width, this.height);
     pop();
   }
- }
 }
