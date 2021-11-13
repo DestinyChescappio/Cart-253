@@ -15,17 +15,9 @@ let numSnowBall = 5;
 
 let snowMan;
 
-let mic;
-
-//loading ting! sound
-function preload() {
-  tingSFX = loadSound(`assets/sounds/ting.wav`);
-}
-
 //canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   //making forloop of snowballs
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
@@ -96,11 +88,6 @@ function snowballCollection(snowBall, snowMan) {
   //snowball collects snowball & snowball disappears
     if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
-
-  //when snowball is collected, the 'ting!' soound triggers
-  let currentRate = random(0.3,0.5);
-  tingSFX.rate(currentRate);
-  tingSFX.play();
     }
   }
 }
