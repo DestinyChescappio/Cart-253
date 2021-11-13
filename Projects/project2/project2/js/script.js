@@ -58,7 +58,7 @@ function draw() {
     snowBall.display();
 
     //collecting the snowballs
-    checkSnowball(snowBall, snowMan);
+    snowballCollection(snowBall, snowMan);
 
   }
   //drawing the array of fire balls
@@ -85,11 +85,11 @@ function checkFireball(fireBall, snowMan) {
 }
 
 //check if the snowman overlaps the snowball object
-function checkSnowball(snowBall, snowMan) {
+function snowballCollection(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
   if (!snowBall.collected) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-  //snowball collects snowball & snowball disappears 
+  //snowball collects snowball & snowball disappears
     if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
     }
