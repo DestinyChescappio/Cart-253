@@ -7,22 +7,25 @@ constructor(x,y){
   this.vx = 0;
   this.vy = 0;
   this.speed = 8;
-  this.loudLimit = 0.1;
+  this.loudLimit = 0.02;
 }
+
+//moving snowman based on mic level (yell/talk loud)
 move(level){
 this.x = constrain(this.x,0,width);
 
-  //set to left arrow pressed at horizontal movement
+//set to left arrow pressed at horizontal movement
 if (level < this.loudLimit) {
-  //if it's set, the velocity is negative
+//if it's set, the velocity is negative
   this.vx = -this.speed;
 }
 //otherwise it's set to the right arrow pressed
 else if (level > this.loudLimit) {
-  //if it's set, the velocity is positive
+
+//if it's set, the velocity is positive
   this.vx = this.speed;
 }
-//if none of the left and right arrow keys are pressed; it stops
+//if none of the left and right arrow keys are pressed; it goes back
 else {
   this.vx = 0;
 }
@@ -32,6 +35,7 @@ this.x = this.x + this.vx;
 this.y = this.y + this.vy;
 }
 
+//displaying snowman as two white ellipses
 display(){
   push();
   noStroke();

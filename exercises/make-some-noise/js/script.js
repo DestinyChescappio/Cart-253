@@ -1,9 +1,9 @@
 /**
-Title of Project
-Author Name
+E6: Sing for snowbells!
+by Destiny
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+control the snowman by singing (or talking loud) and collect the falling snowballs
+to keep the christmas spirit music alive! 
 */
 
 "use strict";
@@ -34,7 +34,7 @@ function setup() {
    // Try to connect to the user's microphone
    mic.start();
 
-  //making forloop of cars
+  //making forloop of snowballs
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
     let y = random(0, height);
@@ -62,15 +62,11 @@ function draw() {
 
   level = mic.getLevel();
 
-  //let currentRate = map(mouseY, 0.1, height, 2, 0);
-  //currentRate = constrain(currentRate, 0.01, 4);
-  //tingSFX.rate(currentRate);
-
   //drawing the Snowman
   snowMan.move(level);
   snowMan.display();
 
-  //drawing the array of cars
+  //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
     snowBall.move();
@@ -97,17 +93,12 @@ function checkSnowball(snowBall, snowMan) {
     //if the snowballs overlap snowman it is collected
     if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
-      console.log(`snowball collected`);
-      //once it's collected
-      //if (!tingSFX.isPlaying()) {
 
-      let currentRate = random(0.3,0.5);
+//when snowball touches snowman, the 'ting!!' sound triggers
+let currentRate = random(0.3,0.5);
       //currentRate = constrain(currentRate, 0.01, 4);
       tingSFX.rate(currentRate);
-
-        tingSFX.play();
-        console.log(`sounds is playing`);
-      //}
+      tingSFX.play();
     }
   }
 }

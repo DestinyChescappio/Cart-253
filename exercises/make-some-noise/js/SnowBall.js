@@ -1,12 +1,12 @@
 class SnowBall {
-//properties the snowball 
+//properties the snowball
   constructor(x,y){
   this.x = x;
   this.y = y;
   this.size = 30;
   this.vx = 0;
   this.vy = 5;
-  this.collected = false
+  this.collected = false;
 }
 
 

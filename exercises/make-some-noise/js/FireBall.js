@@ -9,17 +9,20 @@ class FireBall {
     this.vy = 5;
   }
 
+//moving fireball
   move() {
     this.x += this.vx;
     this.y += this.vy;
   }
 
+//wrapping fireball
   wrap() {
     if (this.y > height) {
       this.y -= height;
     }
   }
 
+//displaying fireball as orange oval 
   display() {
     push();
     noStroke();
