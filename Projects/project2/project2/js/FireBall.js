@@ -9,7 +9,7 @@ class FireBall {
   }
 
 preload() {
-  fire.image = loadImage(`assets/images/fire.png`);
+  this.image = loadImage(`assets/images/fire.png`);
 }
   //moving the fireballs
   move() {
