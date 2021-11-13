@@ -8,14 +8,16 @@ are not collected. Snowman dies and melts away if it touches a fireball
 
 "use strict";
 let fireBalls = [];
-let numFireBall = 5;
+let numFireBall = 10;
 
 let snowBalls = [];
-let numSnowBall = 5;
+let numSnowBall = 10;
 
 let snowMan;
 
 let fireBallImage= undefined;
+
+let numSnowballCollected = 0;
 
 
 function preload() {
@@ -51,6 +53,9 @@ Description of draw()
 function draw() {
   background(155);
 
+//displaying how many snowballs are collected
+  numberOfSnowballCollected();
+
   //drawing the Snowman inheritance object from snowman.js file
   snowMan.move();
   snowMan.display();
@@ -77,6 +82,15 @@ function draw() {
   }
 }
 
+function numberOfSnowballCollected(){
+  push();
+  fill(0);
+  textSize(15);
+  text(`Snowballs collected: ${numSnowballCollected}`,
+  500,500);
+  pop();
+}
+
 //snowman grows when he touches snowball
 function growSnowman (snowBall, snowMan) {
   //if both snowball and snowman touches
@@ -95,6 +109,8 @@ function snowballCollection(snowBall, snowMan) {
   //snowball collects snowball & snowball disappears
     if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
+  //keeping track of how many snowballs were collected
+      numSnowballCollected += 1;
     }
   }
 }
