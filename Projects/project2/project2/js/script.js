@@ -49,7 +49,7 @@ function draw() {
   snowMan.display();
   snowMan.sizingMovement();
 
-  //drawing the array of cars
+  //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
     snowBall.move();
@@ -58,6 +58,7 @@ function draw() {
 
     //collecting the snowballs
     snowballCollection(snowBall, snowMan);
+    //snowman grows when snowball touches him
     growSnowman(snowBall, snowMan);
   }
   //drawing the array of fire balls
@@ -67,31 +68,28 @@ function draw() {
     fireBall.wrap();
     fireBall.display();
 
-    //killing snowman
-    checkFireball(fireBall, snowMan);
+    //melting snowman if fireball touches him
+    meltSnowman(fireBall, snowMan);
   }
 }
 
-function checkFireball(fireBall, snowMan) {
-  //check to overlap if fireball hasn't been touched yet
-  if (!fireBall.kill) {
+function meltSnowman (fireBall, snowMan) {
+  //if both snowman and fireball touches
     let d = dist(snowMan.x,snowMan.y,fireBall.x,fireBall.y);
-
+ //snowman size shrinks
     if (d < snowMan.size / 2 + fireBall.size /2){
-      fireBall.kill = true;
+//display a state
     }
   }
-}
+
 
 function growSnowman (snowBall, snowMan) {
   //if both snowball and snowman touches
-  if (!snowMan.grow) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-  //if overlaps, snowman size grows
+  //snowman size grows
   if (d < snowMan.size / 2 + snowBall.size / 2) {
-     snowMan.size += 2;
-   }
-  }
+     snowMan.size += 0.5;
+}
 }
 
 //check if the snowman overlaps the snowball object

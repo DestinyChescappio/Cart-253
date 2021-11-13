@@ -8,6 +8,7 @@ class Snowman {
     this.vy = 0;
     this.speed = 8;
     this.grow = false;
+    this.melt = false;
   }
   move() {
     //set to left arrow pressed at horizontal movement
