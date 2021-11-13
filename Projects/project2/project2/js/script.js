@@ -87,7 +87,7 @@ function numberOfSnowballCollected(){
   fill(0);
   textSize(15);
   text(`Snowballs collected: ${numSnowballCollected}`,
-  500,500);
+  1250,60);
   pop();
 }
 
