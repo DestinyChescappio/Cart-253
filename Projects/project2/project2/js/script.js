@@ -15,9 +15,10 @@ let numSnowBall = 5;
 
 let snowMan;
 
-//canvas & loops/calling fireballs & snowballs
+//canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
   //making forloop of snowballs
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
@@ -44,55 +45,43 @@ Description of draw()
 function draw() {
   background(155);
 
-  //drawing the Snowman
+  //drawing the Snowman inheritance object from snowman.js file
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
 
-  //drawing the array of snowballs
+  //drawing the array of snowballs; calling methods- move,wrap,display
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
     snowBall.move();
     snowBall.wrap();
     snowBall.display();
 
-    //collecting the snowballs
-    snowballCollection(snowBall, snowMan);
-    //snowman grows when snowball touches him
-    growSnowman(snowBall, snowMan);
+  //snowman grows when snowball touches him
+  growSnowman(snowBall, snowMan);
+  //collecting the snowballs
+  snowballCollection(snowBall, snowMan);
   }
-  //drawing the array of fire balls
+  //drawing the array of fire balls; calling methods- move, wrap, display
   for (let i = 0; i < fireBalls.length; i++) {
     let fireBall = fireBalls[i];
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
-
-    //melting snowman if fireball touches him
-    meltSnowman(fireBall, snowMan);
   }
 }
 
-function meltSnowman (fireBall, snowMan) {
-  //if both snowman and fireball touches
-    let d = dist(snowMan.x,snowMan.y,fireBall.x,fireBall.y);
- //snowman size shrinks
-    if (d < snowMan.size / 2 + fireBall.size /2){
-//display a state
-    }
-  }
-
-
+//snowman grows when he touches snowball
 function growSnowman (snowBall, snowMan) {
   //if both snowball and snowman touches
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
   //snowman size grows
   if (d < snowMan.size / 2 + snowBall.size / 2) {
-     snowMan.size += 0.5;
+     snowMan.size += 1;
 }
 }
 
-//check if the snowman overlaps the snowball object
+//snowball gets collected by snowman
 function snowballCollection(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
   if (!snowBall.collected) {

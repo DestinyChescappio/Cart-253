@@ -8,7 +8,6 @@ class Snowman {
     this.vy = 0;
     this.speed = 8;
     this.grow = false;
-    this.melt = false;
   }
   move() {
     //set to left arrow pressed at horizontal movement
@@ -35,7 +34,7 @@ class Snowman {
     if (!this.grow){
   //if it's moving, the size reduces at 0.1
     if (this.vx > 0 || this.vx < 0) {
-      this.size -= 0.07;
+      this.size -= 0.2;
     }
   }
 }
@@ -56,6 +55,7 @@ class Snowman {
     noStroke();
     fill(`#FF6F00`);
     ellipse(this.x+8,this.y-40,20,8);
+
     //hat-rect part
     fill(0);
     rectMode(CENTER);
