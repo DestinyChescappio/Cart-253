@@ -7,6 +7,7 @@ class Snowman {
     this.vx = 0;
     this.vy = 0;
     this.speed = 8;
+    this.grow = false;
   }
   move() {
     //set to left arrow pressed at horizontal movement
@@ -29,10 +30,12 @@ class Snowman {
     this.y = this.y + this.vy;
   }
 
-  shrinkMovement() {
-    //if it's moving, the size reduces at 0.1
+  sizingMovement() {
+    if (!this.grow){
+  //if it's moving, the size reduces at 0.1
     if (this.vx > 0 || this.vx < 0) {
       this.size -= 0.07;
+    }
   }
 }
 

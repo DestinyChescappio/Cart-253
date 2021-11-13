@@ -47,8 +47,7 @@ function draw() {
   //drawing the Snowman
   snowMan.move();
   snowMan.display();
-  snowMan.shrinkMovement();
-//  snowMan.shrinkMovement();
+  snowMan.sizingMovement();
 
   //drawing the array of cars
   for (let i = 0; i < snowBalls.length; i++) {
@@ -59,7 +58,7 @@ function draw() {
 
     //collecting the snowballs
     snowballCollection(snowBall, snowMan);
-
+    growSnowman(snowBall, snowMan);
   }
   //drawing the array of fire balls
   for (let i = 0; i < fireBalls.length; i++) {
@@ -81,6 +80,17 @@ function checkFireball(fireBall, snowMan) {
     if (d < snowMan.size / 2 + fireBall.size /2){
       fireBall.kill = true;
     }
+  }
+}
+
+function growSnowman (snowBall, snowMan) {
+  //if both snowball and snowman touches
+  if (!snowMan.grow) {
+    let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
+  //if overlaps, snowman size grows
+  if (d < snowMan.size / 2 + snowBall.size / 2) {
+     snowMan.size += 2;
+   }
   }
 }
 
