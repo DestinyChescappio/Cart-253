@@ -1,16 +1,15 @@
 class FireBall {
   //properties of the fire balls
-  constructor(x, y) {
+  constructor(x, y, fireBallImage) {
     this.x = x;
     this.y = y;
+    this.height = 40
+    this.width = 40;
     this.vx = 0;
     this.vy = 5;
-    this.image = undefined;
+    this.image = fireBallImage;
   }
 
-preload() {
-  this.image = loadImage(`assets/images/fire.png`);
-}
   //moving the fireballs
   move() {
     this.x += this.vx;
@@ -26,7 +25,7 @@ preload() {
   display() {
     push();
     imageMode(CENTER);
-    image(this.image,this.x,this.y);
+    image(this.image,this.x,this.y,this.height,this.width);
     pop();
   }
 }

@@ -15,6 +15,13 @@ let numSnowBall = 5;
 
 let snowMan;
 
+let fireBallImage= undefined;
+
+
+function preload() {
+  fireBallImage = loadImage(`assets/images/fire.png`);
+}
+
 //canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -30,7 +37,7 @@ function setup() {
   for (let i = 0; i < numFireBall; i++) {
     let x = random(0, width);
     let y = random(0, height);
-    let fireBall = new FireBall(x, y);
+    let fireBall = new FireBall(x, y, fireBallImage);
     fireBalls.push(fireBall);
   }
 
