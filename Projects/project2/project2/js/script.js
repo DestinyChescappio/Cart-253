@@ -3,16 +3,15 @@ Keep Mr. Snowman Alive!
 Destiny Chescappio
 
 Move the snowman with keys and collect snowballs! snowman shrinks if snowballs
-are not collected. Snowman dies and melts away if it touches a fireball
+are not collected and when it moves. Snowman dies and melts away if it touches a fireball
 */
 
 "use strict";
-//the array of fireballs falling
-let fireBalls = [];
-//how many fireballs
-let numFireBall = 10;
 //fire image (used for the fireballs)
 let fireBallImage= undefined;
+
+//the user's object
+let snowMan;
 
 //the array of snowballs are collected
 let snowBalls = [];
@@ -21,10 +20,13 @@ let numSnowBall = 10;
 //how many snowballs are collected
 let numSnowballCollected = 0;
 
-//the user's object
-let snowMan;
+//the array of fireballs falling
+let fireBalls = [];
+//how many fireballs
+let numFireBall = 10;
 
-//loading the fire.png image to use for the fireballs 
+
+//loading the fire.png image to use for the fireballs
 function preload() {
   fireBallImage = loadImage(`assets/images/fire.png`);
 }
@@ -32,6 +34,10 @@ function preload() {
 //canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  //calling the snowman
+  snowMan = new Snowman();
+
   //making forloop of snowballs
   for (let i = 0; i < numSnowBall; i++) {
     let x = random(0, width);
@@ -47,9 +53,6 @@ function setup() {
     let fireBall = new FireBall(x, y, fireBallImage);
     fireBalls.push(fireBall);
   }
-
-  //calling the snowman
-  snowMan = new Snowman();
 }
 
 /**
@@ -95,8 +98,10 @@ function draw() {
   }
 }
 
+
 //drawing a text that notifies the user how many snowballs are collected
-function numberOfSnowballCollected(){
+//text located at top right corner of canvas
+function numberOfSnowballCollected() {
   push();
   fill(0);
   textSize(15);
