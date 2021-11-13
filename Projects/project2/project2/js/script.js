@@ -135,6 +135,11 @@ function snowballCollection(snowBall, snowMan) {
       snowBall.collected = true;
   //keeping track of how many snowballs were collected
       numSnowballCollected += 1;
+
+  //when snowball touches snowman, the 'ting!' sound triggers
+  let currentRate = random(0.3,0.5);
+  tingSFX.rate(currentRate);
+  tingSFX.play();
     }
   }
 };
