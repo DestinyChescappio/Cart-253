@@ -133,12 +133,3 @@ function snowballCollection(snowBall, snowMan) {
     }
   }
 };
-
-function fireballMelt(fireBall, snowMan) {
-  //check to overlap if fireball hasn't killed the snowman yet
-    let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
-    //if fireball touches snowman, the snowman dies and the 'losing' state triggers
-    if (d < snowMan.size / 2 + fireBall.size / 2) {
-      state = `losing`;
-  }
-};
