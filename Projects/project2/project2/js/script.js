@@ -102,6 +102,9 @@ function draw() {
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
+
+    //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
+    meltSnowman(fireBall, snowMan);
   }
 }
 
@@ -141,5 +144,16 @@ function snowballCollection(snowBall, snowMan) {
       tingSFX.rate(currentRate);
       tingSFX.play();
     }
+  }
+}
+
+//snowman size shrinks (melts) when it touches a fireball
+function meltSnowman(fireBall, snowMan) {
+  //check to overlap if fireball hasn't melted snowman
+  let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
+  //fireball melts snowman and snowman size shrinks
+  if (d < snowMan.size / 2 + fireBall.size / 2) {
+    //snowman shrinks every 2 frames
+    snowMan.size -= 2;
   }
 }

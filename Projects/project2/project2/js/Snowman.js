@@ -13,6 +13,8 @@ class Snowman {
     this.speed = 8;
     //does not grow; only grows when it collects a snowball
     this.grow = false;
+    //melts more when it touches fireball
+    this.melt = false;
   }
 
   //snowman movement
