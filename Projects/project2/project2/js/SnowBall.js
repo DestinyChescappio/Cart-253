@@ -1,15 +1,15 @@
 class SnowBall {
   //properties of the many snowballs
   constructor(x, y) {
-  //position
+    //position
     this.x = x;
     this.y = y;
-  //size
+    //size
     this.size = 30;
-  //velocity
+    //velocity
     this.vx = 0;
     this.vy = 5;
-  //not collected when it's not in contact with the snowman
+    //not collected when it's not in contact with the snowman
     this.collected = false;
   }
 
@@ -28,7 +28,7 @@ class SnowBall {
 
   //displaying the snowball
   display() {
-  //if not collected, it's displayed 
+    //if not collected, it's displayed
     if (!this.collected) {
       push();
       noStroke();

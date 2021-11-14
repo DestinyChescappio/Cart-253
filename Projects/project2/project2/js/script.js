@@ -8,7 +8,7 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 
 "use strict";
 //fire image (used for the fireballs)
-let fireBallImage= undefined;
+let fireBallImage = undefined;
 
 //sound is used when the snowball and snowman touches
 let tingSFX = undefined;
@@ -28,16 +28,15 @@ let fireBalls = [];
 //how many fireballs
 let numFireBall = 10;
 
-
 //Loading:
 //the fire.png image to use for the fireballs
 //the sound used when a snowball is collected
 function preload() {
-//fireball image
+  //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
-//ting! sound when snowman touches snowball
+  //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
-};
+}
 
 //canvas & loops/calling snowman & fireballs,snowballs
 function setup() {
@@ -61,7 +60,7 @@ function setup() {
     let fireBall = new FireBall(x, y, fireBallImage);
     fireBalls.push(fireBall);
   }
-};
+}
 
 /**
 Drawing:
@@ -73,7 +72,7 @@ Drawing:
 function draw() {
   background(155);
 
-//displaying how many snowballs are collected
+  //displaying how many snowballs are collected
   numberOfSnowballCollected();
 
   //drawing the Snowman inheritance object from snowman.js file
@@ -84,28 +83,27 @@ function draw() {
   //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
-  //calling methods- move,wrap,display
+    //calling methods- move,wrap,display
     snowBall.move();
     snowBall.wrap();
     snowBall.display();
 
-  //calling the function 'growSnowman' - snowman grows when snowball touches him
-  growSnowman(snowBall, snowMan);
+    //calling the function 'growSnowman' - snowman grows when snowball touches him
+    growSnowman(snowBall, snowMan);
 
-  //calling the function 'snowballCollection'- collecting the snowballs
-  snowballCollection(snowBall, snowMan);
-}
+    //calling the function 'snowballCollection'- collecting the snowballs
+    snowballCollection(snowBall, snowMan);
+  }
 
   //drawing the array of fire balls using a forloop
   for (let i = 0; i < fireBalls.length; i++) {
     let fireBall = fireBalls[i];
-  // calling methods- move, wrap, display
+    // calling methods- move, wrap, display
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
   }
-};
-
+}
 
 //drawing a text that notifies the user how many snowballs are collected
 //text located at top right corner of canvas
@@ -113,36 +111,35 @@ function numberOfSnowballCollected() {
   push();
   fill(0);
   textSize(15);
-  text(`Snowballs collected: ${numSnowballCollected}`,
-  1250,60);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
   pop();
-};
+}
 
 //snowman grows when he touches snowball
-function growSnowman (snowBall, snowMan) {
+function growSnowman(snowBall, snowMan) {
   //if both snowball and snowman touches
-    let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
+  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
   //snowman size grows
   if (d < snowMan.size / 2 + snowBall.size / 2) {
-     snowMan.size += 1;
+    snowMan.size += 1;
+  }
 }
-};
 
 //snowball gets collected by snowman
 function snowballCollection(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
   if (!snowBall.collected) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-  //snowball collects snowball & snowball disappears
+    //snowball collects snowball & snowball disappears
     if (d < snowMan.size / 2 + snowBall.size / 2) {
       snowBall.collected = true;
-  //keeping track of how many snowballs were collected
+      //keeping track of how many snowballs were collected
       numSnowballCollected += 1;
 
-  //when snowball touches snowman, the 'ting!' sound triggers
-  let currentRate = random(0.3,0.5);
-  tingSFX.rate(currentRate);
-  tingSFX.play();
+      //when snowball touches snowman, the 'ting!' sound triggers
+      let currentRate = random(0.3, 0.5);
+      tingSFX.rate(currentRate);
+      tingSFX.play();
     }
   }
-};
+}

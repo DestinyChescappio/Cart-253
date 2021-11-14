@@ -1,17 +1,17 @@
 class Snowman {
   //properties of snowman
   constructor(x, y) {
-  //position
+    //position
     this.x = 0;
     this.y = 765;
-  //size
+    //size
     this.size = 50;
-  //velocity
+    //velocity
     this.vx = 0;
     this.vy = 0;
-  //how fast
+    //how fast
     this.speed = 8;
-  //does not grow; only grows when it collects a snowball
+    //does not grow; only grows when it collects a snowball
     this.grow = false;
   }
 
@@ -38,13 +38,13 @@ class Snowman {
 
   //size decreases the more the snowman moves
   sizingMovement() {
-    if (!this.grow){
-  //if it's moving, the size reduces at 0.1
-    if (this.vx > 0 || this.vx < 0) {
-      this.size -= 0.2;
+    if (!this.grow) {
+      //if it's moving, the size reduces at 0.1
+      if (this.vx > 0 || this.vx < 0) {
+        this.size -= 0.2;
+      }
     }
   }
-}
 
   //displaying the snowman
   display() {
@@ -60,14 +60,14 @@ class Snowman {
     push();
     noStroke();
     fill(`#FF6F00`);
-    ellipse(this.x+8,this.y-40,20,8);
+    ellipse(this.x + 8, this.y - 40, 20, 8);
     //hat-rect part
     fill(0);
     rectMode(CENTER);
-    rect(this.x, this.y - 70,15,25);
+    rect(this.x, this.y - 70, 15, 25);
     //hat-ellipse part
     fill(0);
-    ellipse(this.x, this.y - 55,35,8);
+    ellipse(this.x, this.y - 55, 35, 8);
     pop();
-}
+  }
 }
