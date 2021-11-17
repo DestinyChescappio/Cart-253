@@ -19,7 +19,7 @@ class SnowBall {
     this.y += this.vy;
   }
 
-  //wrapping the snowballs
+  //wrapping the snowballs; continuous movement
   wrap() {
     if (this.y > height) {
       this.y -= height;

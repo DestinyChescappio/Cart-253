@@ -20,13 +20,13 @@ let snowMan;
 let snowBalls = [];
 //how many snowballs
 let numSnowBall = 10;
-//how many snowballs are collected
+//how many snowballs are collected; (text will be shown on the top right corner of the game online)
 let numSnowballCollected = 0;
 
 //the array of fireballs falling
 let fireBalls = [];
 //how many fireballs
-let numFireBall = 10;
+let numFireBall = 5;
 
 //Loading:
 //the fire.png image to use for the fireballs
@@ -123,8 +123,10 @@ function growSnowman(snowBall, snowMan) {
   //if both snowball and snowman touches
   let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
   //snowman size grows
-  if (d < snowMan.size / 2 + snowBall.size / 2) {
-    snowMan.size += 1;
+  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
+    snowMan.size += 20;
+    //constraining snowman size when it grows and stops at 500 px
+    snowMan.size = constrain(snowMan.size, 0, 500);
   }
 }
 
@@ -139,7 +141,7 @@ function snowballCollection(snowBall, snowMan) {
       //keeping track of how many snowballs were collected
       numSnowballCollected += 1;
 
-      //when snowball touches snowman, the 'ting!' sound triggers
+      //when snowball touches snowman, the 'ting!' sound triggers with its random rates
       let currentRate = random(0.3, 0.5);
       tingSFX.rate(currentRate);
       tingSFX.play();
@@ -152,8 +154,11 @@ function meltSnowman(fireBall, snowMan) {
   //check to overlap if fireball hasn't melted snowman
   let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
   //fireball melts snowman and snowman size shrinks
-  if (d < snowMan.size / 2 + fireBall.size / 2) {
+  if (d < snowMan.size / 2 + fireBall.width / 2) {
     //snowman shrinks every 2 frames
-    snowMan.size -= 2;
+    snowMan.size -= 3;
+
+    //snowman size is constrained from getting any larger/smaller stopping at 500 px
+    snowMan.size = constrain(snowMan.size, 0, 500);
   }
 }

@@ -19,7 +19,7 @@ class FireBall {
     this.x += this.vx;
     this.y += this.vy;
   }
-  //wrapping the fireballs
+  //wrapping the fireballs; continuous movement
   wrap() {
     if (this.y > height) {
       this.y -= height;
