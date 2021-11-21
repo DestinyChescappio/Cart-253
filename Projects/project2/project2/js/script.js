@@ -28,6 +28,11 @@ let fireBalls = [];
 //how many fireballs
 let numFireBall = 10;
 
+//the array of kids running
+let kids = [];
+//how many kids
+let numKid = 10;
+
 //Loading:
 //the fire.png image to use for the fireballs
 //the sound used when a snowball is collected
@@ -72,7 +77,7 @@ function setup() {
       b: random(100, 255),
     };
     //creating new kid
-    let kids = new Kid(x, y, kidColor);
+    let kid = new Kid(x, y, kidColor);
     kids.push(kid);
   }
 }
@@ -120,6 +125,15 @@ function draw() {
 
     //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
     meltSnowman(fireBall, snowMan);
+  }
+
+  //drawing the array of kids using forloop
+  for (let i = 0; i < kids.length; i++) {
+    let kid = kids[i];
+    //calling methods- move, wrap, display
+    kid.move();
+    kid.wrap();
+    kid.display();
   }
 }
 

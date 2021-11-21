@@ -1,5 +1,5 @@
-class Kids {
-  constructor() {
+class Kid {
+  constructor(x, y, kidColor) {
     this.x = x;
     this.y = y;
     this.width = 15;
@@ -9,7 +9,7 @@ class Kids {
     this.speed = 4;
     //kidColor properties are located in the main script
     this.kidColor = kidColor;
-    this.headColor = {
+    this.faceColor = {
       r: 245,
       g: 245,
       b: 220,
@@ -30,11 +30,13 @@ class Kids {
   display() {
     push();
     noStroke();
-    fill(this.kidColor.r, this.kidColor.g, this.kidColor.b);
     //face
+    fill(this.faceColor.r, this.faceColor.g, this.faceColor.b);
+    ellipse(this.x, this.y - 20, this.width - 10, this.height - 15);
 
     //head
-    ellipse(this.x, this.y, this.width, this.height - 10);
+    fill(this.kidColor.r, this.kidColor.g, this.kidColor.b);
+    ellipse(this.x, this.y - 20, this.width, this.height - 10);
     //body
     ellipse(this.x, this.y, this.width, this.height);
     pop();
