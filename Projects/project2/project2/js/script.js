@@ -38,7 +38,7 @@ function preload() {
   tingSFX = loadSound(`assets/sounds/ting.wav`);
 }
 
-//canvas & loops/calling snowman & fireballs,snowballs
+//canvas & loops/calling snowman, kids & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -59,6 +59,21 @@ function setup() {
     let y = random(0, height);
     let fireBall = new FireBall(x, y, fireBallImage);
     fireBalls.push(fireBall);
+  }
+
+  //making forloop of kids
+  for (let i = 0; i < numKid; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    //making kids 'fill' property with random colors; refer to kid.js
+    let kidColor = {
+      r: random(100, 255),
+      g: random(100, 255),
+      b: random(100, 255),
+    };
+    //creating new kid
+    let kids = new Kid(x, y, kidColor);
+    kids.push(kid);
   }
 }
 
