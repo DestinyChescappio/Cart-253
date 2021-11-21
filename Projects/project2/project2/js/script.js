@@ -33,8 +33,6 @@ let kids = [];
 //how many kids
 let numKid = 10;
 
-let ground = [];
-
 //Loading:
 //the fire.png image to use for the fireballs
 //the sound used when a snowball is collected

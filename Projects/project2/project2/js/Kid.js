@@ -1,7 +1,7 @@
 class Kid {
   constructor(x, y, kidColor) {
     this.x = x;
-    this.y = y;
+    this.y = 765;
     this.width = 15;
     this.height = 25;
     this.vy = 0;
@@ -17,7 +17,7 @@ class Kid {
   }
 
   move() {
-    this.x = this.x + this.vx;
+    this.x = this.x - this.vx;
     this.y = this.y + this.vy;
   }
 
