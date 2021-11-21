@@ -31,7 +31,7 @@ let numFireBall = 10;
 //the array of kids running
 let kids = [];
 //how many kids
-let numKid = 10;
+let numKid = 3;
 
 //Loading:
 //the fire.png image to use for the fireballs
