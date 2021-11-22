@@ -9,13 +9,29 @@ class Snowman {
     //velocity
     this.vx = 0;
     this.vy = 0;
+    //vector force
+    this.ax = 0;
+    this.ay = 0;
     //how fast
     this.speed = 8;
+    //how strong is the gravity when the snowman falls
+    this.gravityForce = 0.005;
     //does not grow; only grows when it collects a snowball
     this.grow = false;
     //melts more when it touches fireball
     this.melt = false;
+    //how fast the snowman falls according to gravity force
+    this.fallingSpeed = 0;
+    //the force that makes the snowman fall
+    this.gravity = 1;
   }
+  //falling movement before it stops on the ground
+  falling() {
+    this.y = this.y + this.fallingSpeed;
+    this.fallingSpeed = this.fallingSpeed + this.gravity;
+  }
+  //stops falling on the ground
+  isOnGround() {}
 
   //snowman movement
   move() {
