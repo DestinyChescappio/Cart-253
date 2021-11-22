@@ -99,6 +99,7 @@ function draw() {
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
+  snowMan.jumpMovement();
   snowMan.jump();
 
   //drawing the array of snowballs

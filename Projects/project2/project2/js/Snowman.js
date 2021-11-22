@@ -14,21 +14,20 @@ class Snowman {
     this.ay = 0;
     //how fast
     this.speed = 8;
-    //how strong is the gravity when the snowman falls
-    this.gravityForce = 0.005;
+
     //does not grow; only grows when it collects a snowball
     this.grow = false;
     //melts more when it touches fireball
     this.melt = false;
-    //how fast the snowman falls according to gravity force
-    this.fallingSpeed = 0;
+
     //the force that makes the snowman fall
     this.gravity = 0.5;
   }
   //falling movement before it stops on the ground
-  falling() {
-    this.y = this.y + this.fallingSpeed;
-    this.fallingSpeed = this.fallingSpeed + this.gravity;
+  jumpMovement() {
+    this.y += this.vy;
+    this.vy += this.gravity;
+    this.y = constrain(this.y, 0, height - 18);
   }
 
   jump() {
