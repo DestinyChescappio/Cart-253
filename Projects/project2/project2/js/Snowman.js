@@ -3,7 +3,7 @@ class Snowman {
   constructor(x, y) {
     //position
     this.x = 0;
-    this.y = 765;
+    this.y = height - 18;
     //size
     this.size = 50;
     //velocity
@@ -23,15 +23,19 @@ class Snowman {
     //how fast the snowman falls according to gravity force
     this.fallingSpeed = 0;
     //the force that makes the snowman fall
-    this.gravity = 1;
+    this.gravity = 0.5;
   }
   //falling movement before it stops on the ground
   falling() {
     this.y = this.y + this.fallingSpeed;
     this.fallingSpeed = this.fallingSpeed + this.gravity;
   }
-  //stops falling on the ground
-  isOnGround() {}
+
+  jump() {
+    if (keyIsDown(UP_ARROW)) {
+      this.vy = -5;
+    }
+  }
 
   //snowman movement
   move() {
