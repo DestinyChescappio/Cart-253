@@ -30,23 +30,22 @@ class Snowman {
     this.y = constrain(this.y, 0, height - 18);
   }
 
-  jump() {
+  //snowman movement
+  move() {
+    //y velocity behavior is gravity
+    this.vy += this.gravity;
     if (keyIsDown(UP_ARROW)) {
       this.vy = -5;
     }
-  }
-
-  //snowman movement
-  move() {
     //set to left arrow pressed at horizontal movement
     if (keyIsDown(LEFT_ARROW)) {
       //if it's set, the velocity is negative
-      this.vx = -this.speed;
+      this.vx = -5;
     }
     //otherwise it's set to the right arrow pressed
     else if (keyIsDown(RIGHT_ARROW)) {
       //if it's set, the velocity is positive
-      this.vx = this.speed;
+      this.vx = 5;
     }
     //if none of the left and right arrow keys are pressed; it stops
     else {
@@ -55,6 +54,10 @@ class Snowman {
     //movement set up
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
+
+    //constraining snowman from going past canvas
+    this.x = constrain(this.x, 0, width);
+    this.y = constrain(this.y, 0, height);
   }
 
   //size decreases the more the snowman moves
