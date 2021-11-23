@@ -84,10 +84,8 @@ function setup() {
 
 /**
 Drawing:
-- the functions of the text "number of snowballs collected"
-- snowman inheritance object
-- forloop and array of snowballs & fireballs
-- the functions of growing the snowMan and collecting the snowballs
+- the functions calling the updated inheritance objects (snowman, snowball, fireball, kid)
+- the functions created in the script.js 
 */
 function draw() {
   background(155);
@@ -95,12 +93,27 @@ function draw() {
   //displaying how many snowballs are collected
   numberOfSnowballCollected();
 
-  //drawing the Snowman inheritance object from snowman.js file
+  //updating behaviour of the Snowman inheritance object from snowman.js file
+  updateSnowman();
+
+  //updating behaviour of the snowball inheritance object from snowballs.js file
+  updateSnowball();
+
+  //updating behaviour of the fireball inheritance object from fireball.js file
+  updateFireball();
+
+  //updating behaviour of the kid inheritance object from kid.js
+  updateKid();
+}
+
+// Behaviour of snowman
+function updateSnowman() {
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
-  //snowMan.jumpMovement();
+}
 
+function updateSnowball() {
   //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
@@ -115,7 +128,9 @@ function draw() {
     //calling the function 'snowballCollection'- collecting the snowballs
     snowballCollection(snowBall, snowMan);
   }
+}
 
+function updateFireball() {
   //drawing the array of fire balls using a forloop
   for (let i = 0; i < fireBalls.length; i++) {
     let fireBall = fireBalls[i];
@@ -127,7 +142,9 @@ function draw() {
     //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
     meltSnowman(fireBall, snowMan);
   }
+}
 
+function updateKid() {
   //drawing the array of kids using forloop
   for (let i = 0; i < kids.length; i++) {
     let kid = kids[i];
