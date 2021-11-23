@@ -3,7 +3,7 @@ class Snowman {
   constructor(x, y) {
     //position
     this.x = 0;
-    this.y = height - 18;
+    this.y = height - 25;
     //size
     this.size = 50;
     //velocity
@@ -24,11 +24,11 @@ class Snowman {
     this.gravity = 0.5;
   }
   //falling movement before it stops on the ground
-  jumpMovement() {
-    this.y += this.vy;
-    this.vy += this.gravity;
-    this.y = constrain(this.y, 0, height - 18);
-  }
+  //jumpMovement() {
+  //this.y += this.vy;
+  //this.vy += this.gravity;
+  //this.y = constrain(this.y, 0, height - 50);
+  //}
 
   //snowman movement
   move() {
@@ -57,7 +57,7 @@ class Snowman {
 
     //constraining snowman from going past canvas
     this.x = constrain(this.x, 0, width);
-    this.y = constrain(this.y, 0, height);
+    this.y = constrain(this.y, 0, height - 25);
   }
 
   //size decreases the more the snowman moves

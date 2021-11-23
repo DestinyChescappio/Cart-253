@@ -5,7 +5,7 @@ class Kid {
     this.width = 25;
     this.height = 35;
     this.vy = 0;
-    this.vx = 4;
+    this.vx = -4;
     this.speed = 4;
     //kidColor properties are located in the main script
     this.kidColor = kidColor;
@@ -17,13 +17,13 @@ class Kid {
   }
 
   move() {
-    this.x = this.x - this.vx;
+    this.x = this.x + this.vx;
     this.y = this.y + this.vy;
   }
 
   wrap() {
-    if (this.x > width) {
-      this.x -= width;
+    if (this.x < 0) {
+      this.x += width;
     }
   }
 
