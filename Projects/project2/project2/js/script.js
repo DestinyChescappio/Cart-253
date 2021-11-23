@@ -47,7 +47,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  //calling the snowman
+  //calling the snowman inheritance object
   snowMan = new Snowman();
 
   //making forloop of snowballs
@@ -85,7 +85,7 @@ function setup() {
 /**
 Drawing:
 - the functions calling the updated inheritance objects (snowman, snowball, fireball, kid)
-- the functions created in the script.js 
+- the functions created in the script.js
 */
 function draw() {
   background(155);
@@ -106,13 +106,14 @@ function draw() {
   updateKid();
 }
 
-// Behaviour of snowman
+// updating the snowman behaviour
 function updateSnowman() {
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
 }
 
+//updating the snowball behaviour
 function updateSnowball() {
   //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
@@ -130,6 +131,7 @@ function updateSnowball() {
   }
 }
 
+//updating the fireball behaviour
 function updateFireball() {
   //drawing the array of fire balls using a forloop
   for (let i = 0; i < fireBalls.length; i++) {
@@ -144,6 +146,7 @@ function updateFireball() {
   }
 }
 
+//updating the kid behaviour
 function updateKid() {
   //drawing the array of kids using forloop
   for (let i = 0; i < kids.length; i++) {
@@ -191,6 +194,7 @@ function snowballCollection(snowBall, snowMan) {
       //when snowball touches snowman, the 'ting!' sound triggers with its random rates
       let currentRate = random(0.3, 0.5);
       tingSFX.rate(currentRate);
+      tingSFX.setVolume(0.2);
       tingSFX.play();
     }
   }
