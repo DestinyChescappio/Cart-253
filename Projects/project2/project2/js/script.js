@@ -26,9 +26,9 @@ let numSnowballCollected = 0;
 //the array of fireballs falling
 let fireBalls = [];
 //how many fireballs
-let numFireBall = 7;
+let numFireBall = 6;
 //how many fireballs hit the snowman; (text will be shown on corner)
-let numFireballHit = 3;
+let numFireballHit = 0;
 
 //the array of kids running
 let kids = [];
@@ -213,11 +213,11 @@ function meltSnowman(fireBall, snowMan) {
   if (d < snowMan.size / 2 + fireBall.width / 2) {
     //snowman shrinks every 2 frames
     snowMan.size -= 3;
+    //keeping track of how many fireballs hit the snowman
+    numFireballHit += 1;
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
-    //keeping track of how many fireballs hit the snowman
-    numFireballHit += 1;
   }
 }
 
