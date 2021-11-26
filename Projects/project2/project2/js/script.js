@@ -104,6 +104,9 @@ function draw() {
 
   //updating behaviour of the kid inheritance object from kid.js
   updateKid();
+
+  //displaying how many fireballs hit the snowman
+  numberOfFireballHit();
 }
 
 // updating the snowman behaviour
@@ -212,4 +215,12 @@ function meltSnowman(fireBall, snowMan) {
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
   }
+}
+
+function numberOfFireballHit() {
+  push();
+  fill(0);
+  textSize(15);
+  text(`Fireball Hit: ${numFirballCollected}`, 60, 1250);
+  pop();
 }
