@@ -20,13 +20,15 @@ let snowMan;
 let snowBalls = [];
 //how many snowballs
 let numSnowBall = 10;
-//how many snowballs are collected; (text will be shown on the top right corner of the game online)
+//how many snowballs are collected by snowman; (text will be shown on the top right corner of the game online)
 let numSnowballCollected = 0;
 
 //the array of fireballs falling
 let fireBalls = [];
 //how many fireballs
-let numFireBall = 10;
+let numFireBall = 7;
+//how many fireballs hit the snowman; (text will be shown on corner)
+let numFireballHit = 3;
 
 //the array of kids running
 let kids = [];
@@ -214,6 +216,8 @@ function meltSnowman(fireBall, snowMan) {
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
+    //keeping track of how many fireballs hit the snowman
+    numFireballHit += 1;
   }
 }
 
@@ -221,6 +225,6 @@ function numberOfFireballHit() {
   push();
   fill(0);
   textSize(15);
-  text(`Fireball Hit: ${numFirballCollected}`, 60, 1250);
+  text(`Fireball Hit: ${numFireballHit}`, 1250, 100);
   pop();
 }
