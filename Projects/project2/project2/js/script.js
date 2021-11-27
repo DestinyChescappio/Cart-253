@@ -86,8 +86,7 @@ function setup() {
 
 /**
 Drawing:
-- the functions calling the updated inheritance objects (snowman, snowball, fireball, kid)
-- the functions created in the script.js
+the title, game, and loser page 
 */
 function draw() {
   background(155);
@@ -103,6 +102,7 @@ function draw() {
   }
 }
 
+//title page displays
 function title() {
   fill(255);
   textFont(`forte`);
@@ -112,6 +112,7 @@ function title() {
   text(`Save Mr.Snowman!`, width / 2, height / 2);
 }
 
+//loser page displays
 function loser() {
   fill(255);
   textFont(`forte`);
@@ -121,12 +122,14 @@ function loser() {
   text(`Mr.Snowman melted`, width / 2, height / 2);
 }
 
+//press mouse pad/buttom to start game
 function mousePressed() {
   if (state === `title`) {
     state = `startGame`;
   }
 }
 
+//what happens in the game
 function game() {
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
@@ -244,8 +247,8 @@ function meltSnowman(fireBall, snowMan) {
   }
 }
 
+//drawing a text that notifies the user how many snowballs are collected
 function numSnowballText() {
-  //drawing a text that notifies the user how many snowballs are collected
   //text located at top right corner of canvas
   fill(0);
   textFont(`forte`);
@@ -254,11 +257,10 @@ function numSnowballText() {
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
 
-//snowman dies; game over if size gets too small when melting
+//snowman melts and dies when his size is less than 15 px
 function snowmanDead() {
-  //if the snowman size is less than 10 px
-  if (snowMan.size < 10) {
-    //the gameover state triggers
+  if (snowMan.size < 15) {
+    //game over state triggers
     state = `gameOver`;
   }
 }

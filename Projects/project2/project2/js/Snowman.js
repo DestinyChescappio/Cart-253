@@ -14,6 +14,9 @@ class Snowman {
     this.ay = 0;
     //how fast
     this.speed = 8;
+    //used for kids to "stick" to snowMan
+    this.xOffset = 0;
+    this.yOffset = 0;
 
     //does not grow; only grows when it collects a snowball
     this.grow = false;
