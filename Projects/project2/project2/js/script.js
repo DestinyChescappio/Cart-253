@@ -19,14 +19,14 @@ let snowMan;
 //the array of snowballs are collected
 let snowBalls = [];
 //how many snowballs
-let numSnowBall = 10;
+let numSnowBall = 30;
 //how many snowballs are collected by snowman; (text will be shown on the top right corner of the game online)
 let numSnowballCollected = 0;
 
 //the array of fireballs falling
 let fireBalls = [];
 //how many fireballs
-let numFireBall = 10;
+let numFireBall = 5;
 //how many fireballs hit the snowman; (text will be shown on corner)
 let numFireballHit = 0;
 
@@ -203,7 +203,7 @@ function meltSnowman(fireBall, snowMan) {
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
-    numFireballHit += 3;
+    numFireballHit += 5;
   }
 }
 
