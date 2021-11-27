@@ -97,7 +97,7 @@ function draw() {
   } else if (state === `startGame`) {
     game();
   } else if (state === `gameOver`) {
-    snowmanDead();
+    loser();
   }
   if (state === `title`) {
   }
@@ -142,6 +142,8 @@ function game() {
 
   //displaying the text how many snowballs and fireballs touch snowman
   numSnowballText();
+
+  snowmanDead();
 }
 
 // updating the snowman behaviour
@@ -252,8 +254,11 @@ function numSnowballText() {
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
 
+//snowman dies; game over if size gets too small when melting
 function snowmanDead() {
-  if ((snowMan.size = 5)) {
+  //if the snowman size is less than 10 px
+  if (snowMan.size < 10) {
+    //the gameover state triggers
     state = `gameOver`;
   }
 }
