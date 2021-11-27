@@ -5,7 +5,7 @@ class SnowBall {
     this.x = x;
     this.y = y;
     //size
-    this.size = 30;
+    this.size = 20;
     //velocity
     this.vx = 0;
     this.vy = 5;

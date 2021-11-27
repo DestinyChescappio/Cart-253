@@ -7,6 +7,8 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 */
 
 "use strict";
+let state = `title`;
+
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
@@ -19,7 +21,7 @@ let snowMan;
 //the array of snowballs are collected
 let snowBalls = [];
 //how many snowballs
-let numSnowBall = 30;
+let numSnowBall = 20;
 //how many snowballs are collected by snowman; (text will be shown on the top right corner of the game online)
 let numSnowballCollected = 0;
 
@@ -92,6 +94,14 @@ Drawing:
 function draw() {
   background(155);
 
+  if (state === `title`) {
+    title();
+  } else if (state === `startGame`) {
+    game();
+  }
+}
+
+function game() {
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
 
@@ -106,6 +116,35 @@ function draw() {
 
   //displaying the text how many snowballs and fireballs touch snowman
   numFireballSnowballText();
+}
+
+function titlePage() {
+  //beginning title
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text(`Keep Mr.Snowman Alive!`, width / 2, height / 2);
+
+  //game instructions for user at title page
+  fill(255);
+  textFont(`arial`);
+  textStyle(NORMAL);
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  text(
+    `Use arrow keys to collect snowballs & dodge the fireballs & kids`,
+    width / 2,
+    700
+  );
+  //what to press to start game
+  fill(255);
+  textFont(`arial`);
+  textStyle(ITALIC);
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  text(`Press mouse to start`, width / 2, 800);
 }
 
 // updating the snowman behaviour
@@ -200,10 +239,10 @@ function meltSnowman(fireBall, snowMan) {
   if (d < snowMan.size / 2 + fireBall.width / 2) {
     //snowman shrinks every 2 frames
     snowMan.size -= 1;
-
+    //how many per fireball is collected
+    numFireballHit += 1;
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
-    numFireballHit += 5;
   }
 }
 
