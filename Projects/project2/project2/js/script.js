@@ -104,11 +104,8 @@ function draw() {
   //updating behaviour of the kid inheritance object from kid.js
   updateKid();
 
-  //displaying how many snowballs are collected
-  numberOfSnowballCollected();
-
-  //displaying how many fireballs hit the snowman
-  numberOfFireballHit();
+  //displaying the text how many snowballs and fireballs touch snowman
+  numFireballSnowballText();
 }
 
 // updating the snowman behaviour
@@ -195,9 +192,6 @@ function snowballCollection(snowBall, snowMan) {
   }
 }
 
-
-}
-
 //snowman size shrinks (melts) when it touches a fireball
 function meltSnowman(fireBall, snowMan) {
   //check to overlap if fireball hasn't melted snowman
@@ -205,25 +199,24 @@ function meltSnowman(fireBall, snowMan) {
   //fireball melts snowman and snowman size shrinks
   if (d < snowMan.size / 2 + fireBall.width / 2) {
     //snowman shrinks every 2 frames
-    snowMan.size -= 3;
+    snowMan.size -= 1;
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 0, 500);
+    numFireballHit += 3;
   }
 }
 
-function numberOfFireballHit() {
+function numFireballSnowballText() {
   push();
   fill(0);
   textSize(15);
   textFont("Forte");
   text(`Fireball Hit: ${numFireballHit}`, 1250, 100);
   pop();
-}
 
-//drawing a text that notifies the user how many snowballs are collected
-//text located at top right corner of canvas
-function numberOfSnowballCollected() {
+  //drawing a text that notifies the user how many snowballs are collected
+  //text located at top right corner of canvas
   push();
   fill(0);
   textSize(15);
