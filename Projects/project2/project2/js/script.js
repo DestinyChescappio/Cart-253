@@ -96,6 +96,8 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
+  } else if (state === `gameOver`) {
+    snowmanDead();
   }
   if (state === `title`) {
   }
@@ -108,6 +110,15 @@ function title() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Save Mr.Snowman!`, width / 2, height / 2);
+}
+
+function loser() {
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Mr.Snowman melted`, width / 2, height / 2);
 }
 
 function mousePressed() {
@@ -227,7 +238,7 @@ function meltSnowman(fireBall, snowMan) {
     snowMan.size -= 1;
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
-    snowMan.size = constrain(snowMan.size, 0, 500);
+    snowMan.size = constrain(snowMan.size, 20, 500);
   }
 }
 
@@ -239,4 +250,10 @@ function numSnowballText() {
   textStyle(BOLD);
   textSize(15);
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
+}
+
+function snowmanDead() {
+  if ((snowMan.size = 5)) {
+    state = `gameOver`;
+  }
 }

@@ -23,12 +23,6 @@ class Snowman {
     //the force that makes the snowman fall
     this.gravity = 0.5;
   }
-  //falling movement before it stops on the ground
-  //jumpMovement() {
-  //this.y += this.vy;
-  //this.vy += this.gravity;
-  //this.y = constrain(this.y, 0, height - 50);
-  //}
 
   //snowman movement
   move() {
