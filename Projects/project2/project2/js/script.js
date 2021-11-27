@@ -110,6 +110,12 @@ function title() {
   text(`Save Mr.Snowman!`, width / 2, height / 2);
 }
 
+function mousePressed() {
+  if (state === `title`) {
+    state = `startGame`;
+  }
+}
+
 function game() {
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
