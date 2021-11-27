@@ -7,8 +7,6 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 */
 
 "use strict";
-let state = `title`;
-
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
@@ -30,7 +28,7 @@ let fireBalls = [];
 //how many fireballs
 let numFireBall = 5;
 //how many fireballs hit the snowman; (text will be shown on corner)
-let numFireballHit = 0;
+let numFireballHit = 1;
 
 //the array of kids running
 let kids = [];
@@ -94,14 +92,6 @@ Drawing:
 function draw() {
   background(155);
 
-  if (state === `title`) {
-    title();
-  } else if (state === `startGame`) {
-    game();
-  }
-}
-
-function game() {
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
 
@@ -116,35 +106,6 @@ function game() {
 
   //displaying the text how many snowballs and fireballs touch snowman
   numFireballSnowballText();
-}
-
-function titlePage() {
-  //beginning title
-  fill(255);
-  textFont(`forte`);
-  textStyle(BOLD);
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  text(`Keep Mr.Snowman Alive!`, width / 2, height / 2);
-
-  //game instructions for user at title page
-  fill(255);
-  textFont(`arial`);
-  textStyle(NORMAL);
-  textSize(25);
-  textAlign(CENTER, CENTER);
-  text(
-    `Use arrow keys to collect snowballs & dodge the fireballs & kids`,
-    width / 2,
-    700
-  );
-  //what to press to start game
-  fill(255);
-  textFont(`arial`);
-  textStyle(ITALIC);
-  textSize(25);
-  textAlign(CENTER, CENTER);
-  text(`Press mouse to start`, width / 2, 800);
 }
 
 // updating the snowman behaviour
@@ -250,7 +211,7 @@ function numFireballSnowballText() {
   push();
   fill(0);
   textSize(15);
-  textFont("Forte");
+  textFont(`Forte`);
   text(`Fireball Hit: ${numFireballHit}`, 1250, 100);
   pop();
 
@@ -259,7 +220,7 @@ function numFireballSnowballText() {
   push();
   fill(0);
   textSize(15);
-  textFont("Forte");
+  textFont(`Forte`);
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
   pop();
 }
