@@ -7,6 +7,8 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 */
 
 "use strict";
+let state = "title";
+
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
@@ -90,6 +92,25 @@ Drawing:
 function draw() {
   background(155);
 
+  if (state === `title`) {
+    title();
+  } else if (state === `startGame`) {
+    game();
+  }
+  if (state === `title`) {
+  }
+}
+
+function title() {
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Save Mr.Snowman!`, width / 2, height / 2);
+}
+
+function game() {
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
 
