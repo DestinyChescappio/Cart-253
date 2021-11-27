@@ -238,7 +238,7 @@ function meltSnowman(fireBall, snowMan) {
     snowMan.size -= 1;
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
-    snowMan.size = constrain(snowMan.size, 20, 500);
+    snowMan.size = constrain(snowMan.size, 10, 500);
   }
 }
 

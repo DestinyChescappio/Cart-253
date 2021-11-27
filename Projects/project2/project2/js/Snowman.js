@@ -61,7 +61,7 @@ class Snowman {
       if (this.vx > 0 || this.vx < 0) {
         this.size -= 0.2;
         //snowman size is constrained from getting any smaller/bigger
-        this.size = constrain(this.size, 0, 500);
+        this.size = constrain(this.size, 10, 500);
       }
     }
   }
