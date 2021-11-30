@@ -25,6 +25,8 @@ class Snowman {
 
     //the force that makes the snowman fall
     this.gravity = 0.5;
+    //using rotation to make hat tilt
+    this.hatRotation = 0;
   }
 
   //snowman movement
@@ -90,13 +92,18 @@ class Snowman {
     noStroke();
     fill(`#FF6F00`);
     ellipse(headX + headSize / 3, headY, headSize / 2, headSize / 8);
+
+    push();
+    translate(headX, headY - headSize / 2);
+    rotate(this.hatRotation);
     //hat-rect part
     fill(0);
     rectMode(CENTER);
-    rect(headX, headY - headSize / 2 - 25 / 2, 15, 25);
+    rect(0, 0 - 25 / 2, 15, 25);
     //hat-ellipse part
     fill(0);
-    ellipse(headX, headY - headSize / 2, 35, 8);
+    ellipse(0, 0, 35, 8);
+    pop();
     pop();
   }
 }
