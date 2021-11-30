@@ -97,6 +97,8 @@ function draw() {
     game();
   } else if (state === `gameOver`) {
     loser();
+  } else if (state === `lostMagic`) {
+    lostMagic();
   }
   if (state === `title`) {
   }
@@ -120,6 +122,15 @@ function loser() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Mr.Snowman melted`, width / 2, height / 2);
+}
+
+function lostMagic() {
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Mr.Snowman's magic hat has been taken off`, width / 2, height / 2);
 }
 
 //press mouse pad/buttom to start game
@@ -198,6 +209,8 @@ function updateKid() {
     kid.move();
     kid.wrap();
     kid.display();
+
+    lostHat(kid, snowMan);
   }
 }
 
@@ -265,9 +278,14 @@ function snowmanDead() {
   }
 }
 
-function lostHat() {
+function lostHat(kid, snowMan) {
   //check if kid and snowman touch
   let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
   if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
+    snowMan.hatRotation += 0.009;
+  }
+  if (snowMan.hatRotation > 3) {
+    //lost magic state triggers
+    state = `lostMagic`;
   }
 }

@@ -14,15 +14,10 @@ class Snowman {
     this.ay = 0;
     //how fast
     this.speed = 8;
-    //used for kids to "stick" to snowMan
-    this.xOffset = 0;
-    this.yOffset = 0;
-
     //does not grow; only grows when it collects a snowball
     this.grow = false;
     //melts more when it touches fireball
     this.melt = false;
-
     //the force that makes the snowman fall
     this.gravity = 0.5;
     //using rotation to make hat tilt
