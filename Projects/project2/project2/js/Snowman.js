@@ -33,6 +33,7 @@ class Snowman {
   move() {
     //y velocity behavior is gravity
     this.vy += this.gravity;
+    //gravity occurs after up arrow is pressed and velocity is negative
     if (keyIsDown(UP_ARROW)) {
       this.vy = -5;
     }

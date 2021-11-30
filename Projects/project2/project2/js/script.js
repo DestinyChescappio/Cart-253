@@ -264,3 +264,10 @@ function snowmanDead() {
     state = `gameOver`;
   }
 }
+
+function lostHat() {
+  //check if kid and snowman touch
+  let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
+  if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
+  }
+}
