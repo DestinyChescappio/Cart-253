@@ -86,7 +86,7 @@ function setup() {
 
 /**
 Drawing:
-the title, game, and loser page 
+the title, game, and loser page
 */
 function draw() {
   background(155);
