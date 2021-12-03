@@ -160,15 +160,16 @@ function game() {
 
   //displaying the text how many snowballs and fireballs touch snowman
   numSnowballText();
-
-  snowmanDead();
 }
 
 // updating the snowman behaviour
 function updateSnowman() {
+  //methods from snowman.js called
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
+  //calling the function 'snowManDead'- when snowman is dead, the gameOver state triggers
+  snowmanDead();
 }
 
 //updating the snowball behaviour
@@ -186,6 +187,9 @@ function updateSnowball() {
 
     //calling the function 'snowballCollection'- collecting the snowballs
     snowballCollection(snowBall, snowMan);
+
+    //calling the function 'allSnowballCollected'- when all snowballs are collected
+    allSnowballCollected();
   }
 }
 
@@ -274,7 +278,7 @@ function numSnowballText() {
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
 
-function winning() {
+function allSnowballCollected() {
   if ((numSnowballCollected = 20)) {
     //winning state triggers
     state = `winner`;
