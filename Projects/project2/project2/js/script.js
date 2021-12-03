@@ -43,6 +43,8 @@ function preload() {
   fireBallImage = loadImage(`assets/images/fire.png`);
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
+  //losing page img
+  meltSnowmanImage = loadImage(`assets/images/melt-snowman.gif`);
 }
 
 //canvas & loops/calling snowman, kids & fireballs,snowballs
@@ -95,9 +97,11 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
+  } else if (state === `winner`) {
+    winning();
   } else if (state === `gameOver`) {
     loser();
-  } else if (state === `lostMagic`) {
+  } else if (state === `lostHat`) {
     lostMagic();
   }
   if (state === `title`) {
@@ -270,6 +274,13 @@ function numSnowballText() {
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
 
+function winning() {
+  if ((numSnowballCollected = 20)) {
+    //winning state triggers
+    state = `winner`;
+  }
+}
+
 //snowman melts and dies when his size is less than 15 px
 function snowmanDead() {
   if (snowMan.size < 15) {
@@ -286,6 +297,6 @@ function lostHat(kid, snowMan) {
   }
   if (snowMan.hatRotation > 3) {
     //lost magic state triggers
-    state = `lostMagic`;
+    state = `lostHat`;
   }
 }
