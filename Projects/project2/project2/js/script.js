@@ -222,6 +222,16 @@ function updateKid() {
   }
 }
 
+//drawing a text that notifies the user how many snowballs are collected
+function numSnowballText() {
+  //text located at top right corner of canvas
+  fill(0);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(15);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
+}
+
 //snowman grows when he touches snowball
 function growSnowman(snowBall, snowMan) {
   //if both snowball and snowman touches
@@ -268,16 +278,6 @@ function meltSnowman(fireBall, snowMan) {
   }
 }
 
-//drawing a text that notifies the user how many snowballs are collected
-function numSnowballText() {
-  //text located at top right corner of canvas
-  fill(0);
-  textFont(`forte`);
-  textStyle(BOLD);
-  textSize(15);
-  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
-}
-
 function allSnowballCollected() {
   if ((numSnowballCollected = 20)) {
     //winning state triggers
@@ -293,12 +293,15 @@ function snowmanDead() {
   }
 }
 
+//snowman loses magic and cannot continue game because he cannot move without his hat
 function lostHat(kid, snowMan) {
   //check if kid and snowman touch
   let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
   if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
+    //snowman hat tilts
     snowMan.hatRotation += 0.009;
   }
+  //if the hat tilts past 3 px
   if (snowMan.hatRotation > 3) {
     //lost magic state triggers
     state = `lostHat`;
