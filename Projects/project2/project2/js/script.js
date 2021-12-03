@@ -14,6 +14,8 @@ let fireBallImage = undefined;
 
 //sound is used when the snowball and snowman touches
 let tingSFX = undefined;
+//sound is used when the fireball and snowman touches
+let ouchSFX = undefined;
 
 //the user's object
 let snowMan;
@@ -43,6 +45,8 @@ function preload() {
   fireBallImage = loadImage(`assets/images/fire.png`);
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
+  //ouch! sound when snowman touches fireball
+  ouchSFX = loadSound(`assets/sounds/ouch.wav`);
 }
 
 //canvas & loops/calling snowman, kids & fireballs,snowballs
@@ -257,6 +261,8 @@ function meltSnowman(fireBall, snowMan) {
 
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 10, 500);
+
+    ouchSFX.play();
   }
 }
 
