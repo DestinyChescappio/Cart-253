@@ -101,8 +101,8 @@ function draw() {
     winning();
   } else if (state === `gameOver`) {
     loser();
-  } else if (state === `lostHat`) {
-    lostMagic();
+  } else if (state === `lostMagic`) {
+    lostHat();
   }
   if (state === `title`) {
   }
@@ -118,6 +118,15 @@ function title() {
   text(`Save Mr.Snowman!`, width / 2, height / 2);
 }
 
+function winning() {
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER;
+  text(`Mr.Snowman survived!`, width / 2, height / 2);
+}
+
 //loser page displays
 function loser() {
   fill(255);
@@ -128,7 +137,7 @@ function loser() {
   text(`Mr.Snowman melted`, width / 2, height / 2);
 }
 
-function lostMagic() {
+function lostHat() {
   fill(255);
   textFont(`forte`);
   textStyle(BOLD);
@@ -184,10 +193,8 @@ function updateSnowball() {
 
     //calling the function 'growSnowman' - snowman grows when snowball touches him
     growSnowman(snowBall, snowMan);
-
     //calling the function 'snowballCollection'- collecting the snowballs
     snowballCollection(snowBall, snowMan);
-
     //calling the function 'allSnowballCollected'- when all snowballs are collected
     allSnowballCollected();
   }
@@ -218,7 +225,8 @@ function updateKid() {
     kid.wrap();
     kid.display();
 
-    lostHat(kid, snowMan);
+    //calling the function 'kidsStealHat' - snowman loses magic and 'lostMagic' state triggers
+    kidsStealHat(kid, snowMan);
   }
 }
 
@@ -294,7 +302,7 @@ function snowmanDead() {
 }
 
 //snowman loses magic and cannot continue game because he cannot move without his hat
-function lostHat(kid, snowMan) {
+function kidsStealHat(kid, snowMan) {
   //check if kid and snowman touch
   let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
   if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
@@ -304,6 +312,6 @@ function lostHat(kid, snowMan) {
   //if the hat tilts past 3 px
   if (snowMan.hatRotation > 3) {
     //lost magic state triggers
-    state = `lostHat`;
+    state = `lostMagic`;
   }
 }
