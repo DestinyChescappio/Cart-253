@@ -3,7 +3,7 @@ class Snowman {
   constructor(x, y) {
     //position
     this.x = 0;
-    this.y = height - this.size / 2;
+    this.y = height - 25;
     //size
     this.size = 50;
     //velocity
@@ -70,6 +70,7 @@ class Snowman {
   //displaying the snowman
   //making the snowman's head, body, carrot nose be in sync when their size changes with melting or growing
   display() {
+    this.y = height - this.size / 2;
     push();
     noStroke();
     fill(255);
@@ -82,6 +83,7 @@ class Snowman {
     let headSize = this.size / 2;
     noStroke();
     ellipse(headX, headY, headSize);
+
     pop();
 
     //carrot nose
@@ -91,7 +93,7 @@ class Snowman {
     ellipse(headX + headSize / 3, headY, headSize / 2, headSize / 8);
 
     push();
-    //hat rotates
+    //hat rotate
     translate(headX, headY - headSize / 2);
     rotate(this.hatRotation);
     //hat-rect part
