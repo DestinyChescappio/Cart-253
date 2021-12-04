@@ -3,7 +3,7 @@ class Snowman {
   constructor(x, y) {
     //position
     this.x = 0;
-    this.y = height - 25;
+    this.y = height - this.size / 2;
     //size
     this.size = 50;
     //velocity
@@ -83,6 +83,7 @@ class Snowman {
     noStroke();
     ellipse(headX, headY, headSize);
     pop();
+
     //carrot nose
     push();
     noStroke();
@@ -90,6 +91,7 @@ class Snowman {
     ellipse(headX + headSize / 3, headY, headSize / 2, headSize / 8);
 
     push();
+    //hat rotates
     translate(headX, headY - headSize / 2);
     rotate(this.hatRotation);
     //hat-rect part

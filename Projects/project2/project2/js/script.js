@@ -258,11 +258,8 @@ function meltSnowman(fireBall, snowMan) {
   if (d < snowMan.size / 2 + fireBall.width / 2 + fireBall.height / 2) {
     //snowman shrinks every 2 frames
     snowMan.size -= 1;
-
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 10, 500);
-
-    ouchSFX.play();
   }
 }
 
