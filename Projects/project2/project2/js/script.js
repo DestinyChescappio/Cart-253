@@ -155,7 +155,7 @@ function lostMagic() {
 }
 
 //press mouse pad/buttom to start game
-function mousePressed() {
+function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
   }
@@ -179,6 +179,8 @@ function game() {
   numSnowballText();
 
   snowmanDead();
+
+  snowmanSurvive();
 }
 
 // updating the snowman behaviour
@@ -315,7 +317,9 @@ function lostHat(kid, snowMan) {
 }
 
 function snowmanSurvive() {
-  if ((numSnowballCollected = 20)) {
+  //if the snowman collects more than 19; initially if he collects 20
+  if (numSnowballCollected > 19) {
+    //the winning state triggers
     state = `winning`;
   }
 }
