@@ -3,9 +3,11 @@ class Snowman {
   constructor(x, y) {
     //position
     this.x = 0;
-    this.y = height - 25;
+
     //size
     this.size = 50;
+
+    this.y = height - this.size / 2;
     //velocity
     this.vx = 0;
     this.vy = 0;
@@ -22,15 +24,24 @@ class Snowman {
     this.gravity = 0.5;
     //using rotation to make hat tilt
     this.hatRotation = 0;
+    this.isJumping = false;
   }
 
+  jump() {
+    //only jump if am not still jumping
+    if (this.isJumping === false) {
+      this.isJumping = true;
+      this.vy = -15;
+    }
+  }
   //snowman movement
   move() {
     //y velocity behavior is gravity
-    this.vy += this.gravity;
+    //  this.vy += this.gravity;
     //gravity occurs after up arrow is pressed and velocity is negative
     if (keyIsDown(UP_ARROW)) {
-      this.vy = -5;
+      // call the jump method
+      this.jump();
     }
     //set to left arrow pressed at horizontal movement
     if (keyIsDown(LEFT_ARROW)) {
@@ -48,11 +59,26 @@ class Snowman {
     }
     //movement set up
     this.x = this.x + this.vx;
-    this.y = this.y + this.vy;
 
     //constraining snowman from going past canvas
     this.x = constrain(this.x, 0, width);
-    this.y = constrain(this.y, 0, height - 25);
+
+    // snowman is jumping
+    if (this.isJumping == true) {
+      //come down
+      this.vy += 1;
+      //change y
+      this.y += this.vy;
+
+      if (this.y >= height - this.size / 2) {
+        this.vy = 0;
+        this.isJumping = false;
+      }
+    }
+    //if not jumping
+    else {
+      this.y = height - this.size / 2;
+    }
   }
 
   //size decreases the more the snowman moves
@@ -70,12 +96,15 @@ class Snowman {
   //displaying the snowman
   //making the snowman's head, body, carrot nose be in sync when their size changes with melting or growing
   display() {
-    this.y = height - this.size / 2;
+    //  this.y = (height-this.vy)+this.size / 2;
     push();
     noStroke();
     fill(255);
+
     // snowman body
     ellipse(this.x, this.y, this.size);
+    fill(255, 0, 0);
+    ellipse(this.x, this.y, 10);
 
     //snowman head
     let headX = this.x;

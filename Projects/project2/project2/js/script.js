@@ -9,6 +9,9 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 "use strict";
 let state = "title";
 
+//lost magic image
+let lostMagicImage = undefined;
+
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
@@ -41,6 +44,8 @@ let numKid = 3;
 //the fire.png image to use for the fireballs
 //the sound used when a snowball is collected
 function preload() {
+  //lost magic image
+  lostMagicImage = loadImage(`assets/images/lost-magic.gif`);
   //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
   //ting! sound when snowman touches snowball
@@ -129,6 +134,7 @@ function loser() {
 }
 
 function lostMagic() {
+  image(lostMagicImage, width / 2, height / 2, 200, 200);
   fill(255);
   textFont(`forte`);
   textStyle(BOLD);
@@ -260,6 +266,10 @@ function meltSnowman(fireBall, snowMan) {
     snowMan.size -= 1;
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 10, 500);
+
+    if (ouchSFX.isPlaying() === false) {
+      ouchSFX.play();
+    }
   }
 }
 
