@@ -104,6 +104,8 @@ function draw() {
     title();
   } else if (state === `startGame`) {
     game();
+  } else if (state === `winning`) {
+    winner();
   } else if (state === `gameOver`) {
     loser();
   } else if (state === `lostMagic`) {
@@ -131,6 +133,15 @@ function loser() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Mr.Snowman melted`, width / 2, height / 2);
+}
+
+function winner() {
+  fill(255);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Mr.Snowman survived`, width / 2, height / 2);
 }
 
 function lostMagic() {
@@ -300,5 +311,11 @@ function lostHat(kid, snowMan) {
   if (snowMan.hatRotation > 2) {
     //lost magic state triggers
     state = `lostMagic`;
+  }
+}
+
+function snowmanSurvive() {
+  if ((numSnowballCollected = 20)) {
+    state = `winning`;
   }
 }

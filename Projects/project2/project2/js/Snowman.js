@@ -20,28 +20,24 @@ class Snowman {
     this.grow = false;
     //melts more when it touches fireball
     this.melt = false;
-    //the force that makes the snowman fall
-    this.gravity = 0.5;
     //using rotation to make hat tilt
     this.hatRotation = 0;
+    //snowman is not jumping if up arrow is not pressed
     this.isJumping = false;
   }
 
-  jump() {
-    //only jump if am not still jumping
-    if (this.isJumping === false) {
-      this.isJumping = true;
-      this.vy = -15;
-    }
-  }
   //snowman movement
   move() {
-    //y velocity behavior is gravity
-    //  this.vy += this.gravity;
     //gravity occurs after up arrow is pressed and velocity is negative
     if (keyIsDown(UP_ARROW)) {
       // call the jump method
-      this.jump();
+      //only jump if snowman still not jumping
+      if (this.isJumping === false) {
+        //jumping is true
+        this.isJumping = true;
+        //how much snowman jumps
+        this.vy = -15;
+      }
     }
     //set to left arrow pressed at horizontal movement
     if (keyIsDown(LEFT_ARROW)) {
@@ -70,6 +66,7 @@ class Snowman {
       //change y
       this.y += this.vy;
 
+      //jumping velocity is at zero and cannot 'jump'
       if (this.y >= height - this.size / 2) {
         this.vy = 0;
         this.isJumping = false;
@@ -96,7 +93,6 @@ class Snowman {
   //displaying the snowman
   //making the snowman's head, body, carrot nose be in sync when their size changes with melting or growing
   display() {
-    //  this.y = (height-this.vy)+this.size / 2;
     push();
     noStroke();
     fill(255);
@@ -112,7 +108,6 @@ class Snowman {
     let headSize = this.size / 2;
     noStroke();
     ellipse(headX, headY, headSize);
-
     pop();
 
     //carrot nose
