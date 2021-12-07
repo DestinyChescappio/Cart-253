@@ -94,13 +94,10 @@ class Snowman {
   //making the snowman's head, body, carrot nose be in sync when their size changes with melting or growing
   display() {
     push();
+    // snowman body
     noStroke();
     fill(255);
-
-    // snowman body
     ellipse(this.x, this.y, this.size);
-    fill(255, 0, 0);
-    ellipse(this.x, this.y, 10);
 
     //snowman head
     let headX = this.x;
