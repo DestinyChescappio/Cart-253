@@ -9,6 +9,8 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 "use strict";
 let state = "title";
 
+let winterWonderlandImage;
+
 //lost magic image
 let lostMagicImage = undefined;
 
@@ -44,6 +46,8 @@ let numKid = 3;
 //the fire.png image to use for the fireballs
 //the sound used when a snowball is collected
 function preload() {
+  //background image
+  winterWonderlandImage = loadImage(`assets/images/background-winterLand.jpg`);
   //lost magic image
   lostMagicImage = loadImage(`assets/images/lost-magic.gif`);
   //fireball image
@@ -118,7 +122,7 @@ function draw() {
 //title page displays
 function title() {
   fill(255);
-  textFont(`forte`);
+  textFont(`marker felt`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
@@ -163,6 +167,8 @@ function keyPressed() {
 
 //what happens in the game
 function game() {
+  imageMode(CENTER);
+  image(winterWonderlandImage, windowWidth / 2, windowHeight / 2);
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
 
