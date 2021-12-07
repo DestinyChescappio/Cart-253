@@ -1,4 +1,5 @@
 class Kid {
+  //properties of many kids
   constructor(x, y, kidColor) {
     //position
     this.x = x;

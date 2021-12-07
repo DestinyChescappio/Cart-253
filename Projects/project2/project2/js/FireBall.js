@@ -12,8 +12,6 @@ class FireBall {
     this.vy = 5;
     //image used as the object
     this.image = fireBallImage;
-    //not melting if not in contact with snowman
-    //this.melt = false;
   }
 
   //moving the fireballs

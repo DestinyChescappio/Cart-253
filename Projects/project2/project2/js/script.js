@@ -1,12 +1,27 @@
 /**
-Keep Mr. Snowman Alive!
+P2: Keep Mr. Snowman Alive!
 Destiny Chescappio
 
 Move the snowman with keys and collect snowballs! snowman shrinks if snowballs
-are not collected and when it moves. Snowman dies and melts away if it touches a fireball
+are not collected and when it moves. Snowman dies and melts away if it touches a fireball.
+Snowman must avoid touching kids to avoid his magic hat getting stolen and he stops moving.
+*/
+
+/**
+credits
+ouchSFX sound name: Man getting Hit
+artist credit: Under7dude
+url: https://freesound.org/people/Under7dude/sounds/163441/
+
+tingSFX sound name: Triangle, 4", Hard Hit, A.wav
+artist credit: InspectorJ
+url: https://freesound.org/people/InspectorJ/sounds/354140/
 */
 
 "use strict";
+/**
+set up for snowman(user), snowball, fireball, kid, background images,title state,and sound.
+*/
 //title state is the beginner of the program/game
 let state = "title";
 
@@ -144,13 +159,13 @@ function title() {
   textSize(20);
   textAlign(CENTER);
   text(
-    `Press LEFT/RIGHT arrows to move & UP arrow to jump`,
+    `(Press LEFT/RIGHT arrows to move & UP arrow to jump)`,
     width / 2,
     height - 60
   );
   textSize(15);
   text(
-    `Control Mr.Snowman and collect snowballs to survive to avoid melting from the fireballs. Be quick, the children may steal your magic hat.`,
+    `Control Mr.Snowman to collect snowballs to survive and avoid fireballs from melting him. Be quick, the children may steal your magic hat.`,
     width / 2,
     height - 80
   );
@@ -243,10 +258,11 @@ function updateSnowball() {
     snowBall.move();
     snowBall.wrap();
     snowBall.display();
-    //calling the function - collecting the snowballs
-    snowballCollection(snowBall, snowMan);
+
     //calling the function - snowman grows when snowball touches him
     growSnowman(snowBall, snowMan);
+    //calling the function - collecting the snowballs
+    snowballCollection(snowBall, snowMan);
   }
 }
 
@@ -295,6 +311,18 @@ function snowmanSurvive() {
   }
 }
 
+//snowman grows when he touches snowball
+function growSnowman(snowBall, snowMan) {
+  //if both snowball and snowman touches
+  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
+  //snowman size grows
+  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
+    snowMan.size += 10;
+    //constraining snowman size when it grows and stops at 500 px
+    snowMan.size = constrain(snowMan.size, 0, 100);
+  }
+}
+
 //snowball gets collected by snowman
 function snowballCollection(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
@@ -318,18 +346,6 @@ function snowballCollection(snowBall, snowMan) {
   }
 }
 
-//snowman grows when he touches snowball
-function growSnowman(snowBall, snowMan) {
-  //if both snowball and snowman touches
-  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-  //snowman size grows
-  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
-    snowMan.size += 20;
-    //constraining snowman size when it grows and stops at 500 px
-    snowMan.size = constrain(snowMan.size, 0, 500);
-  }
-}
-
 //snowman size shrinks (melts) when it touches a fireball
 function meltSnowman(fireBall, snowMan) {
   //check to overlap if fireball hasn't melted snowman
@@ -347,6 +363,16 @@ function meltSnowman(fireBall, snowMan) {
   }
 }
 
+//drawing a text that notifies the user how many snowballs are collected
+function numSnowballText() {
+  //text located at top right corner of canvas
+  fill(255);
+  textFont(`marker felt`);
+  textStyle(BOLD);
+  textSize(20);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
+}
+
 //snowman loses magic when the kids "knock" off his hat (when the kids touch snowman)
 function lostHat(kid, snowMan) {
   //check if kid and snowman touch
@@ -360,14 +386,4 @@ function lostHat(kid, snowMan) {
     //lost magic state triggers
     state = `lostMagic`;
   }
-}
-
-//drawing a text that notifies the user how many snowballs are collected
-function numSnowballText() {
-  //text located at top right corner of canvas
-  fill(0);
-  textFont(`forte`);
-  textStyle(BOLD);
-  textSize(15);
-  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
