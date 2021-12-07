@@ -13,6 +13,11 @@ let state = "title";
 //background image
 let winterWonderlandImage;
 
+let titleImage = undefined;
+
+//game over image
+let gameOverImage = undefined;
+
 //lost magic image
 let lostMagicImage = undefined;
 
@@ -50,6 +55,10 @@ let numKid = 3;
 function preload() {
   //background image
   winterWonderlandImage = loadImage(`assets/images/background-winterLand.jpg`);
+  //title image
+  titleImage = loadImage(`assets/images/title.gif`);
+  //loser page image
+  gameOverImage = loadImage(`assets/images/melt-snowman.gif`);
   //lost magic image
   lostMagicImage = loadImage(`assets/images/lost-magic.gif`);
   //fireball image
@@ -104,7 +113,7 @@ Drawing:
 the title, game, and loser pages
 */
 function draw() {
-  background(155);
+  background(236, 205, 255);
 
   if (state === `title`) {
     title();
@@ -123,43 +132,73 @@ function draw() {
 
 //title page displays
 function title() {
+  image(titleImage, width - 975, height - 630, 500, 500);
   fill(255);
   textFont(`marker felt`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Save Mr.Snowman!`, width / 2, height / 2);
+  text(`Save Mr.Snowman!`, width / 2, height - 700);
+  //instructions
+  //to start game
+  fill(255);
+  textFont(`courier`);
+  textStyle(NORMAL);
+  textSize(20);
+  textAlign(CENTER);
+  text(
+    `Press LEFT/RIGHT arrows to move & UP arrow to jump`,
+    width / 2,
+    height - 60
+  );
+  textSize(15);
+  text(
+    `Control Mr.Snowman and collect snowballs to survive to avoid melting from the fireballs. Be quick, the children may steal your magic hat.`,
+    width / 2,
+    height - 80
+  );
+  textSize(25);
+  textStyle(BOLD);
+  text(`PRESS ANY KEY TO START`, width / 2, height - 20);
 }
 
 //loser page displays
 function loser() {
+  image(gameOverImage, width / 2, height / 2, 400, 400);
   fill(255);
-  textFont(`forte`);
+  textFont(`courier`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Mr.Snowman melted`, width / 2, height / 2);
+  text(`Mr.Snowman melted. Try Again!`, width / 2, height - 700);
 }
 
 //winner page displays
 function winner() {
+  imageMode(CENTER);
+  image(winterWonderlandImage, windowWidth / 2, windowHeight / 2);
+  image(titleImage, width / 2, height / 2, 500, 500);
   fill(255);
-  textFont(`forte`);
+  textFont(`courier`);
   textStyle(BOLD);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`Mr.Snowman survived`, width / 2, height / 2);
+  text(`Mr.Snowman survived!`, width / 2, height - 700);
 }
 
 //lost magic page displays
 function lostMagic() {
-  image(lostMagicImage, width / 2, height / 2, 200, 200);
+  image(lostMagicImage, width / 2, height / 2, 500, 500);
   fill(255);
-  textFont(`forte`);
+  textFont(`courier`);
   textStyle(BOLD);
-  textSize(60);
+  textSize(45);
   textAlign(CENTER, CENTER);
-  text(`Mr.Snowman's magic hat has been taken off`, width / 2, height / 2);
+  text(
+    `Mr.Snowman's magic hat has been taken off. Try Again!`,
+    width / 2,
+    height - 700
+  );
 }
 
 //press mouse pad/buttom to start game
