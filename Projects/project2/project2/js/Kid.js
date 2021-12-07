@@ -8,7 +8,7 @@ class Kid {
     this.height = 35;
     //velocity
     this.vy = 0;
-    this.vx = -4;
+    this.vx = -2;
     //speed when moving
     this.speed = 4;
     //kidColor properties are located in the main script

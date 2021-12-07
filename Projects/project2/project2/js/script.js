@@ -47,7 +47,7 @@ let numFireBall = 5;
 //the array of kids running
 let kids = [];
 //how many kids
-let numKid = 3;
+let numKid = 4;
 
 //Loading:
 //the fire.png image to use for the fireballs
@@ -192,7 +192,7 @@ function lostMagic() {
   fill(255);
   textFont(`courier`);
   textStyle(BOLD);
-  textSize(45);
+  textSize(35);
   textAlign(CENTER, CENTER);
   text(
     `Mr.Snowman's magic hat has been taken off. Try Again!`,
@@ -362,7 +362,7 @@ function lostHat(kid, snowMan) {
   let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
   if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
     //hat rotates at 0.003 px
-    snowMan.hatRotation += 0.003;
+    snowMan.hatRotation += 0.01;
   }
   //if the hat rotates more than 2 px
   if (snowMan.hatRotation > 2) {

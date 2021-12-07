@@ -36,7 +36,7 @@ class Snowman {
         //jumping is true
         this.isJumping = true;
         //how much snowman jumps
-        this.vy = -25;
+        this.vy = -18;
       }
     }
     //set to left arrow pressed at horizontal movement
@@ -61,8 +61,8 @@ class Snowman {
 
     // snowman is jumping
     if (this.isJumping == true) {
-      //come down
-      this.vy += 1;
+      //how much snowman falls
+      this.vy += 0.8;
       //change y
       this.y += this.vy;
 
