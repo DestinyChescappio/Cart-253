@@ -7,8 +7,10 @@ are not collected and when it moves. Snowman dies and melts away if it touches a
 */
 
 "use strict";
+//title state is the beginner of the program/game
 let state = "title";
 
+//background image
 let winterWonderlandImage;
 
 //lost magic image
@@ -99,7 +101,7 @@ function setup() {
 
 /**
 Drawing:
-the title, game, and loser page
+the title, game, and loser pages
 */
 function draw() {
   background(155);
@@ -139,6 +141,7 @@ function loser() {
   text(`Mr.Snowman melted`, width / 2, height / 2);
 }
 
+//winner page displays
 function winner() {
   fill(255);
   textFont(`forte`);
@@ -148,6 +151,7 @@ function winner() {
   text(`Mr.Snowman survived`, width / 2, height / 2);
 }
 
+//lost magic page displays
 function lostMagic() {
   image(lostMagicImage, width / 2, height / 2, 200, 200);
   fill(255);
@@ -234,11 +238,11 @@ function updateKid() {
   //drawing the array of kids using forloop
   for (let i = 0; i < kids.length; i++) {
     let kid = kids[i];
-    //calling methods- move, wrap, display
+    //calling methods- move, wrap, display from kid.js
     kid.move();
     kid.wrap();
     kid.display();
-
+    //losthat function called
     lostHat(kid, snowMan);
   }
 }
@@ -268,8 +272,11 @@ function snowballCollection(snowBall, snowMan) {
 
       //when snowball touches snowman, the 'ting!' sound triggers with its random rates
       let currentRate = random(0.3, 0.5);
+      //plays random rates
       tingSFX.rate(currentRate);
+      //volume is set
       tingSFX.setVolume(0.2);
+      //to play it
       tingSFX.play();
     }
   }
@@ -285,7 +292,7 @@ function meltSnowman(fireBall, snowMan) {
     snowMan.size -= 1;
     //snowman size is constrained from getting any larger/smaller stopping at 500 px
     snowMan.size = constrain(snowMan.size, 10, 500);
-
+    //if the snowman is melting, the sound plays once; otherwise the sound playing is false
     if (ouchSFX.isPlaying() === false) {
       ouchSFX.play();
     }
@@ -310,18 +317,22 @@ function snowmanDead() {
   }
 }
 
+//snowman loses magic when the kids "knock" off his hat (when the kids touch snowman)
 function lostHat(kid, snowMan) {
   //check if kid and snowman touch
   let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
   if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
+    //hat rotates at 0.003 px
     snowMan.hatRotation += 0.003;
   }
+  //if the hat rotates more than 2 px
   if (snowMan.hatRotation > 2) {
     //lost magic state triggers
     state = `lostMagic`;
   }
 }
 
+//snowman survives when he collects more than 19 snowballs and the user wins
 function snowmanSurvive() {
   //if the snowman collects more than 19; initially if he collects 20
   if (numSnowballCollected > 19) {
