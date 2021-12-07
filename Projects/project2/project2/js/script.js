@@ -12,12 +12,10 @@ let state = "title";
 
 //background image
 let winterWonderlandImage;
-
+//title image
 let titleImage = undefined;
-
 //game over image
 let gameOverImage = undefined;
-
 //lost magic image
 let lostMagicImage = undefined;
 
@@ -63,6 +61,7 @@ function preload() {
   lostMagicImage = loadImage(`assets/images/lost-magic.gif`);
   //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
+
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
   //ouch! sound when snowman touches fireball
@@ -72,7 +71,6 @@ function preload() {
 //canvas & loops/calling snowman, kids & fireballs,snowballs
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   //calling the snowman inheritance object
   snowMan = new Snowman();
 
@@ -114,7 +112,6 @@ the title, game, and loser pages
 */
 function draw() {
   background(236, 205, 255);
-
   if (state === `title`) {
     title();
   } else if (state === `startGame`) {
@@ -162,17 +159,6 @@ function title() {
   text(`PRESS ANY KEY TO START`, width / 2, height - 20);
 }
 
-//loser page displays
-function loser() {
-  image(gameOverImage, width / 2, height / 2, 400, 400);
-  fill(255);
-  textFont(`courier`);
-  textStyle(BOLD);
-  textSize(60);
-  textAlign(CENTER, CENTER);
-  text(`Mr.Snowman melted. Try Again!`, width / 2, height - 700);
-}
-
 //winner page displays
 function winner() {
   imageMode(CENTER);
@@ -184,6 +170,17 @@ function winner() {
   textSize(60);
   textAlign(CENTER, CENTER);
   text(`Mr.Snowman survived!`, width / 2, height - 700);
+}
+
+//loser page displays
+function loser() {
+  image(gameOverImage, width / 2, height / 2, 400, 400);
+  fill(255);
+  textFont(`courier`);
+  textStyle(BOLD);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text(`Mr.Snowman melted. Try Again!`, width / 2, height - 700);
 }
 
 //lost magic page displays
@@ -212,24 +209,18 @@ function keyPressed() {
 function game() {
   imageMode(CENTER);
   image(winterWonderlandImage, windowWidth / 2, windowHeight / 2);
+
   //updating behaviour of the Snowman inheritance object from snowman.js file
   updateSnowman();
-
   //updating behaviour of the snowball inheritance object from snowballs.js file
   updateSnowball();
-
   //updating behaviour of the fireball inheritance object from fireball.js file
   updateFireball();
-
   //updating behaviour of the kid inheritance object from kid.js
   updateKid();
 
   //displaying the text how many snowballs and fireballs touch snowman
   numSnowballText();
-
-  snowmanDead();
-
-  snowmanSurvive();
 }
 
 // updating the snowman behaviour
@@ -237,6 +228,10 @@ function updateSnowman() {
   snowMan.move();
   snowMan.display();
   snowMan.sizingMovement();
+  //calling the function- when snowman dies
+  snowmanDead();
+  //when snowman survives
+  snowmanSurvive();
 }
 
 //updating the snowball behaviour
@@ -244,16 +239,14 @@ function updateSnowball() {
   //drawing the array of snowballs
   for (let i = 0; i < snowBalls.length; i++) {
     let snowBall = snowBalls[i];
-    //calling methods- move,wrap,display
+    //calling methods - move,wrap,display
     snowBall.move();
     snowBall.wrap();
     snowBall.display();
-
-    //calling the function 'growSnowman' - snowman grows when snowball touches him
-    growSnowman(snowBall, snowMan);
-
-    //calling the function 'snowballCollection'- collecting the snowballs
+    //calling the function - collecting the snowballs
     snowballCollection(snowBall, snowMan);
+    //calling the function - snowman grows when snowball touches him
+    growSnowman(snowBall, snowMan);
   }
 }
 
@@ -266,7 +259,6 @@ function updateFireball() {
     fireBall.move();
     fireBall.wrap();
     fireBall.display();
-
     //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
     meltSnowman(fireBall, snowMan);
   }
@@ -286,15 +278,20 @@ function updateKid() {
   }
 }
 
-//snowman grows when he touches snowball
-function growSnowman(snowBall, snowMan) {
-  //if both snowball and snowman touches
-  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-  //snowman size grows
-  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
-    snowMan.size += 20;
-    //constraining snowman size when it grows and stops at 500 px
-    snowMan.size = constrain(snowMan.size, 0, 500);
+//snowman melts and dies when his size is less than 15 px
+function snowmanDead() {
+  if (snowMan.size < 15) {
+    //game over state triggers
+    state = `gameOver`;
+  }
+}
+
+//snowman survives when he collects more than 19 snowballs and the user wins
+function snowmanSurvive() {
+  //if the snowman collects more than 19; initially if he collects 20
+  if (numSnowballCollected > 19) {
+    //the winning state triggers
+    state = `winning`;
   }
 }
 
@@ -321,6 +318,18 @@ function snowballCollection(snowBall, snowMan) {
   }
 }
 
+//snowman grows when he touches snowball
+function growSnowman(snowBall, snowMan) {
+  //if both snowball and snowman touches
+  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
+  //snowman size grows
+  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
+    snowMan.size += 20;
+    //constraining snowman size when it grows and stops at 500 px
+    snowMan.size = constrain(snowMan.size, 0, 500);
+  }
+}
+
 //snowman size shrinks (melts) when it touches a fireball
 function meltSnowman(fireBall, snowMan) {
   //check to overlap if fireball hasn't melted snowman
@@ -335,24 +344,6 @@ function meltSnowman(fireBall, snowMan) {
     if (ouchSFX.isPlaying() === false) {
       ouchSFX.play();
     }
-  }
-}
-
-//drawing a text that notifies the user how many snowballs are collected
-function numSnowballText() {
-  //text located at top right corner of canvas
-  fill(0);
-  textFont(`forte`);
-  textStyle(BOLD);
-  textSize(15);
-  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
-}
-
-//snowman melts and dies when his size is less than 15 px
-function snowmanDead() {
-  if (snowMan.size < 15) {
-    //game over state triggers
-    state = `gameOver`;
   }
 }
 
@@ -371,11 +362,12 @@ function lostHat(kid, snowMan) {
   }
 }
 
-//snowman survives when he collects more than 19 snowballs and the user wins
-function snowmanSurvive() {
-  //if the snowman collects more than 19; initially if he collects 20
-  if (numSnowballCollected > 19) {
-    //the winning state triggers
-    state = `winning`;
-  }
+//drawing a text that notifies the user how many snowballs are collected
+function numSnowballText() {
+  //text located at top right corner of canvas
+  fill(0);
+  textFont(`forte`);
+  textStyle(BOLD);
+  textSize(15);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
