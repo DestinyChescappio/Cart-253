@@ -2,7 +2,8 @@
 P2: Keep Mr. Snowman Alive!
 Destiny Chescappio
 
-Move the snowman with keys and collect snowballs! snowman shrinks if snowballs
+Game:
+Move the snowman with keys and collect snowballs to maintain his size and survive! snowman shrinks if snowballs
 are not collected and when it moves. Snowman dies and melts away if it touches a fireball.
 Snowman must avoid touching kids to avoid his magic hat getting stolen and he stops moving.
 */
