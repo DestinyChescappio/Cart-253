@@ -389,8 +389,8 @@ function numSnowballText() {
   fill(255);
   textFont(`marker felt`);
   textStyle(BOLD);
-  textSize(20);
-  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
+  textSize(40);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1200, 80);
 }
 
 ///instructor (Pippan Barr) has helped with this
