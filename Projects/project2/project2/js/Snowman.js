@@ -75,12 +75,14 @@ class Snowman {
     }
   }
 
+  //Instructor (Pippin) helped with this
   //size decreases the more the snowman moves
   sizingMovement() {
     if (!this.grow) {
       //if it's moving, the size reduces at 0.1
       if (this.vx > 0 || this.vx < 0) {
         this.size -= 0.07;
+        //Instructor (Pippin) helped with constraining the size limit
         //snowman size is constrained from getting any smaller/bigger
         this.size = constrain(this.size, 10, 500);
       }
@@ -96,6 +98,7 @@ class Snowman {
     fill(255);
     ellipse(this.x, this.y, this.size);
 
+    //Instructor (Pippin) helped with making the head size be in sync with the body when resizing
     //snowman head
     let headX = this.x;
     let headY = this.y - (2 * this.size) / 3;
@@ -111,6 +114,7 @@ class Snowman {
     ellipse(headX + headSize / 3, headY, headSize / 2, headSize / 8);
 
     push();
+    //Instructor (Pippin) helped with rotating the hat
     //hat rotate
     translate(headX, headY - headSize / 2);
     rotate(this.hatRotation);

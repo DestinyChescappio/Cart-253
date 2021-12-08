@@ -323,6 +323,7 @@ function growSnowman(snowBall, snowMan) {
   }
 }
 
+//TA (Sharon) helped with this
 //snowball gets collected by snowman
 function snowballCollection(snowBall, snowMan) {
   //check to overlapp if snowball hasn't been collected yet
@@ -363,6 +364,7 @@ function meltSnowman(fireBall, snowMan) {
   }
 }
 
+///TA (Sharon) has helped with this concept
 //drawing a text that notifies the user how many snowballs are collected
 function numSnowballText() {
   //text located at top right corner of canvas
@@ -373,6 +375,7 @@ function numSnowballText() {
   text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
 }
 
+///instructor (Pippan Barr) has helped with this
 //snowman loses magic when the kids "knock" off his hat (when the kids touch snowman)
 function lostHat(kid, snowMan) {
   //check if kid and snowman touch
