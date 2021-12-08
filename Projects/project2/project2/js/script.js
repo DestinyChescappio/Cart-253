@@ -25,6 +25,8 @@ set up for snowman(user), snowball, fireball, kid, background images,title state
 //title state is the beginner of the program/game
 let state = "title";
 
+//background game music
+let xmasMusic;
 //background image
 let winterWonderlandImage;
 //title image
@@ -77,6 +79,8 @@ function preload() {
   //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
 
+  //game music
+  xmasMusic = loadSound(`assets/sounds/gameMusic.mp3`);
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
   //ouch! sound when snowman touches fireball
@@ -218,6 +222,12 @@ function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
   }
+  //music plays once
+  if (!xmasMusic.isPlaying()) {
+    //music plays once in a loop
+    xmasMusic.loop();
+    xmasMusic.setVolume(0.08);
+  }
 }
 
 //what happens in the game
@@ -340,7 +350,7 @@ function snowballCollection(snowBall, snowMan) {
       //plays random rates
       tingSFX.rate(currentRate);
       //volume is set
-      tingSFX.setVolume(0.2);
+      tingSFX.setVolume(0.03);
       //to play it
       tingSFX.play();
     }
@@ -359,6 +369,9 @@ function meltSnowman(fireBall, snowMan) {
     snowMan.size = constrain(snowMan.size, 10, 500);
     //if the snowman is melting, the sound plays once; otherwise the sound playing is false
     if (ouchSFX.isPlaying() === false) {
+      //volume set
+      ouchSFX.setVolume(0.05);
+      //to play it
       ouchSFX.play();
     }
   }
