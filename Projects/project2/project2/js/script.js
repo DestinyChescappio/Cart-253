@@ -37,8 +37,6 @@ let lostMagicImage = undefined;
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
-//sound of backgroud game music
-let music;
 //sound is used when the snowball and snowman touches
 let tingSFX = undefined;
 //sound is used when the fireball and snowman touches
@@ -79,8 +77,6 @@ function preload() {
   //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
 
-  //music plays when game starts
-  music = loadSound(`assets/sounds/gameMusic.mp3`);
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
   //ouch! sound when snowman touches fireball
@@ -175,7 +171,7 @@ function title() {
   );
   textSize(25);
   textStyle(BOLD);
-  text(`PRESS 'ANY KEY' TO START`, width / 2, height - 20);
+  text(`PRESS ANY KEY TO START`, width / 2, height - 20);
 }
 
 //winner page displays
@@ -217,185 +213,180 @@ function lostMagic() {
   );
 }
 
-//press space bar to start game
+//press mouse pad/buttom to start game
 function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
   }
-  //if it's playing once
-  if (!music.isPlaying()) {
-    //it plays in a loop
-    music.loop();
+}
+
+//what happens in the game
+function game() {
+  imageMode(CENTER);
+  image(winterWonderlandImage, windowWidth / 2, windowHeight / 2);
+
+  //updating behaviour of the Snowman inheritance object from snowman.js file
+  updateSnowman();
+  //updating behaviour of the snowball inheritance object from snowballs.js file
+  updateSnowball();
+  //updating behaviour of the fireball inheritance object from fireball.js file
+  updateFireball();
+  //updating behaviour of the kid inheritance object from kid.js
+  updateKid();
+
+  //displaying the text how many snowballs and fireballs touch snowman
+  numSnowballText();
+}
+
+// updating the snowman behaviour
+function updateSnowman() {
+  snowMan.move();
+  snowMan.display();
+  snowMan.sizingMovement();
+  //calling the function- when snowman dies
+  snowmanDead();
+  //when snowman survives
+  snowmanSurvive();
+}
+
+//updating the snowball behaviour
+function updateSnowball() {
+  //drawing the array of snowballs
+  for (let i = 0; i < snowBalls.length; i++) {
+    let snowBall = snowBalls[i];
+    //calling methods - move,wrap,display
+    snowBall.move();
+    snowBall.wrap();
+    snowBall.display();
+
+    //calling the function - snowman grows when snowball touches him
+    growSnowman(snowBall, snowMan);
+    //calling the function - collecting the snowballs
+    snowballCollection(snowBall, snowMan);
   }
+}
 
-  //what happens in the game
-  function game() {
-    imageMode(CENTER);
-    image(winterWonderlandImage, windowWidth / 2, windowHeight / 2);
-
-    //updating behaviour of the Snowman inheritance object from snowman.js file
-    updateSnowman();
-    //updating behaviour of the snowball inheritance object from snowballs.js file
-    updateSnowball();
-    //updating behaviour of the fireball inheritance object from fireball.js file
-    updateFireball();
-    //updating behaviour of the kid inheritance object from kid.js
-    updateKid();
-
-    //displaying the text how many snowballs and fireballs touch snowman
-    numSnowballText();
+//updating the fireball behaviour
+function updateFireball() {
+  //drawing the array of fire balls using a forloop
+  for (let i = 0; i < fireBalls.length; i++) {
+    let fireBall = fireBalls[i];
+    // calling methods- move, wrap, display
+    fireBall.move();
+    fireBall.wrap();
+    fireBall.display();
+    //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
+    meltSnowman(fireBall, snowMan);
   }
+}
 
-  // updating the snowman behaviour
-  function updateSnowman() {
-    snowMan.move();
-    snowMan.display();
-    snowMan.sizingMovement();
-    //calling the function- when snowman dies
-    snowmanDead();
-    //when snowman survives
-    snowmanSurvive();
+//updating the kid behaviour
+function updateKid() {
+  //drawing the array of kids using forloop
+  for (let i = 0; i < kids.length; i++) {
+    let kid = kids[i];
+    //calling methods- move, wrap, display from kid.js
+    kid.move();
+    kid.wrap();
+    kid.display();
+    //losthat function called
+    lostHat(kid, snowMan);
   }
+}
 
-  //updating the snowball behaviour
-  function updateSnowball() {
-    //drawing the array of snowballs
-    for (let i = 0; i < snowBalls.length; i++) {
-      let snowBall = snowBalls[i];
-      //calling methods - move,wrap,display
-      snowBall.move();
-      snowBall.wrap();
-      snowBall.display();
-
-      //calling the function - snowman grows when snowball touches him
-      growSnowman(snowBall, snowMan);
-      //calling the function - collecting the snowballs
-      snowballCollection(snowBall, snowMan);
-    }
+//snowman melts and dies when his size is less than 15 px
+function snowmanDead() {
+  if (snowMan.size < 15) {
+    //game over state triggers
+    state = `gameOver`;
   }
+}
 
-  //updating the fireball behaviour
-  function updateFireball() {
-    //drawing the array of fire balls using a forloop
-    for (let i = 0; i < fireBalls.length; i++) {
-      let fireBall = fireBalls[i];
-      // calling methods- move, wrap, display
-      fireBall.move();
-      fireBall.wrap();
-      fireBall.display();
-      //calling the function 'meltSnowman' - snowman shrinks when fireball touches him
-      meltSnowman(fireBall, snowMan);
-    }
+//snowman survives when he collects more than 19 snowballs and the user wins
+function snowmanSurvive() {
+  //if the snowman collects more than 19; initially if he collects 20
+  if (numSnowballCollected > 19) {
+    //the winning state triggers
+    state = `winning`;
   }
+}
 
-  //updating the kid behaviour
-  function updateKid() {
-    //drawing the array of kids using forloop
-    for (let i = 0; i < kids.length; i++) {
-      let kid = kids[i];
-      //calling methods- move, wrap, display from kid.js
-      kid.move();
-      kid.wrap();
-      kid.display();
-      //losthat function called
-      lostHat(kid, snowMan);
-    }
+//snowman grows when he touches snowball
+function growSnowman(snowBall, snowMan) {
+  //if both snowball and snowman touches
+  let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
+  //snowman size grows
+  if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
+    snowMan.size += 10;
+    //constraining snowman size when it grows and stops at 500 px
+    snowMan.size = constrain(snowMan.size, 0, 100);
   }
+}
 
-  //snowman melts and dies when his size is less than 15 px
-  function snowmanDead() {
-    if (snowMan.size < 15) {
-      //game over state triggers
-      state = `gameOver`;
-    }
-  }
-
-  //snowman survives when he collects more than 19 snowballs and the user wins
-  function snowmanSurvive() {
-    //if the snowman collects more than 19; initially if he collects 20
-    if (numSnowballCollected > 19) {
-      //the winning state triggers
-      state = `winning`;
-    }
-  }
-
-  //snowman grows when he touches snowball
-  function growSnowman(snowBall, snowMan) {
-    //if both snowball and snowman touches
+//TA (Sharon) helped with this
+//snowball gets collected by snowman
+function snowballCollection(snowBall, snowMan) {
+  //check to overlapp if snowball hasn't been collected yet
+  if (!snowBall.collected) {
     let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-    //snowman size grows
-    if (!snowBall.collected && d < snowMan.size / 2 + snowBall.size / 2) {
-      snowMan.size += 10;
-      //constraining snowman size when it grows and stops at 500 px
-      snowMan.size = constrain(snowMan.size, 0, 100);
+    //snowball collects snowball & snowball disappears
+    if (d < snowMan.size / 2 + snowBall.size / 2) {
+      snowBall.collected = true;
+      //keeping track of how many snowballs were collected
+      numSnowballCollected += 1;
+
+      //when snowball touches snowman, the 'ting!' sound triggers with its random rates
+      let currentRate = random(0.3, 0.5);
+      //plays random rates
+      tingSFX.rate(currentRate);
+      //volume is set
+      tingSFX.setVolume(0.2);
+      //to play it
+      tingSFX.play();
     }
   }
+}
 
-  //TA (Sharon) helped with this
-  //snowball gets collected by snowman
-  function snowballCollection(snowBall, snowMan) {
-    //check to overlapp if snowball hasn't been collected yet
-    if (!snowBall.collected) {
-      let d = dist(snowMan.x, snowMan.y, snowBall.x, snowBall.y);
-      //snowball collects snowball & snowball disappears
-      if (d < snowMan.size / 2 + snowBall.size / 2) {
-        snowBall.collected = true;
-        //keeping track of how many snowballs were collected
-        numSnowballCollected += 1;
-
-        //when snowball touches snowman, the 'ting!' sound triggers with its random rates
-        let currentRate = random(0.3, 0.5);
-        //plays random rates
-        tingSFX.rate(currentRate);
-        //volume is set
-        tingSFX.setVolume(0.2);
-        //to play it
-        tingSFX.play();
-      }
+//snowman size shrinks (melts) when it touches a fireball
+function meltSnowman(fireBall, snowMan) {
+  //check to overlap if fireball hasn't melted snowman
+  let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
+  //fireball melts snowman and snowman size shrinks
+  if (d < snowMan.size / 2 + fireBall.width / 2 + fireBall.height / 2) {
+    //snowman shrinks every 2 frames
+    snowMan.size -= 1;
+    //snowman size is constrained from getting any larger/smaller stopping at 500 px
+    snowMan.size = constrain(snowMan.size, 10, 500);
+    //if the snowman is melting, the sound plays once; otherwise the sound playing is false
+    if (ouchSFX.isPlaying() === false) {
+      ouchSFX.play();
     }
   }
+}
 
-  //snowman size shrinks (melts) when it touches a fireball
-  function meltSnowman(fireBall, snowMan) {
-    //check to overlap if fireball hasn't melted snowman
-    let d = dist(snowMan.x, snowMan.y, fireBall.x, fireBall.y);
-    //fireball melts snowman and snowman size shrinks
-    if (d < snowMan.size / 2 + fireBall.width / 2 + fireBall.height / 2) {
-      //snowman shrinks every 2 frames
-      snowMan.size -= 1;
-      //snowman size is constrained from getting any larger/smaller stopping at 500 px
-      snowMan.size = constrain(snowMan.size, 10, 500);
-      //if the snowman is melting, the sound plays once; otherwise the sound playing is false
-      if (ouchSFX.isPlaying() === false) {
-        ouchSFX.play();
-      }
-    }
+///TA (Sharon) has helped with this concept
+//drawing a text that notifies the user how many snowballs are collected
+function numSnowballText() {
+  //text located at top right corner of canvas
+  fill(255);
+  textFont(`marker felt`);
+  textStyle(BOLD);
+  textSize(20);
+  text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
+}
+
+///instructor (Pippan Barr) has helped with this
+//snowman loses magic when the kids "knock" off his hat (when the kids touch snowman)
+function lostHat(kid, snowMan) {
+  //check if kid and snowman touch
+  let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
+  if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
+    //hat rotates at 0.003 px
+    snowMan.hatRotation += 0.01;
   }
-
-  ///TA (Sharon) has helped with this concept
-  //drawing a text that notifies the user how many snowballs are collected
-  function numSnowballText() {
-    //text located at top right corner of canvas
-    fill(255);
-    textFont(`marker felt`);
-    textStyle(BOLD);
-    textSize(20);
-    text(`Snowballs collected: ${numSnowballCollected}`, 1250, 60);
-  }
-
-  ///instructor (Pippan Barr) has helped with this
-  //snowman loses magic when the kids "knock" off his hat (when the kids touch snowman)
-  function lostHat(kid, snowMan) {
-    //check if kid and snowman touch
-    let d = dist(snowMan.x, snowMan.y, kid.x, kid.y);
-    if (d < snowMan.size / 2 + kid.width / 2 + kid.height / 2) {
-      //hat rotates at 0.003 px
-      snowMan.hatRotation += 0.01;
-    }
-    //if the hat rotates more than 2 px
-    if (snowMan.hatRotation > 2) {
-      //lost magic state triggers
-      state = `lostMagic`;
-    }
+  //if the hat rotates more than 2 px
+  if (snowMan.hatRotation > 2) {
+    //lost magic state triggers
+    state = `lostMagic`;
   }
 }
