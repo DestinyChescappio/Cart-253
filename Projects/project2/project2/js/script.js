@@ -37,6 +37,8 @@ let lostMagicImage = undefined;
 //fire image (used for the fireballs)
 let fireBallImage = undefined;
 
+//sound of backgroud game music
+let music;
 //sound is used when the snowball and snowman touches
 let tingSFX = undefined;
 //sound is used when the fireball and snowman touches
@@ -77,6 +79,8 @@ function preload() {
   //fireball image
   fireBallImage = loadImage(`assets/images/fire.png`);
 
+  //music plays when game starts
+  music = loadSound(`assets/sounds/gameMusic.mp3`);
   //ting! sound when snowman touches snowball
   tingSFX = loadSound(`assets/sounds/ting.wav`);
   //ouch! sound when snowman touches fireball
@@ -217,6 +221,11 @@ function lostMagic() {
 function keyPressed() {
   if (state === `title`) {
     state = `startGame`;
+  }
+  //if it's playing once
+  if (!music.isPlaying()) {
+    //it plays in a loop
+    music.loop();
   }
 
   //what happens in the game
