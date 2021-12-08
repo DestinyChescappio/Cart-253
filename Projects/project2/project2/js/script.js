@@ -16,6 +16,10 @@ url: https://freesound.org/people/Under7dude/sounds/163441/
 tingSFX sound name: Triangle, 4", Hard Hit, A.wav
 artist credit: InspectorJ
 url: https://freesound.org/people/InspectorJ/sounds/354140/
+
+xmasMusic sound name: Crazy Holidazy
+artist credit: David Renda
+url: https://www.fesliyanstudios.com/royalty-free-music/downloads-c/christmas-music/33
 */
 
 "use strict";
